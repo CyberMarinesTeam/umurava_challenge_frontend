@@ -166,10 +166,10 @@ export default function Home() {
       <NavBar />
       <section className="firstSection flex pb-[50px] max-[440px]:flex-col flex-row items-center justify-center mt-[20px] ">
         <div className="max-[440px]:px-5 flex flex-col space-y-[30px]  text-left mt-[60px] lg:w-[576px]">
-          <h2 className="max-[440px]:text-lg text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
+          <h2 className="max-[440px]:text-xl text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
             Build Work Experience through Skills Challenges Program
           </h2>
-          <p className="text-[16px] w-full text-gray-700">
+          <p className="text-[16px] w-full text-gray-700 max-[440px]:text-sm">
             Enhance Your Employability and Accelerate Your Career Growth by
             working on Hands-on projects & Hackathons from various businesses &
             organizations
@@ -182,18 +182,18 @@ export default function Home() {
           <img
             src="/Image_2.png"
             alt="photo"
-            className="w-auto max-[440px]:w-auto max-[440px]:h-[300px] h-[500px]"
+            className="w-auto max-[440px]:w-auto max-[440px]:h-[290px] h-[500px]"
           />
           <img
             src="/image_1.png"
             alt="photo"
-            className="w-auto max-[440px]:w-auto max-[440px]:h-[300px] h-[443px] mt-[57px]"
+            className="w-auto max-[440px]:w-auto max-[440px]:h-[260px] max-md:mt-[37px]  h-[442px] lg:mt-[56px]"
           />
         </div>
       </section>
       <section className="firstSection max-[440px]:px-20 flex flex-col px-48 bg-[#F9FAFB] items-center justify-center lg:pt-[50px]">
-        <div className="max-[440px]:w-screen lg:pb-[50px] max-[440px]:px-5 flex flex-col justify-center lg:space-y-[20px] items-center w-fit">
-          <h2 className="max-[440px]:text-lg text-[#03192E] leading-[48px] text-[40px] text-center lg:w-[700px] font-bold">
+        <div className="max-[440px]:w-screen lg:pb-[50px] max-[440px]:px-5 flex flex-col justify-center max-md:py-[40px] lg:space-y-[20px] max-md:space-y-[20px] items-center w-fit">
+          <h2 className="max-[440px]:text-xl text-[#03192E] leading-[48px] max-md:leading-[30px] text-[40px] text-center lg:w-[700px] font-bold">
             Experience a New Way of Building Work Experience
           </h2>
           <p className="max-[440px]:text-sm lg:w-[710px] text-[#687588] text-[18px] text-center">
@@ -201,14 +201,14 @@ export default function Home() {
             become part of Africa's largest workforce of digital professionals{" "}
           </p>
           <div className="flex flex-col max-[440px]:w-full lg:space-y-[20px] h-fit items-center justify-center">
-            <div className="bg-[#2B71F0] max-[440px]:mb-5 mt-[60px] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-8 flex flex-col">
+            <div className="bg-[#2B71F0] max-[440px]:mb-5 mt-[60px] max-md:mt-[30px] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-8 flex flex-col">
               <img
                 src="/bagLogo.webp"
                 draggable="false"
                 className="w-[60px] rounded-[10px] h-auto"
                 alt="bag logo"
               />
-              <h2 className="max-[440px]:text-lg font-bold text-white text-[24px]">
+              <h2 className="max-[440px]:text-[20px] max-md:leading-[30px] font-bold text-white text-[24px]">
                 Build a Strong Portforio and Hand-On Experience
               </h2>
               <p className="max-[440px]:text-sm text-white text-[16px] max-[640px]:w-fit">
@@ -220,46 +220,44 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-row w-full max-[440px]:flex-col lg:space-x-[20px] max-[440px]:gap-5">
-              <div className="flex flex-row w-full max-[440px]:flex-col lg:space-x-[20px] max-[440px]:gap-5">
-                <div className="bg-[#2B71F0] space-y-[30px] rounded-[10px] p-[48px] max-[440px]:p-5 flex flex-col">
-                  <img
-                    src="/bagLogo.webp"
-                    draggable="false"
-                    className="w-[60px] rounded-[10px] h-auto"
-                    alt="bag logo"
-                  />
-                  <h2 className="font-bold text-white text-[24px]">
-                    Enhance Your Employment Path
-                  </h2>
-                  <p className="text-white text-[16px]">
-                    d8 Elop the in-demand skills and build a strong portforio to
-                    increase your chances of landing your dream job or contract
-                  </p>
-                </div>
-                <div className="bg-[#2B71F0] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-5 w-full flex flex-col">
-                  <img
-                    src="/bagLogo.webp"
-                    draggable="false"
-                    className="w-[60px] rounded-[10px] h-auto"
-                    alt="bag logo"
-                  />
-                  <h2 className="font-bold text-white text-[24px]">
-                    Earn Recognition and Prizes
-                  </h2>
-                  <p className="text-white text-[16px]">
-                    Earn both Money and knowledge Prizes by participating in
-                    various contests and competitions by working on real world
-                    projects and hackathons from partner companies or
-                    organizations
-                  </p>
-                </div>
+              <div className="bg-[#2B71F0] space-y-[30px] rounded-[10px] p-[48px] max-[440px]:p-5 flex flex-col">
+                <img
+                  src="/bagLogo.webp"
+                  draggable="false"
+                  className="w-[60px] rounded-[10px] h-auto"
+                  alt="bag logo"
+                />
+                <h2 className="font-bold text-white max-[440px]:text-[20px] max-md:leading-[30px] text-[24px]">
+                  Enhance Your Employment Path
+                </h2>
+                <p className="text-white text-[16px]">
+                  Elop the in-demand skills and build a strong portforio to
+                  increase your chances of landing your dream job or contract
+                </p>
+              </div>
+              <div className="bg-[#2B71F0] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-5 w-full flex flex-col">
+                <img
+                  src="/bagLogo.webp"
+                  draggable="false"
+                  className="w-[60px] rounded-[10px] h-auto"
+                  alt="bag logo"
+                />
+                <h2 className="font-bold max-[440px]:text-[20px] max-md:leading-[30px] text-white text-[24px]">
+                  Earn Recognition and Prizes
+                </h2>
+                <p className="text-white text-[16px]">
+                  Earn both Money and knowledge Prizes by participating in
+                  various contests and competitions by working on real world
+                  projects and hackathons from partner companies or
+                  organizations
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
       <section className="flex w-full items-center p-[70px] max-[440px]:p-2 justify-center">
-        <div className="bg-[url('/cardBg.webp')] text-white bg-cover max-[440px]:text-sm bg-center h-[259px] max-[440px]:h-32 space-x-[135px] max-[440px]:space-x-1 rounded-[30px] w-full flex flex-row items-center justify-center max-[440px]:justify-around max-[440px]:p-3">
+        <div className="bg-[url('/cardBg.webp')] text-white bg-cover max-md:rounded-[10px] max-[440px]:text-sm bg-center h-[259px] max-[440px]:h-32 space-x-[135px] max-[440px]:space-x-1 rounded-[30px] w-full flex flex-row items-center justify-center max-[440px]:justify-around max-[440px]:p-3">
           <div className="flex flex-col justify-center items-center gap-2">
             <p className="font-bold text-[40px] max-[440px]:text-2xl">1</p>
             <p className="text-[21.65px] max-[440px]:text-sm">Year</p>
@@ -281,11 +279,11 @@ export default function Home() {
         </div>
       </section>
       <section className="flex flex-col w-full pb-[50px] items-center pt-[50px] justify-center">
-        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[1000px] max-[440px]:w-full max-[440px]:text-2xl text-center font-bold">
+        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] max-md:leading-[30px]  w-[1000px] max-[440px]:w-full max-[440px]:text-xl text-center font-bold">
           Skills Challenges Cover various in-demand skills and Careers for the
           digital economy{" "}
         </h2>
-        <p className="text-[#687588]  mb-[45px] text-[18px] w-[580px] max-[440px]:w-full text-center">
+        <p className="text-[#687588]  mb-[45px] text-[18px] w-[580px] max-md:text-[14px]  max-[440px]:w-[371px] text-center">
           Explore the projects that various talents are working on{" "}
         </p>
         <div className="flex flex-wrap justify-center max-[440px]:w-full max-[440px]:gap-2 max-[440px]:px-3 gap-[20px] w-[700px] ">
@@ -301,10 +299,10 @@ export default function Home() {
         <Carousel images={images} />
       </section>
       <section className="flex flex-col max-[440px]:w-full pb-[50px] items-center justify-center">
-        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] max-[440px]:w-full w-[1000px] text-center font-bold">
+        <h2 className="text-[#03192E] text-[40px] max-[440px]:text-xl mb-[20px] leading-[48px] max-[440px]:w-full w-[1000px] text-center font-bold">
           Explore Challenges & Hackathons
         </h2>
-        <p className="text-[#687588] max-[440px]:w-full mb-[45px] text-[18px] w-[710px] text-center">
+        <p className="text-[#687588] max-[440px]:text-sm max-[440px]:px-2 max-[440px]:w-full mb-[45px] text-[18px] w-[710px] text-center">
           Join skills Challenges Program to accelerate your career growth and
           become part of Africa's largest workforce of digital professionals.
         </p>
@@ -323,7 +321,7 @@ export default function Home() {
           Join Skills Challenges Program to accelerate yout career growth and
           become part of Africa's largest workforce of digital professionals{" "}
         </p>
-        <main className="flex max-[440px]:w-full max-[440px]:flex-col-reverse max-[440px]:gap-10 flex-row space-x-[50px] mt-[70px] items-center justify-center">
+        <main className="flex max-[440px]:w-full max-[440px]:flex-col-reverse max-[440px]:gap-10 flex-row max-[440px]:space-x-0 space-x-[50px] mt-[70px] items-center justify-center">
           <div className="grid max-[440px]:flex max-[440px]:flex-col grid-cols-2 gap-[30px]">
             {gridSectionData.map((data, index) => (
               <div className="flex-col flex" key={index}>
@@ -348,7 +346,7 @@ export default function Home() {
             src="/cardPhoto2.webp"
             alt="image"
             draggable={false}
-            className="w-[450px] h-auto max-[440px]:w-40 max-[440px]:self-center"
+            className="w-[450px] h-auto max-[440px]:w-full"
           />
         </main>
       </section>
@@ -441,19 +439,19 @@ export default function Home() {
           </div>
         </main>
       </section>
-      <section className="py-[80px] max-[440px]:w-full max-[440px]:px-2 max-[440px]:h-fit max-[440px]:flex max-[440px]:flex-col grid place-items-center">
-        <div className="h-[503px] max-[440px]:w-full max-[440px]:h-fit max-[440px]:flex max-[440px]:flex-col w-[1221px] rounded-[20px] bg-[url('/cardBg2.webp')] bg-cover bg-no-repeat place-items-center grid grid-cols-2">
+      <section className="py-[80px] max-[440px]:pt-5 max-[440px]:w-full max-[440px]:px-2 max-[440px]:h-fit max-[440px]:flex max-[440px]:flex-col grid place-items-center">
+        <div className="h-[503px] max-[440px]:p-3 max-[440px]:w-full max-[440px]:h-fit max-[440px]:flex max-[440px]:flex-col w-[1221px] rounded-[20px] bg-[url('/cardBg2.webp')] bg-cover bg-no-repeat place-items-center grid grid-cols-2">
           <img
             src="/people.webp"
             alt="image"
-            className="w-[398px] h-[395px] max-[440px]:w-40 max-[440px]:h-auto rounded-[10px]"
+            className="w-[398px] h-[395px] max-[440px]:w-full max-[440px]:h-auto rounded-[10px]"
           />
-          <div>
+          <div className="max-[440px]:w-full max-[440px]:pt-3">
             {" "}
-            <h2 className="font-bold text-white leading-[38px] w-[545px] text-[32px]">
+            <h2 className="font-bold max-[440px]:text-xl max-[440px]:w-full text-white leading-[38px] w-[545px] text-[32px]">
               Ready To Unlock Your Career Potential Today
             </h2>
-            <p className="text-white text-[18px] w-[525px] leading-[27px] mt-[30px]">
+            <p className="text-white text-[18px] max-[440px]:w-full w-[525px] leading-[27px] mt-[30px]">
               Join a challenge or a hackathon to gain valuable work experience ,
               build an impressive portforio and increase your chances to land
               your job opportunities and accelerate your career growth.
