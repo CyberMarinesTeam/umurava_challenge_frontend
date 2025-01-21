@@ -1,7 +1,7 @@
 import Carousel from "./components/Carousel";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
-import { IoIosArrowRoundForward } from "react-icons/io";
+import { IoIosArrowRoundForward } from "react-icons/io"; 
 import { IoPlaySharp } from "react-icons/io5";
 
 export default function Home() {
@@ -157,7 +157,6 @@ export default function Home() {
   return (
     <main className="">
       <NavBar />
-
       <section className="flex pb-[50px]   flex-row items-center justify-center  mt-[50px] ">
         <div className="flex flex-col space-y-[30px]  text-left mt-[60px] w-[570px]">
           <h2 className="text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
@@ -349,7 +348,18 @@ export default function Home() {
         </h2>
         <main className="flex flex-row space-x-[30px] mt-[60px]">
           <div className="grid grid-cols-1 gap-[30px]">
-            <div className="bg-white rounded-[10px] w-[470px] h-[364px]"></div>
+            <div className="flex flex-col relative bg-white rounded-[10px] w-[470px] h-[364px] p-10 gap-5">
+              <div>
+                <button className="px-3 py-2 bg-[#2B71F0] text-white rounded-lg">Step 1</button>
+              </div>
+              <div className="flex flex-col gap-3">
+                <p className="text-2xl font-bold">Sign up on Umurava Platform</p>
+                <p>Submit your completed project for evaluation</p>
+              </div>
+              <div className="absolute w-72 bottom-0 right-0">
+                <img src="/cardPhoto3.webp"/>
+              </div>
+            </div>
             <div className="bg-white rounded-[10px] w-[470px] h-[364px]"></div>
           </div>
           <div className="grid grid-cols-1 gap-[30px]">
