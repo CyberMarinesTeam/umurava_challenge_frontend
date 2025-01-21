@@ -1,71 +1,80 @@
 "use client";
+import React, { useState, useEffect, Fragment } from "react";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
-import React, { useState } from "react";
-
-interface CarouselProps {
-  slides: string[]; // Array of image URLs or text
-}
-
-const Carousel: React.FC<CarouselProps> = ({ slides }) => {
+const Carousel = ({ images }: { images: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const autoSlide = true;
+  const autoSlideInterval = 5000;
 
-  const goToPrevious = () => {
-    const newIndex = (currentIndex - 1 + slides.length) % slides.length;
-    setCurrentIndex(newIndex);
+  useEffect(() => {
+    if (autoSlide) {
+      const slideInterval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, autoSlideInterval);
+      return () => clearInterval(slideInterval);
+    }
+  }, [autoSlide, autoSlideInterval, images.length]);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  const goToNext = () => {
-    const newIndex = (currentIndex + 1) % slides.length;
-    setCurrentIndex(newIndex);
+  const prevSlide = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index);
   };
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto overflow-hidden">
-      <div className="flex items-center justify-between">
-        <button
-          className="text-2xl p-2 bg-gray-200 rounded-full hover:bg-gray-300"
-          onClick={goToPrevious}
-        >
-          ❮
-        </button>
-        <div className="flex-grow text-center">
-          <div
-            className="transition-transform duration-500 ease-in-out"
-            style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
-            }}
-          >
-            {slides.map((slide, index) => (
-              <p
-                key={index}
-                className="text-xl font-semibold p-4"
-                style={{
-                  display: "inline-block",
-                  width: "100%",
-                }}
-              >
-                {slide}
+    <div className="relative mb-[100px] w-full grid place-items-center">
+      <div className="overflow-hidden relative h-[450px]  bg-[#f1f1f1] py-[80px] mt-[100px]  px-[100px] w-[1100px] rounded-[20px] grid grid-cols-2 place-items-center ">
+        {images.map((image, index) => (
+          <Fragment key={index}>
+            <div className="flex flex-col  h-[450px]  space-y-[40px] items-start">
+              <span className="bg-white p-[10px] rounded-[10px]">
+                <img
+                  src="/EmbeddedFinance.webp"
+                  alt="embedded finance"
+                  className="h-[40px] w-[40px]"
+                />
+              </span>
+              <p className="font-light text-[#687588] leading-[30px]">
+                Embedded Finance platform and Payroll Management Software{" "}
+                Solutions for your organizations and workforce
               </p>
-            ))}
-          </div>
-        </div>
-        <button
-          className="text-2xl p-2 bg-gray-200 rounded-full hover:bg-gray-300"
-          onClick={goToNext}
-        >
-          ❯
-        </button>
+              <span className="flex flex-row space-x-[10px] items-center justify-center">
+                <span className="text-[#2b71f0] font-semiBold text-[13px]">
+                  Learn more
+                </span>
+                <span className="bg-[#2b71f0] w-[30px] h-[30px] grid place-items-center rounded-full text-white">
+                  <IoIosArrowRoundForward className="text-[21px]" />
+                </span>
+              </span>
+            </div>
+            <img
+              src="/computerDashboard.webp"
+              alt="computer"
+              className="mb-[100px]"
+            />
+          </Fragment>
+        ))}
       </div>
 
-      <div className="flex justify-center mt-4 space-x-2">
-        {slides.map((_, index) => (
-          <span
+      <div className="absolute bottom-[-60px] left-0 right-0 flex justify-center space-x-2">
+        {images.map((_, index) => (
+          <button
             key={index}
-            className={`w-3 h-3 rounded-full cursor-pointer ${
-              index === currentIndex ? "bg-gray-800" : "bg-gray-400"
+            title="slide_buttons"
+            className={`w-[11px] h-[11px] rounded-full transition-all duration-300 ${
+              index === currentIndex ? "bg-[#2b71f0]" : "bg-[#D9D9D9]"
             }`}
-            onClick={() => setCurrentIndex(index)}
-          />
+            onClick={() => goToSlide(index)}
+          ></button>
         ))}
       </div>
     </div>

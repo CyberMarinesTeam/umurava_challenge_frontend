@@ -15,27 +15,119 @@ export default function Home() {
     "Web3",
     "Digital Marketing & Communications",
   ];
+  const gridSectionData = [
+    {
+      image: "bagLogo2.webp",
+      heading: "Enhance Your Employment Path",
+      description:
+        " Network with other talented individuals and learn from their experiences",
+    },
+    {
+      image: "prizeLogo.webp",
+      heading: "Earn Recognition And Prize",
+      description:
+        "Gain valuable experience and knowledge to advance your career in the digital economy",
+    },
+    {
+      image: "statisticLogo.webp",
+      heading: "Personal Growth",
+      description:
+        "Challenge yourself , learn new skills , and expand your professional network",
+    },
+    {
+      image: "prize2Logo.webp",
+      heading: "Learn From Industry Experts",
+      description:
+        "Access valuable insights and guidance from experienced professionals in the digital careers fields and spaces.",
+    },
+  ];
+  const images = [
+    "cardPhoto1.webp",
+    "cardPhoto2.webp",
+    "cardPhoto1.webp",
+    "cardPhoto2.webp",
+  ];
+  let items = [];
+  let numItems = 3;
+  for (let i = 1; i <= numItems; i++) {
+    items.push(
+      <div
+        key={i}
+        className="flex flex-col border-[1.5px] items-center pt-[18px] rounded-[10px] w-[350px] h-[480px] border-[#E4E7EC]"
+      >
+        <div className="relative">
+          <img
+            src="/umuravaBg.webp"
+            draggable={false}
+            alt="umurava_bg"
+            className="w-[313px] object-cover rounded-[10px] h-[200px]"
+          />
+          <span className="bg-[#0F973D] text-white absolute w-[70px] grid place-items-center h-[28px] rounded-full top-[10px] text-[14px] right-[10px]">
+            Open
+          </span>
+        </div>
+        <h2 className="text-[#101928] mt-[30px] text-[18px] font-semibold">
+          Design a Dashboard for SokoFund
+        </h2>
+        <div className="flex flex-col pl-[10px] text-start space-x-[-10px] space-y-[10px] mt-[10px]">
+          <h2 className="text-[#25272B] text-[14px] font-semibold">
+            Skills Needed:
+          </h2>
+          <div className="flex flex-wrap gap-[10px] items-center justify-center">
+            <button className="text-[#2B71F0] text-[12px] px-[7px] py-[6px] rounded-[12px] border-[#2B71F0] border-[1.5px]">
+              UI/UX Design
+            </button>
+            <button className="text-[#2B71F0] text-[12px] px-[7px] py-[6px] rounded-[12px] border-[#2B71F0] border-[1.5px]">
+              User Research
+            </button>
+            <button className="text-[#2B71F0] text-[12px] px-[7px] py-[6px] rounded-[12px] border-[#2B71F0] border-[1.5px]">
+              User Research
+            </button>
+          </div>
+        </div>
+        <div className="flex space-x-[10px] mt-[10px] flex-row items-center justify-center">
+          <h2 className="text-[#25272B] text-[14px] font-semibold">
+            Seniority Level:
+          </h2>
+          <h1 className="text-[#475367] text-[14px]">
+            (Junior,Intermediate,Senior)
+          </h1>
+        </div>
+        <div className="flex space-x-[10px] mt-[10px] w-full items-start flex-row justify-start px-[20px]">
+          <h2 className="text-[#25272B] text-[14px] font-semibold">
+            Timeline:
+          </h2>
+          <h1 className="text-[#475367] text-[14px]">15 Days</h1>
+        </div>
+        <div className="flex-1 w-full border-t-[1.5px] flex items-center px-[20px] border-[#E4E7EC] mt-[16px]">
+          <button className="bg-[#2B71F0] text-[13px] font-semibold text-white h-[36px] w-[136px] rounded-[10px]">
+            View Challenge
+          </button>
+        </div>
+      </div>
+    );
+  }
   return (
     <main className="">
       <NavBar />
 
       <section className="flex pb-[50px]   flex-row items-center justify-center  mt-[50px] ">
-        <div className="flex flex-col space-y-[30px] text-left mt-[60px] w-[570px]">
-          <h2 className="text-[#2B71f0] leading-[52.8px] font-bold text-[44px]">
+        <div className="flex flex-col space-y-[30px]  text-left mt-[60px] w-[570px]">
+          <h2 className="text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
             Build Work Experience through Skills Challenges Program
           </h2>
-          <p className="text-[19px] w-[550px] text-gray-700">
+          <p className="text-[16px] w-[450px] text-gray-700">
             Enhance Your Employability and Accelerate Your Career Growth by
             working on Hands-on projects & Hackathons from various businesses &
             organizations
           </p>
-          <button className="bg-[#2B71f0] mt-[40px] w-[201px] h-[56px]  text-[16px] rounded-[5px] font-semibold text-white">
+          <button className="bg-[#2B71f0] mt-[40px] w-[171px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
             Get Started
           </button>
         </div>
         <img
           src="/homePagePhoto.webp"
-          className="h-[490px] w-auto"
+          className="h-[390px] w-auto"
           draggable="false"
           alt="home image"
         />
@@ -140,30 +232,57 @@ export default function Home() {
             </button>
           ))}
         </div>
-        <div className="bg-[#f1f1f1] py-[80px] mt-[100px]  px-[50px] w-[1100px] rounded-[20px] grid grid-cols-2 place-items-center">
-          {/* <div className="flex flex-col space-y-[40px] items-start">
-            <span className="bg-white p-[10px] rounded-[10px]">
-              <img
-                src="/EmbeddedFinance.webp"
-                alt="embedded finance"
-                className="h-[40px] w-[40px]"
-              />
-            </span>
-            <p className="font-extralight leading-[30px]">
-              Embedded Finance platform and Payroll Management Software{" "}
-              Solutions for your organizations and workforce
-            </p>
-            <span className="flex flex-row space-x-[10px] items-center justify-center">
-              <span className="text-[#2b71f0] font-semiBold text-[13px]">
-                Learn more
-              </span>
-              <span className="bg-[#2b71f0] w-[30px] h-[30px] grid place-items-center rounded-full text-white">
-                <IoIosArrowRoundForward className="text-[21px]" />
-              </span>
-            </span>
-          </div> */}
-          {/* <img src="/computerDashboard.webp" alt="computer" /> */}
-        </div>
+        <Carousel images={images} />
+      </section>
+      <section className="flex flex-col  pb-[50px] items-center justify-center">
+        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[1000px] text-center font-bold">
+          Explore Challenges & Hackathons
+        </h2>
+        <p className="text-[#687588]  mb-[45px] text-[18px] w-[710px] text-center">
+          Join skills Challenges Program to accelerate your career growth and
+          become part of Africa's largest workforce of digital professionals.
+        </p>
+        <div className="grid grid-cols-3 gap-[30px]">{items}</div>
+        <button className="w-[207px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] mt-[60px] grid place-items-center border-[#2b71f0] border-[1.5px]">
+          View More
+        </button>
+      </section>
+      <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
+        <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
+          What else can I gain from participating in Skills Challenges ?
+        </h2>
+        <p className="text-[#687588] mt-[20px]  text-[18px] w-[710px] text-center">
+          Join Skills Challenges Program to accelerate yout career growth and
+          become part of Africa's largest workforce of digital professionals{" "}
+        </p>
+        <main className="flex flex-row space-x-[50px] mt-[70px] items-center justify-center">
+          <div className="grid grid-cols-2 gap-[30px]">
+            {gridSectionData.map((data, index) => (
+              <div className="flex-col flex " key={index}>
+                <div className="w-[60px] h-[60px] grid place-items-center bg-[#2b71f0] rounded-[5px]">
+                  <img
+                    src={`/${data.image}`}
+                    alt="logo"
+                    draggable={false}
+                    className="w-[40px] h-[40px] object-cover rounded-[5px]"
+                  />
+                </div>
+                <h2 className="text-[#101928] mt-[15px] text-[15px] font-semibold">
+                  {data.heading}
+                </h2>
+                <p className="text-[#687588] mt-[20px] text-[14px] w-[300px]">
+                  {data.description}
+                </p>
+              </div>
+            ))}
+          </div>
+          <img
+            src="/cardPhoto2.webp"
+            alt="image"
+            draggable={false}
+            className="w-[450px] h-auto"
+          />
+        </main>
       </section>
     </main>
   );
