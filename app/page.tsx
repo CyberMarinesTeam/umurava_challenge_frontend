@@ -1,6 +1,8 @@
 import Carousel from "./components/Carousel";
+import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { IoPlaySharp } from "react-icons/io5";
 
 export default function Home() {
   const slides = ["hello1", "hello2", "hello3", "This is a text-based slide!"];
@@ -15,6 +17,51 @@ export default function Home() {
     "Web3",
     "Digital Marketing & Communications",
   ];
+  const videoCards = [];
+  for (let i = 0; i < 10; i++) {
+    videoCards.push(
+      <div
+        key={i}
+        className="carousel-item flex flex-col border-[#E4E7EC] border-[1.5px] p-[20px] rounded-[10px]"
+      >
+        {/* <img
+          src="/umuravaBg.webp"
+          alt="image"
+          className="rounded-[10px] w-[470px] object-cover h-[280px]"
+        /> */}
+        <div className="relative w-[470px] h-[280px] rounded-lg shadow-lg overflow-hidden">
+          <video className="w-full h-full" controls>
+            <source src="your-video-file.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute inset-0 flex justify-center items-center">
+            <button
+              title="button"
+              className="btn btn-circle bg-[#FFFFFF9B] border-none"
+              // onclick="document.querySelector('video').play(); this.style.display='none';"
+            >
+              <IoPlaySharp className="text-[30px] text-white" />
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-row space-x-[10px] items-center mt-[20px]">
+          <img
+            src="/umuravaBg.webp"
+            alt="image"
+            className="w-[60px]  object-cover h-[60px] rounded-full"
+          />
+          <span className="flex flex-col">
+            <h2 className="text-[#00473B] text-[19px] font-semibold">
+              Manzi James
+            </h2>
+            <p className="text-[#737373] text-[14px]">
+              Product Designer,Kigali
+            </p>
+          </span>
+        </div>
+      </div>
+    );
+  }
   const gridSectionData = [
     {
       image: "bagLogo2.webp",
@@ -284,6 +331,38 @@ export default function Home() {
           />
         </main>
       </section>
+      <section className="flex flex-col pt-[60px]  ml-[130px]  pb-[50px] items-start justify-center">
+        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[700px] text-left font-bold">
+          Users Are In Love with Skills Challenges Program
+        </h2>
+        <p className="text-[#687588]  mb-[45px] text-[18px] w-[610px] text-left">
+          See what your clients say about working with us. Their success speaks
+          for our dedication and expertise.
+        </p>
+        <div className="carousel carousel-center bg-white shadow-sm  rounded-box max-w-full space-x-4 p-4">
+          {videoCards}
+        </div>
+      </section>
+      <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
+        <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
+          How To Get Started
+        </h2>
+        <main className="flex flex-row space-x-[30px] mt-[60px]">
+          <div className="grid grid-cols-1 gap-[30px]">
+            <div className="bg-white rounded-[10px] w-[470px] h-[364px]"></div>
+            <div className="bg-white rounded-[10px] w-[470px] h-[364px]"></div>
+          </div>
+          <div className="grid grid-cols-1 gap-[30px]">
+            <div className="bg-white rounded-[10px] w-[624px] h-[235px]"></div>
+            <div className="bg-white rounded-[10px] w-[624px] h-[235px]"></div>
+            <div className="bg-white rounded-[10px] w-[624px] h-[235px]"></div>
+          </div>
+        </main>
+      </section>
+      <section className="py-[80px] grid place-items-center">
+        <div className="h-[503px] w-[1221px] rounded-[20px] bg-blue-500"></div>
+      </section>
+      <Footer />
     </main>
   );
 }
