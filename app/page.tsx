@@ -1,6 +1,9 @@
+import Carousel from "./components/Carousel";
 import NavBar from "./components/NavBar";
+import { IoIosArrowRoundForward } from "react-icons/io";
 
 export default function Home() {
+  const slides = ["hello1", "hello2", "hello3", "This is a text-based slide!"];
   const courseNames = [
     "UI/UX Design",
     "Data Science",
@@ -17,22 +20,22 @@ export default function Home() {
       <NavBar />
 
       <section className="flex pb-[50px]   flex-row items-center justify-center space-x-[10px] mt-[50px] ">
-        <div className="flex flex-col space-y-[50px] text-left w-[450px]">
-          <h2 className="text-[#2B71f0] font-bold text-[30px]">
+        <div className="flex flex-col space-y-[30px] text-left mt-[60px] w-[570px]">
+          <h2 className="text-[#2B71f0] leading-[52.8px] font-bold text-[44px]">
             Build Work Experience through Skills Challenges Program
           </h2>
-          <p>
+          <p className="text-[19px] w-[550px] text-gray-700">
             Enhance Your Employability and Accelerate Your Career Growth by
             working on Hands-on projects & Hackathons from various businesses &
             organizations
           </p>
-          <button className="bg-[#2B71f0] w-[300px] p-[10px] rounded-[10px] font-semibold text-white">
+          <button className="bg-[#2B71f0] mt-[40px] w-[201px] h-[56px]  text-[16px] rounded-[9px] font-semibold text-white">
             Get Started
           </button>
         </div>
         <img
           src="/homePagePhoto.webp"
-          className="h-[400px] w-auto"
+          className="h-[500px] w-auto"
           draggable="false"
           alt="home image"
         />
@@ -136,6 +139,31 @@ export default function Home() {
               {courseName}
             </button>
           ))}
+        </div>
+        <div className="bg-[#f1f1f1] py-[80px]  px-[50px] w-[1100px] rounded-[20px] grid grid-cols-2 place-items-center">
+          {/* <div className="flex flex-col space-y-[40px] items-start">
+            <span className="bg-white p-[10px] rounded-[10px]">
+              <img
+                src="/EmbeddedFinance.webp"
+                alt="embedded finance"
+                className="h-[40px] w-[40px]"
+              />
+            </span>
+            <p className="font-extralight leading-[30px]">
+              Embedded Finance platform and Payroll Management Software{" "}
+              Solutions for your organizations and workforce
+            </p>
+            <span className="flex flex-row space-x-[10px] items-center justify-center">
+              <span className="text-[#2b71f0] font-semiBold text-[13px]">
+                Learn more
+              </span>
+              <span className="bg-[#2b71f0] w-[30px] h-[30px] grid place-items-center rounded-full text-white">
+                <IoIosArrowRoundForward className="text-[21px]" />
+              </span>
+            </span>
+          </div> */}
+          {/* <img src="/computerDashboard.webp" alt="computer" /> */}
+          <Carousel slides={slides} />
         </div>
       </section>
     </main>
