@@ -20,7 +20,7 @@ const NavBar = () => {
       { label: "Settings", path: "/talent/settings" },
     ],
     guest: [
-      { label: "Home", path: "/guest/home" },
+      { label: "Home", path: "/" },
       { label: "Challenge & Hackathons", path: "/guest/challenges" },
       { label: "For Educational Institutions", path: "/guest/community" },
       { label: "About Us", path: "/guest/about" },
