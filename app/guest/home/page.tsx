@@ -349,18 +349,99 @@ export default function Home() {
         </h2>
         <main className="flex flex-row space-x-[30px] mt-[60px]">
           <div className="grid grid-cols-1 gap-[30px]">
-            <div className="bg-white rounded-[10px] w-[470px] h-[364px]"></div>
-            <div className="bg-white rounded-[10px] w-[470px] h-[364px]"></div>
+            <div className="relative shadow-sm bg-white rounded-[10px] w-[470px] pt-[50px] pl-[50px] h-[364px] flex flex-col">
+              <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
+                Step 1
+              </button>
+              <h2 className="text-[#101928] mt-[15px] text-[15px] font-semibold">
+                Sign Up on Umurava Platform
+              </h2>
+              <p className="text-[#687588] mt-[15px] text-[14px] ">
+                Submit your completed project for evaluation
+              </p>
+              <img
+                src="/cardPhoto3.webp"
+                alt="photo"
+                className="absolute bottom-0 right-0 rounded-br-[10px] w-[263px] h-[147px]"
+              />
+            </div>
+            <div className="relative shadow-sm bg-white rounded-[10px] w-[470px] pt-[50px] pl-[50px] h-[364px] flex flex-col">
+              <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
+                Step 2
+              </button>
+              <h2 className="text-[#101928] mt-[15px] text-[15px] font-semibold">
+                Browse Open Challenges
+              </h2>
+              <p className="text-[#687588] mt-[15px] text-[14px] ">
+                Explore the range of challenges and hackathons and choose one{" "}
+                that aligns with your interests and career goals
+              </p>
+              <img
+                src="/cardPhoto1.webp"
+                alt="photo"
+                className="absolute bottom-0 rounded-br-[10px] right-0 w-[263px] h-[147px]"
+              />
+            </div>
           </div>
           <div className="grid grid-cols-1 gap-[30px]">
-            <div className="bg-white rounded-[10px] w-[624px] h-[235px]"></div>
-            <div className="bg-white rounded-[10px] w-[624px] h-[235px]"></div>
-            <div className="bg-white rounded-[10px] w-[624px] h-[235px]"></div>
+            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
+              <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
+                Step 3
+              </button>
+              <h2 className="text-[#101928] mt-[15px] text-[15px] font-semibold">
+                Register and Participate
+              </h2>
+              <p className="text-[#687588] mt-[15px] text-[14px] ">
+                Sign up for the challenge and start working on the project.
+              </p>
+            </div>
+            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
+              <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
+                Step 4
+              </button>
+              <h2 className="text-[#101928] mt-[15px] text-[15px] font-semibold">
+                Submit your work
+              </h2>
+              <p className="text-[#687588] mt-[15px] text-[14px] ">
+                Submit your completed project for evaluation
+              </p>
+            </div>{" "}
+            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
+              <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
+                Step 5
+              </button>
+              <h2 className="text-[#101928] mt-[15px] text-[15px] font-semibold">
+                Receive Feedback and Recognition{" "}
+              </h2>
+              <p className="text-[#687588] mt-[15px] text-[14px] ">
+                Get feedback on your work and celebrate your achievements{" "}
+              </p>
+            </div>{" "}
           </div>
         </main>
       </section>
       <section className="py-[80px] grid place-items-center">
-        <div className="h-[503px] w-[1221px] rounded-[20px] bg-blue-500"></div>
+        <div className="h-[503px] w-[1221px] rounded-[20px] bg-[url('/cardBg2.webp')] bg-cover bg-no-repeat place-items-center grid grid-cols-2">
+          <img
+            src="/people.webp"
+            alt="image"
+            className="w-[398px] h-[395px] rounded-[10px]"
+          />
+          <div>
+            {" "}
+            <h2 className="font-bold text-white leading-[38px] w-[545px] text-[32px]">
+              Ready To Unlock Your Career Potential Today
+            </h2>
+            <p className="text-white text-[18px] w-[525px] leading-[27px] mt-[30px]">
+              Join a challenge or a hackathon to gain valuable work experience ,
+              build an impressive portforio and increase your chances to land
+              your job opportunities and accelerate your career growth.
+            </p>
+            <button className="w-[230px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0]">
+              View Challenge
+            </button>
+          </div>
+        </div>
       </section>
       <Footer />
     </main>

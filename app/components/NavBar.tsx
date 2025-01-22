@@ -22,7 +22,7 @@ const NavBar = () => {
     guest: [
       { label: "Home", path: "/" },
       { label: "Challenge & Hackathons", path: "/guest/challenges" },
-      { label: "For Educational Institutions", path: "/guest/community" },
+      { label: "For Learning Institutions", path: "/guest/community" },
       { label: "About Us", path: "/guest/about" },
       { label: "Contact Us", path: "/guest/contact" },
     ],
