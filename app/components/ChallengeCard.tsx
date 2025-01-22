@@ -2,7 +2,7 @@ import React from "react";
 
 const ChallengeCard = () => {
   return (
-    <div className="flex flex-col border-[1.5px] items-start pt-[18px] rounded-[10px] w-[350px] h-auto border-[#E4E7EC] ">
+    <div className="flex flex-col border-[1.5px] width-[348px] h-[478px] items-start pt-[18px] rounded-[10px]   border-[#E4E7EC] ">
       <div className="relative px-2">
         <img
           src="/umuravaBg.webp"
