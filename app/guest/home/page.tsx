@@ -435,7 +435,7 @@ export default function Home() {
             <p className="text-white text-[18px] w-[525px] leading-[27px] mt-[30px]">
               Join a challenge or a hackathon to gain valuable work experience ,
               build an impressive portforio and increase your chances to land
-              your job opportunities and accelerate your career growth
+              your job opportunities and accelerate your career growth.
             </p>
             <button className="w-[230px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0]">
               View Challenge
