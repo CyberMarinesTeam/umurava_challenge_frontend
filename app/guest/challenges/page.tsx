@@ -9,7 +9,7 @@ const page = () => {
     <main className="">
       <NavBar />
       <main className="bg-[#f9fafb]">
-        <div className="flex  flex-row items-center space-x-[20px] justify-start px-[100px] pt-[30px]">
+        <div className="flex  flex-row items-center space-x-[20px] justify-start px-[100px] pt-[100px]">
           <span className="border-[#E4E7EC] border-[1px] p-[3px] rounded-[5px] bg-white">
             <VscArrowSmallLeft className="text-[21px]" />
           </span>
@@ -19,7 +19,7 @@ const page = () => {
             <span className="text-[#2B71F0]">Challenges & Hackathons</span>
           </h2>
         </div>
-        <div className="grid grid-cols-4 py-[50px] gap-[20px] px-[100px] place-items-center">
+        <div className="grid grid-cols-4 mt-[30px] gap-[20px] px-[40px]  place-items-center">
           <ChallengeCard />
           <ChallengeCard />
           <ChallengeCard />

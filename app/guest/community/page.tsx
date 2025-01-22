@@ -14,14 +14,14 @@ const Page = () => {
     <main>
       <NavBar />
       <main>
-        <section className="flex flex-row space-x-[60px] py-[80px] items-center justify-center">
+        <section className="flex flex-row space-x-[20px] py-[80px] items-center justify-center">
           <div className="flex flex-col space-y-[20px]">
-            <h2 className="text-[#2B71f0] w-[620px] leading-[33px] text-[28px] font-bold">
+            <h2 className="text-[#2B71f0] w-[520px] leading-[33px] text-[26px] font-bold">
               Accelerate Your Students and Trainees' Employability and Career
               Growth through Project-Based Learning Solutions
             </h2>
-            <div className="flex flex-col space-y-[20px] w-[529px]">
-              <p className="text-[18px] leading-[30px] text-[#2b3338]">
+            <div className="flex flex-col space-y-[20px] w-[538px]">
+              <p className="text-[16px] leading-[30px] text-[#2b3338]">
                 We partner with universities, schools, and training institutions
                 to provide valuable work experience for students and trainees
                 through project-based learning challenges and hackathons.
@@ -34,7 +34,7 @@ const Page = () => {
           <img
             src="/girls.webp"
             alt="photo"
-            className="h-[377px] w-[606px] rounded-[32px]"
+            className="h-[377px] w-[550px] rounded-[32px]"
           />
         </section>
         <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">

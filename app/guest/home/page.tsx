@@ -158,7 +158,7 @@ export default function Home() {
     <main className="">
       <NavBar />
 
-      <section className="flex pb-[50px]   flex-row items-center justify-center  mt-[50px] ">
+      <section className="flex pb-[50px]   flex-row items-center justify-center  mt-[20px] ">
         <div className="flex flex-col space-y-[30px]  text-left mt-[60px] w-[570px]">
           <h2 className="text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
             Build Work Experience through Skills Challenges Program
@@ -172,12 +172,14 @@ export default function Home() {
             Get Started
           </button>
         </div>
-        <img
-          src="/homePagePhoto.webp"
-          className="h-[390px] w-auto"
-          draggable="false"
-          alt="home image"
-        />
+        <div className="flex flex-row space-x-[20px] ">
+          <img src="/Image_2.png" alt="photo" className="w-auto h-[490px]" />
+          <img
+            src="/image_1.png"
+            alt="photo"
+            className="w-auto h-[443px] mt-[50px]"
+          />
+        </div>
       </section>
       <section className="flex flex-col space-y-[20px] pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
         <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
