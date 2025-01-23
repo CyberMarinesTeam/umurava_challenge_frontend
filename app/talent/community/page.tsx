@@ -2,11 +2,11 @@ import React from "react";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import StatusCard from "../components/StatusCard";
 import { FaAngleRight } from "react-icons/fa6";
-import ChallengeCard2 from "@/app/components/ChallengeCard2";
+import ChallengeCard from "@/app/components/ChallengeCard";
 
-const Dashboard = () => {
+const Community = () => {
   return (
-    <div className="p-[36px] gap-[16px] bg-[#F9FAFB]">
+    <div className="p-[36px] gap-[16px]">
       <div className="flex flex-row justify-between">
         <div>
           <p className="text-2xl font-bold">Welcome back Hilaire,</p>
@@ -38,12 +38,12 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex flex-row gap-[20px]">
-        <ChallengeCard2 />
-        <ChallengeCard2 />
-        <ChallengeCard2 />
+        <ChallengeCard />
+        <ChallengeCard />
+        <ChallengeCard />
       </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default Community;
