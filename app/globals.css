@@ -26,3 +26,13 @@ div {
   animation-timeline: view();
   animation-range: entry 50%;
 }
+
+.rounded-border::before{
+  content: "";
+  height: 100%;
+  width: 5px;
+  background-color: #2B71F0;
+  border-radius: 2.5px;
+  position: absolute;
+  left: 0;
+}
