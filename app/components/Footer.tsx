@@ -10,8 +10,8 @@ import { LuCopyright } from "react-icons/lu";
 
 const Footer = () => {
   return (
-    <footer className="h-[490px] w-full bg-[#001A40] text-white pt-[30px] px-[100px] flex flex-col ">
-      <div className="flex flex-row justify-between border-gray-500 pb-[20px] border-b-[1px]">
+    <footer className=" h-auto w-full bg-[#001A40] text-white pt-[30px] sm:px-[100px] px-[40px] flex flex-col sm:gap-[12px] gap-[20px] ">
+      <div className="flex flex-row lg:justify-between justify-start lg:gap-[2px] sm:gap-[420px] gap-[20px] border-gray-500 pb-[20px] border-b-[1px]">
         <img
           src="/footerImage.webp"
           alt="footerImage"
@@ -32,7 +32,7 @@ const Footer = () => {
           </span>
         </div>
       </div>
-      <main className="grid grid-cols-3 mt-[30px] border-gray-500 pb-[30px] border-b-[1px]">
+      <main className="grid lg:grid-cols-3 md:grid-cols-2 justify-between mt-[30px] border-gray-500 pb-[30px] border-b-[1px] gap-[40px] sm:gap-[20px]">
         <div className="flex flex-col space-y-[13px]">
           <h2 className="font-bold text-[24px]">Our Address</h2>
           <span className="text-[16px] flex flex-row items-center justify-start space-x-[10px]">
@@ -73,10 +73,10 @@ const Footer = () => {
           </div>
         </div>
       </main>
-      <div className="flex flex-row items-center text-[16px] justify-between mt-[60px] w-full">
-        <h2 className="flex flex-row items-center justify-center space-x-[7px]">
-          <span>Copyright</span> <LuCopyright />{" "}
-          <span>All Rights Reserved SawaPay 2024.</span>
+      <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-[12px] sm:gap-[60px] lg:gap[12px]  sm:items-cennter items-start text-[16px] justify-between mt-[60px] w-full">
+        <h2 className="flex flex-row items-center  justify-center space-x-[18px]">
+          <span className="flex items-center gap-[12px]">Copyright   <LuCopyright />{" "}</span>
+          <span className="w-[40%]">All Rights Reserved SawaPay 2024.</span>
         </h2>
         <h2>Privacy Policy | Terms and Conditions</h2>
       </div>

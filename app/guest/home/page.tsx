@@ -22,7 +22,7 @@ export default function Home() {
     videoCards.push(
       <div
         key={i}
-        className="carousel-item flex flex-col border-[#E4E7EC] border-[1.5px] p-[20px] rounded-[10px]"
+        className="carousel-item flex flex-col overflow-hidden border-[#E4E7EC] border-[1.5px] p-[20px] rounded-[10px]"
       >
         {/* <img
           src="/umuravaBg.webp"
@@ -44,7 +44,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="flex flex-row space-x-[10px] items-center mt-[20px]">
+        <div className=" flex flex-row space-x-[10px] items-center mt-[20px]">
           <img
             src="/umuravaBg.webp"
             alt="image"
@@ -100,7 +100,7 @@ export default function Home() {
     items.push(
       <div
         key={i}
-        className="flex flex-col border-[1.5px] items-center pt-[18px] rounded-[10px] w-[350px] h-[480px] border-[#E4E7EC]"
+        className="flex flex-col border-[1.5px] items-center pt-[18px] rounded-[10px] w-[350px] h-[480px] md:mb-[40px] border-[#E4E7EC]"
       >
         <div className="relative">
           <img
@@ -155,24 +155,24 @@ export default function Home() {
     );
   }
   return (
-    <main className="">
-      <NavBar />
+    <main className="overflow-x-hidden">
+    <NavBar/>  
 
-      <section className="flex pb-[50px]   flex-row items-center justify-center  mt-[20px] ">
-        <div className="flex flex-col space-y-[30px]  text-left mt-[60px] w-[570px]">
-          <h2 className="text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
+      <section className="flex pb-[50px]  overflow-hidden items-center justify-center md:mt-[20px] mt-[10px] w-full lg:flex-row flex-col md:px-2 px-4">
+        <div className=" flex lg:px-12 lg:py-[12px] flex-col md:space-y-[30px] space-y-[20px]  text-left mt-[60px] md:w-[570px] w-[400px]  lg:mb-12">
+          <h2 className="text-[#2B71f0] md:leading-[52.8px] leading-[30px] font-bold sm:text-[30px] text-[25px] md:text-[40px] md:px-0 px-[10px]">
             Build Work Experience through Skills Challenges Program
           </h2>
-          <p className="text-[16px] w-[450px] text-gray-700">
+          <p className="md:text-[16px] sm:text-[14px] text-[12px]  text-gray-700  md:px-0 px-[10px]">
             Enhance Your Employability and Accelerate Your Career Growth by
             working on Hands-on projects & Hackathons from various businesses &
             organizations
           </p>
-          <button className="bg-[#2B71f0] mt-[40px] w-[171px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
+          <button className="bg-[#2B71f0] mt-[40px] w-[171px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white  md:px-0 mx-[10px]">
             Get Started
           </button>
         </div>
-        <div className="flex flex-row space-x-[20px] ">
+        <div className="grid md:grid-cols-2 grid-cols-1  space-x-[20px] overflow-x-hidden">
           <img src="/Image_2.png" alt="photo" className="w-auto h-[490px]" />
           <img
             src="/image_1.png"
@@ -181,16 +181,16 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="flex flex-col space-y-[20px] pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
-        <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
+      <section className=" flex flex-col space-y-[10px] md:space-y-[20px] pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center ">
+        <h2 className="text-[#03192E] leading-[48px] sm:text-[30px] text-[25px] md:text-[40px] w-auto text-center font-bold">
           Experience a New Way of Building Work Experience
         </h2>
-        <p className="text-[#687588]  text-[18px] w-[710px] text-center">
+        <p className="text-[#687588]  md:text-[16px] sm:text-[14px] text-[12px]  text-center">
           Join Skills Challenges Program to accelerate yout career growth and
           become part of Africa's largest workforce of digital professionals{" "}
         </p>
-        <div className="flex  flex-col items-center justify-center w-[1072px]  space-y-[20px]">
-          <div className="bg-[#2B71F0] mt-[60px] space-y-[30px] rounded-[10px] w-[1072px] p-[48px] flex flex-col">
+        <div className="flex md:px-[1px]  flex-col items-center justify-center w-full  space-y-[20px]">
+          <div className="bg-[#2B71F0] mt-[60px] space-y-[30px] rounded-[10px]  lg:p-[48px] p-[40px] flex flex-col md:mx-2 m-4">
             <img
               src="/bagLogo.webp"
               draggable="false"
@@ -200,7 +200,7 @@ export default function Home() {
             <h2 className="font-bold text-white text-[24px]">
               Build a Strong Portforio and Hand-On Experience
             </h2>
-            <p className="text-white text-[16px] w-[829px]">
+            <p className="text-white md:text-[16px] sm:text-[14px] text-[12px] w-auto">
               Tackle real-world projects through Challenges and hackathons that
               mirror real world challenges faced by businesses and
               organizations.Therefore, showcase your skills and accomplishments
@@ -208,8 +208,8 @@ export default function Home() {
               completed projects
             </p>
           </div>
-          <div className="flex flex-row space-x-[20px]">
-            <div className="bg-[#2B71F0] space-y-[30px]  rounded-[10px] w-full p-[48px] flex flex-col">
+          <div className="flex md:flex-row flex-col gap-4 sm:items-start sm:justify-start items-center justify-center space-x-4 md:space-x-[20px]">
+            <div className="bg-[#2B71F0] md:mx-2 m-4 space-y-[30px]  rounded-[10px]  p-[48px] flex flex-col  ">
               <img
                 src="/bagLogo.webp"
                 draggable="false"
@@ -219,12 +219,13 @@ export default function Home() {
               <h2 className="font-bold text-white text-[24px]">
                 Enhance Your Employment Path
               </h2>
-              <p className="text-white text-[16px] w-[400px]">
+              <p className="text-white md:text-[16px] sm:text-[14px] text-[12px] ">
                 Elop the in-demand skills and build a strong portforio to
                 increase your chances of landing your dream job or contract
               </p>
             </div>
-            <div className="bg-[#2B71F0]  space-y-[30px] rounded-[10px] w-full p-[48px] flex flex-col">
+            
+            <div className="bg-[#2B71F0] md:mx-2 m-4 space-y-[30px]  rounded-[10px]  lg:p-[48px] p-[40px] flex flex-col">
               <img
                 src="/bagLogo.webp"
                 draggable="false"
@@ -234,7 +235,7 @@ export default function Home() {
               <h2 className="font-bold text-white text-[24px]">
                 Earn Recognition and Prizes
               </h2>
-              <p className="text-white text-[16px]">
+              <p className="text-white md:text-[16px] sm:text-[14px] text-[12px]">
                 Earn both Money and knowledge Prizes by participating in various
                 contests and competitions by working on real world projects and{" "}
                 hackathons from partner companies or organizations
@@ -243,35 +244,35 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="flex items-center p-[70px] justify-center">
-        <div className="bg-[url('/cardBg.webp')] text-white bg-cover bg-center h-[259px] space-x-[135px] rounded-[30px] w-[1222px] flex flex-row items-center justify-center">
-          <div className="grid place-items-center grid-cols-1">
+      <section className=" flex items-center lg:p-[70px] p-[12px] justify-center">
+        <div className="bg-[url('/cardBg.webp')] text-white bg-cover bg-center md:h-[259px] h-[400px] lg:px-[8px] pl-[20px]  lg:space-x-[135px] space-x-4 rounded-[30px] w-full grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 items-center justify-center">
+          <div className="flex flex-col">
             <span className="font-bold text-[40px]">1</span>
-            <span className="text-[21.65px]">year</span>
+            <span className="md:text-[21.65px] text-[18px]">year</span>
           </div>
-          <div className="grid place-items-center grid-cols-1">
-            <span className="font-bold text-[40px]">500+</span>
-            <span className="text-[21.65px]">Challenges Completed</span>
+          <div className="flex flex-col">
+            <span className="block font-bold text-[40px]">500+</span>
+            <span className="block md:text-[21.65px] text-[18px]">Challenges Completed</span>
           </div>
-          <div className="grid place-items-center grid-cols-1">
+          <div className="flex flex-col">
             <span className="font-bold text-[40px]">10k+</span>
-            <span className="text-[21.65px]">users</span>
+            <span className="md:text-[21.65px] text-[18px]">users</span>
           </div>
-          <div className="grid place-items-center grid-cols-1">
+          <div className="flex flex-col">
             <span className="font-bold text-[40px]">6+</span>
-            <span className="text-[21.65px]">Countries</span>
+            <span className="md:text-[21.65px] text-[18px]">Countries</span>
           </div>
         </div>
       </section>
       <section className="flex flex-col  pb-[50px] items-center pt-[50px] justify-center">
-        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[1000px] text-center font-bold">
+        <h2 className="text-[#03192E] lg:text-[40px] md:text-[35px] text-[30px] mb-[20px] lg:leading-[48px] md:leading-[40px] leading-[30px] lg:w-[1000px]  w-auto text-center font-bold">
           Skills Challenges Cover various in-demand skills and Careers for the
           digital economy{" "}
         </h2>
-        <p className="text-[#687588]  mb-[45px] text-[18px] w-[580px] text-center">
+        <p className="text-[#687588]  lg:mb-[45px] mb-[20px] text-[18px] lg:w-[580px] md:w-auto text-center">
           Explore the projects that various talents are working on{" "}
         </p>
-        <div className="flex flex-wrap   justify-center gap-[20px] w-[700px] ">
+        <div className="flex flex-wrap   justify-center gap-[20px] lg:w-[700px] ">
           {courseNames.map((courseName: string, index) => (
             <button
               key={index}
@@ -284,28 +285,28 @@ export default function Home() {
         <Carousel images={images} />
       </section>
       <section className="flex flex-col  pb-[50px] items-center justify-center">
-        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[1000px] text-center font-bold">
+        <h2 className="text-[#03192E] lg:text-[40px] text-[30px] mb-[20px] ;g:leading-[48px] leading-[35px] text-center font-bold">
           Explore Challenges & Hackathons
         </h2>
-        <p className="text-[#687588]  mb-[45px] text-[18px] w-[710px] text-center">
+        <p className="text-[#687588]  mb-[45px] text-[18px] lg:w-[710px]  text-center">
           Join skills Challenges Program to accelerate your career growth and
           become part of Africa's largest workforce of digital professionals.
         </p>
-        <div className="grid grid-cols-3 gap-[30px]">{items}</div>
-        <button className="w-[207px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] mt-[60px] grid place-items-center border-[#2b71f0] border-[1.5px]">
+        <div className="grid grid-cols-1 lg:gap-[30px]  md:gap-[80px] gap-[120px] md:grid-cols-2 lg:grid-cols-2">{items}</div>
+        <button className="w-[207px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] mt-[60px] grid place-items-center border-[#2b71f0] border-[1.5px] hover:bg-[#2b71f0] hover:text-white ">
           View More
         </button>
       </section>
       <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
-        <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
+        <h2 className="text-[#03192E] leading-[48px] text-[40px] lg:w-[700px] w-auto text-center font-bold">
           What else can I gain from participating in Skills Challenges ?
         </h2>
-        <p className="text-[#687588] mt-[20px]  text-[18px] w-[710px] text-center">
+        <p className="text-[#687588] mt-[20px]  text-[18px] lg:w-[710px] sm:w-auto  text-center">
           Join Skills Challenges Program to accelerate yout career growth and
           become part of Africa's largest workforce of digital professionals{" "}
         </p>
-        <main className="flex flex-row space-x-[50px] mt-[70px] items-center justify-center">
-          <div className="grid grid-cols-2 gap-[30px]">
+        <main className="flex lg:flex-row flex-col space-x-[50px] mt-[70px] items-center justify-center">
+          <div className="grid lg:grid-cols-2  md:grid-cols-2 grid-cols-1 gap-[40px] md:gap-[30px]">
             {gridSectionData.map((data, index) => (
               <div className="flex-col flex " key={index}>
                 <div className="w-[60px] h-[60px] grid place-items-center bg-[#2b71f0] rounded-[5px]">
@@ -333,25 +334,25 @@ export default function Home() {
           />
         </main>
       </section>
-      <section className="flex flex-col pt-[60px]  ml-[130px]  pb-[50px] items-start justify-center">
-        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[700px] text-left font-bold">
+      <section className="flex flex-col pt-[60px]  ml-[30px]  pb-[50px] items-start justify-center">
+        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] lg:w-[700px] text-left font-bold">
           Users Are In Love with Skills Challenges Program
         </h2>
-        <p className="text-[#687588]  mb-[45px] text-[18px] w-[610px] text-left">
+        <p className="text-[#687588]  mb-[45px] text-[18px] lg:w-[610px] text-left">
           See what your clients say about working with us. Their success speaks
           for our dedication and expertise.
         </p>
-        <div className="carousel carousel-center bg-white shadow-sm  rounded-box max-w-full space-x-4 p-4">
+        <div className="carousel  carousel-center bg-white shadow-sm  rounded-box max-w-full space-x-4 p-4">
           {videoCards}
         </div>
       </section>
-      <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
-        <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
+      <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center ">
+        <h2 className="text-[#03192E] leading-[48px] text-[40px] lg:w-[700px] w-auto text-center font-bold">
           How To Get Started
         </h2>
-        <main className="flex flex-row space-x-[30px] mt-[60px]">
-          <div className="grid grid-cols-1 gap-[30px]">
-            <div className="relative shadow-sm bg-white rounded-[10px] w-[470px] pt-[50px] pl-[50px] h-[364px] flex flex-col">
+        <main className="grid md:grid-cols-2 space-x-[30px] mt-[60px] grid-cols-1 px-4 py-4">
+          <div className="grid grid-cols-1 gap-[30px] ">
+            <div className="relative shadow-sm bg-white rounded-[10px] w-auto pt-[50px] pl-[50px] h-[364px] flex flex-col">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 1
               </button>
@@ -367,7 +368,7 @@ export default function Home() {
                 className="absolute bottom-0 right-0 rounded-br-[10px] w-[263px] h-[147px]"
               />
             </div>
-            <div className="relative shadow-sm bg-white rounded-[10px] w-[470px] pt-[50px] pl-[50px] h-[364px] flex flex-col">
+            <div className="relative shadow-sm bg-white rounded-[10px] w-auto pt-[50px] pl-[50px] h-[364px] flex flex-col">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 2
               </button>
@@ -386,7 +387,7 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-[30px]">
-            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
+            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-auto h-[235px]">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 3
               </button>
@@ -397,7 +398,7 @@ export default function Home() {
                 Sign up for the challenge and start working on the project.
               </p>
             </div>
-            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
+            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-auto h-[235px]">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 4
               </button>
@@ -408,7 +409,7 @@ export default function Home() {
                 Submit your completed project for evaluation
               </p>
             </div>{" "}
-            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
+            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-auto h-[235px]">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 5
               </button>
@@ -423,23 +424,23 @@ export default function Home() {
         </main>
       </section>
       <section className="py-[80px] grid place-items-center">
-        <div className="h-[503px] w-[1221px] rounded-[20px] bg-[url('/cardBg2.webp')] bg-cover bg-no-repeat place-items-center grid grid-cols-2">
+        <div className="lg:h-[503px] h-auto py-12 lg:px-12 px-12 lg:w-[1221px] md:w-screen rounded-[20px] bg-[url('/cardBg2.webp')] bg-cover bg-no-repeat place-items-center grid md:grid-cols-2 grid-cols-1 gap-[12px] ">
           <img
             src="/people.webp"
             alt="image"
-            className="w-[398px] h-[395px] rounded-[10px]"
-          />
+            className="w-[398px]  h-[395px] rounded-[10px]"
+          /> 
           <div>
             {" "}
-            <h2 className="font-bold text-white leading-[38px] w-[545px] text-[32px]">
+            <h2 className=" font-bold text-white leading-[38px] px-4 lg:w-[545px] text-[32px]">
               Ready To Unlock Your Career Potential Today
             </h2>
-            <p className="text-white text-[18px] w-[525px] leading-[27px] mt-[30px]">
+            <p className="text-white text-[18px] lg:w-[525px] md:w-[300px] leading-[27px] mt-[30px]">
               Join a challenge or a hackathon to gain valuable work experience ,
               build an impressive portforio and increase your chances to land
               your job opportunities and accelerate your career growth.
             </p>
-            <button className="w-[230px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0]">
+            <button className="w-[230px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0] hover:bg-[#2b71f0] hover:text-white hover:border-white border transition-all">
               View Challenge
             </button>
           </div>
