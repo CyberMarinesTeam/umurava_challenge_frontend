@@ -4,6 +4,7 @@ import Header from "@/app/components/Header";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import Card from "@/app/components/Card";
 import { FaChevronRight } from "react-icons/fa6";
+import Card2 from "@/app/components/Card2";
 const Page = () => {
   return (
     <div className="flex bg-slate-50 ">
@@ -25,18 +26,16 @@ const Page = () => {
             <div className="grid grid-cols-2  gap-4">
               <Card
                 width={540}
-                timeDescription={"this week"}
-                description={"ello"}
-                number={231}
-                logo="RxFileText"
-                percentage={15}
+                timeDescription={"This week"}
+                description={"Total Challenges"}
+                number={23178}
+                percentage={20}
               />
-              <Card
+              <Card2
                 width={540}
-                timeDescription={"this week"}
-                description={"ello"}
+                timeDescription={"This week"}
+                description={"Total Participants"}
                 number={231}
-                logo="RxFileText"
                 percentage={15}
               />
             </div>
@@ -46,7 +45,6 @@ const Page = () => {
                 timeDescription={"Last 30 days"}
                 description={"Completed Challenges"}
                 number={25631}
-                logo="RxFileText"
                 percentage={17}
               />
               <Card
@@ -54,7 +52,6 @@ const Page = () => {
                 timeDescription={"Last 20 days"}
                 description={"Open Challenges"}
                 number={56531}
-                logo="RxFileText"
                 percentage={16}
               />
               <Card
@@ -62,7 +59,6 @@ const Page = () => {
                 timeDescription={"Last 10 days"}
                 description={"Ongoing Challenges"}
                 number={26631}
-                logo="RxFileText"
                 percentage={15}
               />
             </div>
