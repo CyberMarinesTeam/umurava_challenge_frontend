@@ -19,7 +19,7 @@ const Header = () => {
         <img
           src="/profile2.webp"
           alt="User"
-          className="w-[40px] h-[40px] rounded-full"
+          className="w-[40px] h-[40px] object-cover rounded-full"
         />
       </div>
     </div>
