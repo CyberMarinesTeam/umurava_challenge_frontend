@@ -29,3 +29,13 @@ div:not(.challengeCard):not(.excluded):not(.excludedDashBoard) {
   animation-timeline: view();
   animation-range: entry 0%;
 }
+
+.rounded-border::before{
+  content: "";
+  height: 100%;
+  width: 5px;
+  background-color: #2B71F0;
+  border-radius: 2.5px;
+  position: absolute;
+  left: 0;
+}
