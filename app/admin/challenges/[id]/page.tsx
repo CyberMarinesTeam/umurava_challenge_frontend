@@ -1,8 +1,14 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import { CiDollar } from "react-icons/ci";
 import React from "react";
 import { FaArrowUpLong } from "react-icons/fa6";
-import { IoFilterOutline, IoSearchSharp } from "react-icons/io5";
+import {
+  IoBagOutline,
+  IoCalendarOutline,
+  IoFilterOutline,
+  IoSearchSharp,
+} from "react-icons/io5";
 import { RxFileText } from "react-icons/rx";
 import { VscArrowSmallLeft } from "react-icons/vsc";
 interface paramsInt {
@@ -128,7 +134,7 @@ const Page = async ({ params }: paramsInt) => {
             </div>
           </div>
         </div>
-        <div className="excluded grid grid-cols-1 gap-y-[30px] w-[401px]">
+        <div className="excluded flex flex-col space-y-[30px] w-[401px]">
           <div className="excluded border-[#E4E7EC]  border-[1.5px] shadow-sm rounded-[12px] py-[23px] px-[24px] bg-white">
             <div className="flex flex-col space-y-[15px]">
               <h2 className="text-[20px] text-black font-semibold">
@@ -140,8 +146,8 @@ const Page = async ({ params }: paramsInt) => {
                 <span className="text-[#2B71F0] underline"> HERE</span>
               </p>
             </div>
-            <div>
-              <div className="flex flex-row space-x-[30px] items-center justify-center mt-[70px]    ">
+            <div className="flex flex-col mt-[30px] space-y-[30px]">
+              <div className="flex text-black flex-row space-x-[20px] items-center justify-center    ">
                 <button
                   title="."
                   className="bg-blue-200 rounded-full w-[47px] h-[47px]  grid place-items-center "
@@ -149,24 +155,151 @@ const Page = async ({ params }: paramsInt) => {
                   <RxFileText className="text-[#2B71F0] text-[23px]" />
                 </button>
                 <div className="flex flex-col flex-1 gap-1 ">
-                  <p className="text-[#25272B] text-[14px] font-normal">
-                    description
+                  <p className=" text-[15px] font-semibold">
+                    talent@umurava.africadescription
                   </p>
-                  <p className="font-semibold text-blue-950 flex gap-4 ">
-                    number
-                    <span className="text-[#2B71F0] space-x-[3px] flex bg-[#E7F6EC] rounded-xl px-2  leading-[17px] items-center flex-row gap-0">
-                      <FaArrowUpLong
-                        color="#2B71F0"
-                        className="font-bold text-[10px]"
-                      />
-                      <span className="text-[12px] font-bold">15%</span>
-                    </span>
+                  <p className=" text-[13px]">Contact Email</p>
+                </div>
+              </div>
+              <div className="flex text-black flex-row space-x-[20px] items-center justify-center     ">
+                <button
+                  title="."
+                  className="bg-blue-200 rounded-full w-[47px] h-[47px]  grid place-items-center "
+                >
+                  <IoBagOutline className="text-[#2B71F0] text-[23px]" />
+                </button>
+                <div className="flex flex-col flex-1 gap-1 ">
+                  <p className=" text-[15px] font-semibold">Web design</p>
+                  <p className=" text-[13px]">Challenge Category</p>
+                </div>
+              </div>
+              <div className="flex text-black flex-row space-x-[20px] items-center justify-center     ">
+                <button
+                  title="."
+                  className="bg-blue-200 rounded-full w-[47px] h-[47px]  grid place-items-center "
+                >
+                  <IoCalendarOutline className="text-[#2B71F0] text-[23px]" />
+                </button>
+                <div className="flex flex-col flex-1 gap-1 ">
+                  <p className=" text-[15px] font-semibold">7 Days </p>
+                  <p className=" text-[13px]">Duration</p>
+                </div>
+              </div>
+              <div className="flex text-black flex-row space-x-[20px] items-center justify-center   ">
+                <button
+                  title="."
+                  className="bg-blue-200 rounded-full w-[47px] h-[47px]  grid place-items-center "
+                >
+                  <CiDollar className="text-[#2B71F0] font-bold text-[23px]" />
+                </button>
+                <div className="flex flex-col flex-1 gap-1 ">
+                  <p className=" text-[15px] font-semibold">$150 - $400</p>
+                  <p className=" text-[13px]">Money Prize</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row items-center mt-[50px] space-x-[10px] justify-center">
+              <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#E5533C] ">
+                Delete
+              </button>
+              <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#2B71F0] ">
+                Edit
+              </button>
+            </div>
+          </div>
+          <div className="excluded border-[#E4E7EC]  border-[1.5px] pb-[32px] shadow-sm rounded-[12px]  bg-white">
+            <div className="flex flex-row items-center space-x-[20px] pt-[32px] px-[24px]">
+              <h2 className=" text-[17px] font-semibold">Participants</h2>
+              <span className="bg-[#2B71F0] px-[9px] rounded-full text-[14px] text-white">
+                250
+              </span>
+            </div>
+            <div className="excluded flex flex-col space-y-[20px]">
+              <div className="excluded mt-[20px] pt-[20px] border-[#E4E7EC] px-[24px] border-t-[1.5px] flex gap-[12px]">
+                <img
+                  src="/profile2.webp"
+                  alt="profileImage"
+                  className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
+                />
+
+                <div className="excluded flex flex-col gap-1">
+                  <p className="text-[14px] font-normal leading-5">
+                    Hilaire, PM
+                  </p>
+                  <p className="text-[14px] font-normal leading-5">
+                    hilaire@gmail.com
+                  </p>
+                </div>
+              </div>
+              <div className="excluded mt-[20px] pt-[20px] border-[#E4E7EC] px-[24px] border-t-[1.5px] flex gap-[12px]">
+                <img
+                  src="/profile2.webp"
+                  alt="profileImage"
+                  className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
+                />
+
+                <div className="excluded flex flex-col gap-1">
+                  <p className="text-[14px] font-normal leading-5">
+                    Hilaire, PM
+                  </p>
+                  <p className="text-[14px] font-normal leading-5">
+                    hilaire@gmail.com
+                  </p>
+                </div>
+              </div>
+              <div className="excluded mt-[20px] pt-[20px] border-[#E4E7EC] px-[24px] border-t-[1.5px] flex gap-[12px]">
+                <img
+                  src="/profile2.webp"
+                  alt="profileImage"
+                  className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
+                />
+
+                <div className="excluded flex flex-col gap-1">
+                  <p className="text-[14px] font-normal leading-5">
+                    Hilaire, PM
+                  </p>
+                  <p className="text-[14px] font-normal leading-5">
+                    hilaire@gmail.com
+                  </p>
+                </div>
+              </div>
+              <div className="excluded mt-[20px] pt-[20px] border-[#E4E7EC] px-[24px] border-t-[1.5px] flex gap-[12px]">
+                <img
+                  src="/profile2.webp"
+                  alt="profileImage"
+                  className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
+                />
+
+                <div className="excluded flex flex-col gap-1">
+                  <p className="text-[14px] font-normal leading-5">
+                    Hilaire, PM
+                  </p>
+                  <p className="text-[14px] font-normal leading-5">
+                    hilaire@gmail.com
+                  </p>
+                </div>
+              </div>
+              <div className="excluded mt-[20px] pt-[20px] border-[#E4E7EC] px-[24px] border-t-[1.5px] flex gap-[12px]">
+                <img
+                  src="/profile2.webp"
+                  alt="profileImage"
+                  className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
+                />
+
+                <div className="excluded flex flex-col gap-1">
+                  <p className="text-[14px] font-normal leading-5">
+                    Hilaire, PM
+                  </p>
+                  <p className="text-[14px] font-normal leading-5">
+                    hilaire@gmail.com
                   </p>
                 </div>
               </div>
             </div>
+            <button className="text-[16px] mt-[50px] w-[352px] border-[#E4E7EC] border-t-[1.5px] mx-[24px] h-[55px] text-white rounded-[8px] bg-[#2B71F0] ">
+              View All
+            </button>
           </div>
-          <div className="excluded border-[#E4E7EC]  border-[1.5px] shadow-sm rounded-[12px] py-[32px] px-[24px] bg-white"></div>
         </div>
       </main>
     </div>
