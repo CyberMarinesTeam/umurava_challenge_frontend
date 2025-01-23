@@ -32,7 +32,7 @@ const Carousel = ({ images }: { images: string[] }) => {
 
   return (
     <div className="relative mb-[100px] w-full grid place-items-center">
-      <div className="overflow-hidden relative h-[450px]  bg-[#f1f1f1] py-[80px] mt-[100px]  px-[100px] w-screen rounded-[20px] grid grid-cols-2 place-items-center ">
+      <div className="overflow-hidden relative h-[450px]  bg-[#f1f1f1] py-[80px] mt-[100px]  px-[100px] w-[1200px] rounded-[20px] grid grid-cols-2 place-items-center ">
         {images.map((image, index) => (
           <Fragment key={index}>
             <div className="flex flex-col  h-[450px]  space-y-[40px] items-start">

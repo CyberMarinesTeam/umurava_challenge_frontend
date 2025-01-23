@@ -21,33 +21,33 @@ const SideBar = () => {
         />
         <div className="mb-[473px] mt-[30px]">
           <ul>
-            <li className="mb-[2px] p-4  flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm">
+            <Link
+              href="/admin/dashboard"
+              className="mb-[2px] p-4  flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
+            >
               <GoHome className="text-[20px]" />
-              <Link
-                className="text-[14px] font-normal leading-5"
-                href="/admin/dashboard"
-              >
+              <span className="text-[14px] font-normal leading-5">
                 Dashboard
-              </Link>
-            </li>
-            <li className="mb-[2px] p-4 text-[14px]   flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm">
+              </span>
+            </Link>
+            <Link
+              href="/admin/challenges"
+              className="mb-[2px] p-4 text-[14px]   flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
+            >
               <IoDocumentTextOutline className="text-[20px]" />
-              <Link
-                className="text-[14px] font-normal leading-5"
-                href="/admin/challenges"
-              >
+              <span className="text-[14px] font-normal leading-5">
                 Challenges
-              </Link>
-            </li>
-            <li className="mb-[2px] p-4  flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm">
+              </span>
+            </Link>
+            <Link
+              href="/admin/community"
+              className="mb-[2px] p-4  flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
+            >
               <IoPersonAddOutline className="text-[20px]" />
-              <Link
-                className="text-[14px] font-normal leading-5"
-                href="/admin/community"
-              >
+              <span className="text-[14px] font-normal leading-5">
                 Community
-              </Link>
-            </li>
+              </span>
+            </Link>
           </ul>
         </div>
 
