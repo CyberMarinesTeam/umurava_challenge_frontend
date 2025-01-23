@@ -7,7 +7,7 @@ interface StatusCardProps {
 }
 const StatusCard = ({ label, number }: StatusCardProps) => {
   return (
-    <div className="flex items-center rounded-lg w-full h-[110px] px-[15px] border">
+    <div className="flex bg-white items-center rounded-lg w-full h-[110px] px-[15px] border">
       <div className="flex relative justify-between w-full items-center h-[45px]">
         <div className="flex flex-col rounded-border pl-4">
           <div>
