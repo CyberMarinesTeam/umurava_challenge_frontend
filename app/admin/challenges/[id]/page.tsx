@@ -202,9 +202,11 @@ const Page = async ({ params }: paramsInt) => {
               <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#E5533C] ">
                 Delete
               </button>
-              <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#2B71F0] ">
-                Edit
-              </button>
+              <Link href={`/admin/challenges/edit/${id}`}>
+                <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#2B71F0] ">
+                  Edit
+                </button>
+              </Link>
             </div>
           </div>
           <div className="excluded border-[#E4E7EC]  border-[1.5px] pb-[32px] shadow-sm rounded-[12px]  bg-white">
