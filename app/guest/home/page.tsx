@@ -1,6 +1,8 @@
+"use client";
 import Carousel from "@/app/components/Carousel";
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
+import { useRef, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoPlaySharp } from "react-icons/io5";
 
@@ -17,6 +19,19 @@ export default function Home() {
     "Web3",
     "Digital Marketing & Communications",
   ];
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause(); // Pause the video
+      } else {
+        videoRef.current.play(); // Play the video
+      }
+      setIsPlaying(!isPlaying); // Toggle play state
+    }
+  };
   const videoCards = [];
   for (let i = 0; i < 10; i++) {
     videoCards.push(
@@ -30,19 +45,19 @@ export default function Home() {
           className="rounded-[10px] w-[470px] object-cover h-[280px]"
         /> */}
         <div className="relative w-[470px] h-[280px] rounded-lg shadow-lg overflow-hidden">
-          <video className="w-full h-full" controls>
-            <source src="your-video-file.mp4" type="video/mp4" />
+          <video className="w-full h-full" controls ref={videoRef}>
+            <source src="/umuravaVideo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div className="absolute inset-0 flex justify-center items-center">
+          {/* <div className="absolute inset-0 flex justify-center items-center">
             <button
               title="button"
+              onClick={handlePlayPause}
               className="btn btn-circle bg-[#FFFFFF9B] border-none"
-              // onclick="document.querySelector('video').play(); this.style.display='none';"
             >
               <IoPlaySharp className="text-[30px] text-white" />
             </button>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-row space-x-[10px] items-center mt-[20px]">
           <img
@@ -158,7 +173,7 @@ export default function Home() {
     <main className="">
       <NavBar />
 
-      <section className="flex pb-[50px]   flex-row items-center justify-center  mt-[20px] ">
+      <section className="firstSection flex pb-[50px]   flex-row items-center justify-center  mt-[20px] ">
         <div className="flex flex-col space-y-[30px]  text-left mt-[60px] w-[570px]">
           <h2 className="text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
             Build Work Experience through Skills Challenges Program
@@ -173,15 +188,15 @@ export default function Home() {
           </button>
         </div>
         <div className="flex flex-row space-x-[20px] ">
-          <img src="/Image_2.png" alt="photo" className="w-auto h-[490px]" />
+          <img src="/Image_2.png" alt="photo" className="w-auto h-[500px]" />
           <img
             src="/image_1.png"
             alt="photo"
-            className="w-auto h-[443px] mt-[50px]"
+            className="w-auto h-[443px] mt-[57px]"
           />
         </div>
       </section>
-      <section className="flex flex-col space-y-[20px] pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
+      <section className="firstSection flex flex-col space-y-[20px] pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
         <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
           Experience a New Way of Building Work Experience
         </h2>
@@ -296,8 +311,8 @@ export default function Home() {
           View More
         </button>
       </section>
-      <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
-        <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
+      <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
+        <h2 className=" text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
           What else can I gain from participating in Skills Challenges ?
         </h2>
         <p className="text-[#687588] mt-[20px]  text-[18px] w-[710px] text-center">
@@ -345,7 +360,7 @@ export default function Home() {
           {videoCards}
         </div>
       </section>
-      <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
+      <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
         <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
           How To Get Started
         </h2>

@@ -10,14 +10,14 @@ import { LuCopyright } from "react-icons/lu";
 
 const Footer = () => {
   return (
-    <footer className="h-[490px] w-full bg-[#001A40] text-white pt-[30px] px-[100px] flex flex-col ">
-      <div className="flex flex-row justify-between border-gray-500 pb-[20px] border-b-[1px]">
+    <footer className="firstFooter h-[490px] w-full bg-[#001A40] text-white pt-[30px] px-[100px] flex flex-col ">
+      <div className="excluded flex flex-row justify-between border-gray-500 pb-[20px] border-b-[1px]">
         <img
           src="/footerImage.webp"
           alt="footerImage"
           className="w-auto h-[80px] "
         />
-        <div className="flex flex-row items-center space-x-[7px] justify-center">
+        <div className="excluded flex flex-row items-center space-x-[7px] justify-center">
           <span className="w-[40px] h-[40px] rounded-full bg-white grid place-items-center">
             <TiSocialFacebook className="text-[#001A40] text-[25px]" />
           </span>
@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
       </div>
       <main className="grid grid-cols-3 mt-[30px] border-gray-500 pb-[30px] border-b-[1px]">
-        <div className="flex flex-col space-y-[13px]">
+        <div className="excluded flex flex-col space-y-[13px]">
           <h2 className="font-bold text-[24px]">Our Address</h2>
           <span className="text-[16px] flex flex-row items-center justify-start space-x-[10px]">
             <MdOutlineMail className="text-[23px]" />{" "}
@@ -49,19 +49,19 @@ const Footer = () => {
           </span>
         </div>
 
-        <div className="flex flex-col space-y-[13px]">
+        <div className="excluded flex flex-col space-y-[13px]">
           <h2 className="font-bold text-[24px]">Quick Links</h2>
           <p className="text-[16px] text-[#BCBdc0]">Home</p>
           <p className="text-[16px] text-[#BCBdc0]">Program</p>
           <p className="text-[16px] text-[#BCBdc0]">About</p>
           <p className="text-[16px] text-[#BCBdc0]">Contact Us</p>
         </div>
-        <div className="rounded-lg">
+        <div className="excluded rounded-lg">
           <h2 className="text-2xl font-bold text-left mb-6">
             Join our newsletter to keep up to date with us!
           </h2>
 
-          <div className="flex relative">
+          <div className="excluded flex relative">
             <input
               type="email"
               placeholder="Email"
@@ -73,7 +73,7 @@ const Footer = () => {
           </div>
         </div>
       </main>
-      <div className="flex flex-row items-center text-[16px] justify-between mt-[60px] w-full">
+      <div className="excluded flex flex-row items-center text-[16px] justify-between mt-[60px] w-full">
         <h2 className="flex flex-row items-center justify-center space-x-[7px]">
           <span>Copyright</span> <LuCopyright />{" "}
           <span>All Rights Reserved SawaPay 2024.</span>
