@@ -23,7 +23,7 @@ const page = () => {
             <span className="text-[#2B71F0]">Challenges & Hackathons</span>
           </h2>
         </div>
-        <div className="challengeCard grid grid-cols-4 mt-[30px]  py-[20px] gap-[20px] px-[40px]  place-items-center">
+        <div className="challengeCard grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 mt-[30px]  py-[20px] gap-[20px] px-[40px]  place-items-center">
           <ChallengeCard />
           <ChallengeCard />
           <ChallengeCard />
