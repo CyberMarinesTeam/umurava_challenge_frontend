@@ -12,9 +12,6 @@ const Modal = () => {
         <p className="text-xl font-bold text-center">
           Join our Whatsapp community
         </p>
-        <div>
-          
-        </div>
         <p className="text-center">
           Get notified on the latest projects and hackathon
         </p>
