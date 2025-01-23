@@ -7,7 +7,7 @@ const Page = () => {
     <main>
       <NavBar />
       <main>
-        <section className="flex flex-row space-x-[60px] py-[80px] items-center justify-center">
+        <section className="firstSection flex flex-row space-x-[60px] py-[80px] items-center justify-center">
           <div className="flex flex-col space-y-[20px]">
             <h2 className="text-[#2b71f0] text-[32px] font-bold">Our Story</h2>
             <div className="flex flex-col space-y-[20px] w-[529px]">
@@ -30,7 +30,7 @@ const Page = () => {
             <source src="/umuravaVideo.mp4" type="video/mp4"></source>
           </video>
         </section>
-        <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
+        <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
           <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
             Why we are solving this problem
           </h2>

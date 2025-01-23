@@ -17,6 +17,19 @@ export default function Home() {
     "Web3",
     "Digital Marketing & Communications",
   ];
+  // const videoRef = useRef<HTMLVideoElement>(null);
+  // const [isPlaying, setIsPlaying] = useState(false);
+
+  // const handlePlayPause = () => {
+  //   if (videoRef.current) {
+  //     if (isPlaying) {
+  //       videoRef.current.pause(); // Pause the video
+  //     } else {
+  //       videoRef.current.play(); // Play the video
+  //     }
+  //     setIsPlaying(!isPlaying); // Toggle play state
+  //   }
+  // };
   const videoCards = [];
   for (let i = 0; i < 10; i++) {
     videoCards.push(
@@ -31,18 +44,18 @@ export default function Home() {
         /> */}
         <div className="relative w-[470px] h-[280px] rounded-lg shadow-lg overflow-hidden">
           <video className="w-full h-full" controls>
-            <source src="your-video-file.mp4" type="video/mp4" />
+            <source src="/umuravaVideo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div className="absolute inset-0 flex justify-center items-center">
+          {/* <div className="absolute inset-0 flex justify-center items-center">
             <button
               title="button"
+              onClick={handlePlayPause}
               className="btn btn-circle bg-[#FFFFFF9B] border-none"
-              // onclick="document.querySelector('video').play(); this.style.display='none';"
             >
               <IoPlaySharp className="text-[30px] text-white" />
             </button>
-          </div>
+          </div> */}
         </div>
         <div className=" flex flex-row space-x-[10px] items-center mt-[20px]">
           <img
@@ -158,9 +171,11 @@ export default function Home() {
     <main className="overflow-x-hidden">
     <NavBar/>  
 
+
       <section className="flex pb-[50px]  overflow-hidden items-center justify-center md:mt-[20px] mt-[10px] w-full lg:flex-row flex-col md:px-2 px-4">
         <div className=" flex lg:px-12 lg:py-[12px] flex-col md:space-y-[30px] space-y-[20px]  text-left mt-[60px] md:w-[570px] w-[400px]  lg:mb-12">
           <h2 className="text-[#2B71f0] md:leading-[52.8px] leading-[30px] font-bold sm:text-[30px] text-[25px] md:text-[40px] md:px-0 px-[10px]">
+
             Build Work Experience through Skills Challenges Program
           </h2>
           <p className="md:text-[16px] sm:text-[14px] text-[12px]  text-gray-700  md:px-0 px-[10px]">
@@ -174,15 +189,17 @@ export default function Home() {
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1  space-x-[20px] overflow-x-hidden">
           <img src="/Image_2.png" alt="photo" className="w-auto h-[490px]" />
+
           <img
             src="/image_1.png"
             alt="photo"
-            className="w-auto h-[443px] mt-[50px]"
+            className="w-auto h-[443px] mt-[57px]"
           />
         </div>
       </section>
       <section className=" flex flex-col space-y-[10px] md:space-y-[20px] pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center ">
         <h2 className="text-[#03192E] leading-[48px] sm:text-[30px] text-[25px] md:text-[40px] w-auto text-center font-bold">
+
           Experience a New Way of Building Work Experience
         </h2>
         <p className="text-[#687588]  md:text-[16px] sm:text-[14px] text-[12px]  text-center">
@@ -299,6 +316,7 @@ export default function Home() {
       </section>
       <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
         <h2 className="text-[#03192E] leading-[48px] text-[40px] lg:w-[700px] w-auto text-center font-bold">
+
           What else can I gain from participating in Skills Challenges ?
         </h2>
         <p className="text-[#687588] mt-[20px]  text-[18px] lg:w-[710px] sm:w-auto  text-center">
@@ -346,8 +364,10 @@ export default function Home() {
           {videoCards}
         </div>
       </section>
+
       <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center ">
         <h2 className="text-[#03192E] leading-[48px] text-[40px] lg:w-[700px] w-auto text-center font-bold">
+
           How To Get Started
         </h2>
         <main className="grid md:grid-cols-2 space-x-[30px] mt-[60px] grid-cols-1 px-4 py-4">

@@ -1,8 +1,9 @@
 import { FaChevronDown } from "react-icons/fa6";
-import { RxFileText } from "react-icons/rx";
 import React from "react";
 import { FaArrowUpLong } from "react-icons/fa6";
-const Card = ({
+import { IoPeopleOutline } from "react-icons/io5";
+
+const Card2 = ({
   width,
   timeDescription,
   description,
@@ -28,7 +29,7 @@ const Card = ({
             title="."
             className="bg-blue-200 rounded-full w-[47px] h-[47px]  grid place-items-center "
           >
-            <RxFileText className="text-[#2B71F0] text-[23px]" />
+            <IoPeopleOutline className="text-[#2B71F0] text-[24px]" />
           </button>
           <div className="flex flex-col flex-1 gap-1 ">
             <p className="text-[#25272B] text-[14px] font-normal">
@@ -51,4 +52,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default Card2;

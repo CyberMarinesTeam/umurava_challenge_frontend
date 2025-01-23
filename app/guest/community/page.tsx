@@ -14,7 +14,7 @@ const Page = () => {
     <main>
       <NavBar />
       <main>
-        <section className="flex flex-row space-x-[20px] py-[80px] items-center justify-center">
+        <section className="firstSection flex flex-row space-x-[20px] py-[80px] items-center justify-center">
           <div className="flex flex-col space-y-[20px]">
             <h2 className="text-[#2B71f0] w-[520px] leading-[33px] text-[26px] font-bold">
               Accelerate Your Students and Trainees' Employability and Career
@@ -37,7 +37,7 @@ const Page = () => {
             className="h-[377px] w-[550px] rounded-[32px]"
           />
         </section>
-        <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
+        <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
           <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
             Why we are solving this problem
           </h2>
@@ -169,7 +169,7 @@ const Page = () => {
             </div>
           </div>
         </section>
-        <section className="flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
+        <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
           <h2 className="text-[#03192E] text-[32px] w-[700px] leading-[38px] text-center font-bold">
             How Skills Challenges Program can Be Intergrated into your Learning
             Institution
