@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const ChallengeCard2 = () => {
@@ -45,9 +46,9 @@ const ChallengeCard2 = () => {
         <h1 className="text-[#475367] text-[12px]">15 Days</h1>
       </div>
       <div className="excluded flex-1 w-full justify-left pl-[11px] border-t-[2px] flex items-center border-[#E4E7EC] my-[10px]">
-        <button className="bg-[#2B71F0] text-[12px] font-semibold text-white h-[32px] text-center mt-2 w-[130px] rounded-[8px]">
+        <Link href="/talent/view-challenge" className="bg-[#2B71F0] text-[12px] font-semibold text-white py-2 text-center mt-2 w-[130px] rounded-[8px]">
           View Challenge
-        </button>
+        </Link>
       </div>
     </div>
   );
