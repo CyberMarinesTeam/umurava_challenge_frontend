@@ -1,4 +1,5 @@
 import ChallengeCard from "@/app/components/ChallengeCard";
+import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
 import Link from "next/link";
@@ -17,18 +18,18 @@ const page = () => {
           >
             <VscArrowSmallLeft className="text-[21px]" />
           </Link>
-          <h2 className="text-[#667185]">Go Back</h2>
-          <h2 className="flex flex-row items-center justify-center space-x-[4px]">
+          <h2 className="text-[#667185] text-[14px]">Go Back</h2>
+          <h2 className="flex flex-row items-center justify-center text-[14px] space-x-[4px]">
             <span className="text-[#667185]">/</span>
             <span className="text-[#2B71F0]">Challenges & Hackathons</span>
           </h2>
         </div>
         <div className="challengeCard grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 mt-[30px]  py-[20px] gap-[20px] px-[40px]  place-items-center">
-          <ChallengeCard />
-          <ChallengeCard />
-          <ChallengeCard />
-          <ChallengeCard />
-          <ChallengeCard />
+          <ChallengeCard2 />
+          <ChallengeCard2 />
+          <ChallengeCard2 />
+          <ChallengeCard2 />
+          <ChallengeCard2 />
         </div>
       </main>
       <Footer />

@@ -8,6 +8,7 @@ import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import Link from "next/link";
 
 const Challenges = () => {
   const [CurrentPage, setCurrent] = useState(1);
@@ -108,9 +109,12 @@ const Challenges = () => {
               </div>
             </button>
           </div>
-          <button className="bg-[#2B71F0] text-white  px-[18px] py-[16px] rounded">
+          <Link
+            href={"challenges/create"}
+            className="bg-[#2B71F0] text-white  px-[18px] py-[16px] rounded"
+          >
             <p className="text-[12px]">+ Create New Challenge</p>
-          </button>
+          </Link>
         </div>
       </div>
       <div className="excluded grid pb-[40px] border-t-[0.5px] border-gray-200 pt-[7px] place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-4">
