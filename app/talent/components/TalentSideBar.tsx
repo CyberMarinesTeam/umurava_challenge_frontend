@@ -39,18 +39,16 @@ const TalentSideBar = () => {
                 Challenges
               </span>
             </Link>
-            <Link
-              href="/talent/community"
+            <button
               className="mb-[2px] p-4  flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
             >
               <IoPersonAddOutline className="text-[20px]" />
               <span className="text-[14px] font-normal leading-5">
                 Community
               </span>
-            </Link>
+            </button>
           </ul>
         </div>
-
         <div className="mb-[10px] mt-[10px]">
           <ul>
             <li className="mb-[2px] p-4  flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm">
@@ -82,7 +80,6 @@ const TalentSideBar = () => {
             </li>
           </ul>
         </div>
-
         <div className="flex px-[12px] pr-[10px] items-center py-[8px] mt-4 gap-1 w-[272px] h-[80px]">
           <div className=" h-[40px] flex gap-[12px] mr-[24px]">
             <img
@@ -90,7 +87,6 @@ const TalentSideBar = () => {
               alt="profileImage"
               className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
             />
-
             <div className="flex flex-col gap-1">
               <p className="text-[14px] font-normal leading-5">Hilaire, PM</p>
               <p className="text-[14px] font-normal leading-5">
