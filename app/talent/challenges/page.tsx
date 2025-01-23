@@ -5,6 +5,7 @@ import { FaAngleRight } from "react-icons/fa6";
 import { FiFileText } from "react-icons/fi";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import SmallStatusCard from "../components/SmallStatusCard";
+import Modal from "../components/Modal";
 
 const Challenges = () => {
   return (
@@ -65,6 +66,7 @@ const Challenges = () => {
           </button>
         </div>
       </div>
+      <Modal/>
     </div>
   );
 };
