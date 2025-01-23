@@ -9,7 +9,7 @@ import { IoHeadsetOutline } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import Link from "next/link";
 
-const TalentSideBar = () => {
+const TalentSideBar = ({ toggleModal }: { toggleModal: () => void }) => {
   return (
     <div className="w-[272px] bg-[#2b71F0] text-white px-2 h-[1300px">
       <div className="flex flex-col justify-between ">
@@ -40,6 +40,7 @@ const TalentSideBar = () => {
               </span>
             </Link>
             <button
+              onClick={toggleModal}
               className="mb-[2px] p-4  flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
             >
               <IoPersonAddOutline className="text-[20px]" />
