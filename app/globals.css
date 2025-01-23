@@ -24,7 +24,7 @@ body {
 }
 section:not(.firstSection),
 footer:not(.firstFooter),
-div:not(.challengeCard):not(.excluded) {
+div:not(.challengeCard):not(.excluded):not(.excludedDashBoard) {
   animation: appear 1s linear;
   animation-timeline: view();
   animation-range: entry 0%;

@@ -44,7 +44,7 @@ const ChallengeCard = () => {
         <h2 className="text-[#25272B] text-[10px] font-semibold">Timeline:</h2>
         <h1 className="text-[#475367] text-[10px]">15 Days</h1>
       </div>
-      <div className="flex-1 w-full justify-center border-t-[1px] flex items-center border-[#E4E7EC] my-[8px]">
+      <div className="flex-1 w-full justify-left pl-[9px] border-t-[1px] flex items-center border-[#E4E7EC] my-[8px]">
         <button className="bg-[#2B71F0] text-[10px] font-semibold text-white h-[30px] text-center mt-1 w-[120px] rounded-[6px]">
           View Challenge
         </button>

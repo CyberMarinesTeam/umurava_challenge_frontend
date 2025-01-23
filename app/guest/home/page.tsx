@@ -1,8 +1,6 @@
-"use client";
 import Carousel from "@/app/components/Carousel";
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
-import { useRef, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoPlaySharp } from "react-icons/io5";
 
@@ -19,19 +17,19 @@ export default function Home() {
     "Web3",
     "Digital Marketing & Communications",
   ];
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  // const videoRef = useRef<HTMLVideoElement>(null);
+  // const [isPlaying, setIsPlaying] = useState(false);
 
-  const handlePlayPause = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause(); // Pause the video
-      } else {
-        videoRef.current.play(); // Play the video
-      }
-      setIsPlaying(!isPlaying); // Toggle play state
-    }
-  };
+  // const handlePlayPause = () => {
+  //   if (videoRef.current) {
+  //     if (isPlaying) {
+  //       videoRef.current.pause(); // Pause the video
+  //     } else {
+  //       videoRef.current.play(); // Play the video
+  //     }
+  //     setIsPlaying(!isPlaying); // Toggle play state
+  //   }
+  // };
   const videoCards = [];
   for (let i = 0; i < 10; i++) {
     videoCards.push(
@@ -45,7 +43,7 @@ export default function Home() {
           className="rounded-[10px] w-[470px] object-cover h-[280px]"
         /> */}
         <div className="relative w-[470px] h-[280px] rounded-lg shadow-lg overflow-hidden">
-          <video className="w-full h-full" controls ref={videoRef}>
+          <video className="w-full h-full" controls>
             <source src="/umuravaVideo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
