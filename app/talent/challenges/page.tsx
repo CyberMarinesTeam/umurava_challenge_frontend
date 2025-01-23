@@ -66,7 +66,6 @@ const Challenges = () => {
           </button>
         </div>
       </div>
-      <Modal/>
     </div>
   );
 };
