@@ -9,9 +9,9 @@ const Dashboard = () => {
     <div className="p-[36px] gap-[16px]">
       <div className="flex flex-row justify-between">
         <div>
-          <p className="text-2xl font-bold">Challenges</p>
+          <p className="text-2xl font-bold">Welcome back Hilaire,</p>
           <p>
-            Join a challenge or a hackathon to gain valuable work experience
+            Build work experience through skill challenges
           </p>
         </div>
         <div>
