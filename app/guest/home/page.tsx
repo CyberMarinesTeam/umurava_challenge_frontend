@@ -170,6 +170,9 @@ export default function Home() {
           <h2 className="text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
             Build Work Experience through Skills Challenges Program
           </h2>
+          <h2 className="hidden sm:block md:hidden sm:text-sm sm:text-black text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
+            Build Work Experience through Skills Challenges Program
+          </h2>
           <p className="text-[16px] w-[450px] text-gray-700">
             Enhance Your Employability and Accelerate Your Career Growth by
             working on Hands-on projects & Hackathons from various businesses &
