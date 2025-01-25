@@ -194,7 +194,7 @@ export default function Home() {
       </section>
 
       <section className="firstSection max-[440px]:px-20 flex flex-col px-48 bg-[#F9FAFB] items-center justify-center lg:pt-[50px]">
-        <div className="max-[440px]:w-screen max-[440px]:px-5 flex flex-col justify-center lg:space-y-[20px] items-center w-fit">
+        <div className="max-[440px]:w-screen lg:pb-[50px] max-[440px]:px-5 flex flex-col justify-center lg:space-y-[20px] items-center w-fit">
           <h2 className="max-[440px]:text-lg text-[#03192E] leading-[48px] text-[40px] text-center lg:w-[700px] font-bold">
             Experience a New Way of Building Work Experience
           </h2>

@@ -6,9 +6,9 @@ const Page = () => {
   return (
     <div className="flex flex-row items-center justify-center w-full pt-[50px]">
       {current === "signin" && (
-        <div className="bg-white  p-8 rounded-lg shadow-md w-[500px]">
-          <div className="flex flex-row mb-4">
-            <button className="text-[#2B71F0] flex-1 font-bold pt-[10px] border-t-[1.5px] border-[#2B71F0]">
+        <div className="excluded bg-white  p-8 rounded-lg shadow-md w-[500px]">
+          <div className="excluded flex flex-row mb-4">
+            <button className="excluded text-[#2B71F0] flex-1 font-bold pt-[10px] border-t-[3px] border-[#2B71F0]">
               Sign In
             </button>
             <button
@@ -21,7 +21,7 @@ const Page = () => {
             </button>
           </div>
           <form>
-            <div className="mb-4">
+            <div className="excluded mb-4">
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
@@ -31,18 +31,18 @@ const Page = () => {
               <input
                 type="email"
                 id="email"
-                placeholder="mugishapascal2008@gmail.com"
+                placeholder="Enter Your Email"
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div className="mb-4 relative">
+            <div className="excluded mb-4 relative">
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
                 Password
               </label>
-              <div className="flex items-center mt-1">
+              <div className="excluded flex items-center mt-1">
                 <input
                   type="password"
                   id="password"
@@ -70,7 +70,7 @@ const Page = () => {
                 </button>
               </div>
             </div>
-            <div className="mb-4">
+            <div className="excluded mb-4">
               <button
                 type="submit"
                 className="w-full py-2 px-4 bg-[#2B71F0] hover:bg-[#2B71F0] text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
@@ -78,7 +78,7 @@ const Page = () => {
                 Sign in
               </button>
             </div>
-            <div className="text-center">
+            <div className="excluded text-center">
               <a href="#" className="text-sm text-[#2B71F0] hover:underline">
                 Forgot your password?
               </a>
@@ -87,8 +87,8 @@ const Page = () => {
         </div>
       )}
       {current === "register" && (
-        <div className="bg-white p-8 rounded-lg shadow-md  w-[500px]">
-          <div className="flex flex-row mb-4">
+        <div className="excluded bg-white p-8 rounded-lg shadow-md  w-[500px]">
+          <div className="excluded flex flex-row mb-4">
             <button
               className="text-gray-500 pt-[10px] flex-1"
               onClick={() => {
@@ -97,12 +97,12 @@ const Page = () => {
             >
               Sign In
             </button>
-            <button className="text-[#2B71F0] flex-1 font-bold pt-[10px] border-t-[1.5px] border-[#2B71F0]">
+            <button className="text-[#2B71F0] flex-1 font-bold pt-[10px] border-t-[3px] border-[#2B71F0]">
               Create Account
             </button>
           </div>
           <form>
-            <div className="mb-4">
+            <div className="excluded mb-4">
               <label
                 htmlFor="role"
                 className="block text-sm font-medium text-gray-700"
@@ -113,12 +113,12 @@ const Page = () => {
                 id="role"
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               >
-                <option>Select talent or client</option>
+                <option>Select talent or admin</option>
                 <option>Talent</option>
-                <option>Client</option>
+                <option>Admin</option>
               </select>
             </div>
-            <div className="mb-4">
+            <div className="excluded mb-4">
               <label
                 htmlFor="first-name"
                 className="block text-sm font-medium text-gray-700"
@@ -132,7 +132,7 @@ const Page = () => {
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               />
             </div>
-            <div className="mb-4">
+            <div className="excluded mb-4">
               <label
                 htmlFor="last-name"
                 className="block text-sm font-medium text-gray-700"
@@ -146,7 +146,7 @@ const Page = () => {
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               />
             </div>
-            <div className="mb-4">
+            <div className="excluded mb-4">
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
@@ -160,14 +160,14 @@ const Page = () => {
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               />
             </div>
-            <div className="mb-4 relative">
+            <div className="excluded mb-4 relative">
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
                 Password
               </label>
-              <div className="flex items-center mt-1">
+              <div className="excluded flex items-center mt-1">
                 <input
                   type="password"
                   id="password"
@@ -195,7 +195,7 @@ const Page = () => {
                 </button>
               </div>
             </div>
-            <div className="mb-4">
+            <div className="excluded mb-4">
               <button
                 type="submit"
                 className="w-full py-2 px-4 bg-[#2B71F0] hover:bg-[#2B71F0] text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
