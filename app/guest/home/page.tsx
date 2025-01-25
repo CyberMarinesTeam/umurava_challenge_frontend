@@ -164,7 +164,7 @@ export default function Home() {
   return (
     <main className="">
       <NavBar />
-      <section className="firstSection flex pb-[50px] max-[440px]:flex-col flex-row items-center justify-center  mt-[20px] ">
+      <section className="firstSection flex pb-[50px] max-[440px]:flex-col flex-row items-center justify-center mt-[20px] ">
         <div className="max-[440px]:px-5 flex flex-col space-y-[30px]  text-left mt-[60px] w-full">
           <h2 className="max-[440px]:text-lg text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
             Build Work Experience through Skills Challenges Program
@@ -192,7 +192,7 @@ export default function Home() {
         </div>
       </section>
       <section className="firstSection max-[440px]:px-20 flex flex-col px-48 bg-[#F9FAFB] items-center justify-center">
-        <div className="max-[440px]:w-screen max-[440px]:px-5 flex flex-col justify-center items-center w-fit bg-[#eee]">
+        <div className="max-[440px]:w-screen max-[440px]:px-5 flex flex-col justify-center items-center w-fit">
           <h2 className="max-[440px]:text-lg text-[#03192E] leading-[48px] text-[40px] text-center font-bold">
             Experience a New Way of Building Work Experience
           </h2>
@@ -201,7 +201,7 @@ export default function Home() {
             become part of Africa's largest workforce of digital professionals{" "}
           </p>
           <div className="flex flex-col max-[440px]:w-full h-fit items-center justify-center">
-            <div className="bg-[#2B71F0] mt-[60px] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-8 flex flex-col">
+            <div className="bg-[#2B71F0] max-[440px]:mb-5 mt-[60px] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-8 flex flex-col">
               <img
                 src="/bagLogo.webp"
                 draggable="false"
@@ -219,7 +219,7 @@ export default function Home() {
                 portforio of completed projects
               </p>
             </div>
-            <div className="flex flex-row w-full">
+            <div className="flex flex-row w-full max-[440px]:flex-col max-[440px]:gap-5">
               <div className="bg-[#2B71F0] space-y-[30px] rounded-[10px] p-[48px] max-[440px]:p-5 flex flex-col">
                 <img
                   src="/bagLogo.webp"
@@ -235,7 +235,7 @@ export default function Home() {
                   increase your chances of landing your dream job or contract
                 </p>
               </div>
-              <div className="bg-[#2B71F0] rounded-[10px] p-[48px] w-full flex flex-col">
+              <div className="bg-[#2B71F0] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-5 w-full flex flex-col">
                 <img
                   src="/bagLogo.webp"
                   draggable="false"
@@ -256,22 +256,22 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="flex items-center p-[70px] justify-center">
-        <div className="bg-[url('/cardBg.webp')] text-white bg-cover bg-center h-[259px] space-x-[135px] rounded-[30px] w-[1222px] flex flex-row items-center justify-center">
-          <div className="grid place-items-center grid-cols-1">
-            <span className="font-bold text-[40px]">1</span>
+      <section className="flex w-full items-center p-[70px] max-[440px]:p-2 justify-center">
+        <div className="bg-[url('/cardBg.webp')] text-white bg-cover max-[440px]:text-sm bg-center h-[259px] max-[440px]:h-32 space-x-[135px] max-[440px]:space-x-2 rounded-[30px] w-full flex flex-row items-center justify-center">
+          <div className="flex flex-col justify-center items-center gap-2">
+            <span className="font-bold text-[40px] max-[440px]:text-lg">1</span>
             <span className="text-[21.65px]">year</span>
           </div>
-          <div className="grid place-items-center grid-cols-1">
-            <span className="font-bold text-[40px]">500+</span>
+          <div className="flex flex-col justify-center items-center gap-2">
+            <span className="font-bold text-[40px] max-[440px]:text-2xl">500+</span>
             <span className="text-[21.65px]">Challenges Completed</span>
           </div>
-          <div className="grid place-items-center grid-cols-1">
-            <span className="font-bold text-[40px]">10k+</span>
+          <div className="flex flex-col justify-center items-center gap-2">
+            <span className="font-bold text-[40px] max-[440px]:text-2xl">10k+</span>
             <span className="text-[21.65px]">users</span>
           </div>
-          <div className="grid place-items-center grid-cols-1">
-            <span className="font-bold text-[40px]">6+</span>
+          <div className="flex flex-col justify-center items-center gap-2">
+            <span className="font-bold text-[40px] max-[440px]:text-2xl">6+</span>
             <span className="text-[21.65px]">Countries</span>
           </div>
         </div>
