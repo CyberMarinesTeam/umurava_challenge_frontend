@@ -30,23 +30,17 @@ const NavBar = () => {
   const currentNavItems = navItems.guest;
 
   return (
-    <nav className="h-[96px] md border-b-[1px] items-center justify-center flex flex-row space-x-[100px]">
+    <nav className="h-[96px] border-b-[1px] items-center justify-center flex flex-row space-x-[100px]">
       <img
         src="/umuravaLogo.webp"
         draggable="false"
         alt="umurava logo"
-        className="w-[125px]"
+        className="max-[640px]:hidden w-[125px]"
       />
-      <img
-        src="/umuravaLogo.webp"
-        draggable="false"
-        alt="umurava logo"
-        className="hidden sm:block md:hidden sm:w-[30px]"
-      />
-      <ul className="flex flex-row text-[14px] text-gray-700 space-x-[40px]">
+      <ul className="sm:text-sm flex flex-row text-gray-700 space-x-[40px]">
         {currentNavItems.map((item, index) => (
           <li key={index}>
-            <Link href={`${item.path}`} className="hover:text-[#2B71f0]">
+            <Link href={`${item.path}`} className="max-[640px]:hidden hover:text-[#2B71f0]">
               {item.label}
             </Link>
           </li>

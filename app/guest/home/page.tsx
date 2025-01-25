@@ -164,16 +164,12 @@ export default function Home() {
   return (
     <main className="">
       <NavBar />
-
-      <section className="firstSection flex pb-[50px]   flex-row items-center justify-center  mt-[20px] ">
-        <div className="flex flex-col space-y-[30px]  text-left mt-[60px] w-[570px]">
-          <h2 className="text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
+      <section className="firstSection flex pb-[50px] max-[440px]:flex-col flex-row items-center justify-center  mt-[20px] ">
+        <div className="max-[440px]:px-5 flex flex-col space-y-[30px]  text-left mt-[60px] w-full">
+          <h2 className="max-[440px]:text-lg text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
             Build Work Experience through Skills Challenges Program
           </h2>
-          <h2 className="hidden sm:block md:hidden sm:text-sm sm:text-black text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
-            Build Work Experience through Skills Challenges Program
-          </h2>
-          <p className="text-[16px] w-[450px] text-gray-700">
+          <p className="text-[16px] w-full text-gray-700">
             Enhance Your Employability and Accelerate Your Career Growth by
             working on Hands-on projects & Hackathons from various businesses &
             organizations
@@ -182,73 +178,80 @@ export default function Home() {
             Get Started
           </button>
         </div>
-        <div className="flex flex-row space-x-[20px] ">
-          <img src="/Image_2.png" alt="photo" className="w-auto h-[500px]" />
+        <div className="flex max-[440px]:self-start flex-row space-x-[20px] ">
+          <img
+            src="/Image_2.png"
+            alt="photo"
+            className="w-auto max-[440px]:w-auto max-[440px]:h-[300px] h-[500px]"
+          />
           <img
             src="/image_1.png"
             alt="photo"
-            className="w-auto h-[443px] mt-[57px]"
+            className="w-auto max-[440px]:w-auto max-[440px]:h-[300px] h-[443px] mt-[57px]"
           />
         </div>
       </section>
-      <section className="firstSection flex flex-col space-y-[20px] pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
-        <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
-          Experience a New Way of Building Work Experience
-        </h2>
-        <p className="text-[#687588]  text-[18px] w-[710px] text-center">
-          Join Skills Challenges Program to accelerate yout career growth and
-          become part of Africa's largest workforce of digital professionals{" "}
-        </p>
-        <div className="flex  flex-col items-center justify-center w-[1072px]  space-y-[20px]">
-          <div className="bg-[#2B71F0] mt-[60px] space-y-[30px] rounded-[10px] w-[1072px] p-[48px] flex flex-col">
-            <img
-              src="/bagLogo.webp"
-              draggable="false"
-              className="w-[60px] rounded-[10px] h-auto"
-              alt="bag logo"
-            />
-            <h2 className="font-bold text-white text-[24px]">
-              Build a Strong Portforio and Hand-On Experience
-            </h2>
-            <p className="text-white text-[16px] w-[829px]">
-              Tackle real-world projects through Challenges and hackathons that
-              mirror real world challenges faced by businesses and
-              organizations.Therefore, showcase your skills and accomplishments
-              to potential employers and clients through a portforio of
-              completed projects
-            </p>
-          </div>
-          <div className="flex flex-row space-x-[20px]">
-            <div className="bg-[#2B71F0] space-y-[30px]  rounded-[10px] w-full p-[48px] flex flex-col">
+      <section className="firstSection max-[440px]:px-20 flex flex-col px-48 bg-[#F9FAFB] items-center justify-center">
+        <div className="max-[440px]:w-screen max-[440px]:px-5 flex flex-col justify-center items-center w-fit bg-[#eee]">
+          <h2 className="max-[440px]:text-lg text-[#03192E] leading-[48px] text-[40px] text-center font-bold">
+            Experience a New Way of Building Work Experience
+          </h2>
+          <p className="max-[440px]:text-sm text-[#687588] text-[18px] text-center">
+            Join Skills Challenges Program to accelerate yout career growth and
+            become part of Africa's largest workforce of digital professionals{" "}
+          </p>
+          <div className="flex flex-col max-[440px]:w-full h-fit items-center justify-center">
+            <div className="bg-[#2B71F0] mt-[60px] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-8 flex flex-col">
               <img
                 src="/bagLogo.webp"
                 draggable="false"
                 className="w-[60px] rounded-[10px] h-auto"
                 alt="bag logo"
               />
-              <h2 className="font-bold text-white text-[24px]">
-                Enhance Your Employment Path
+              <h2 className="max-[440px]:text-lg font-bold text-white text-[24px]">
+                Build a Strong Portforio and Hand-On Experience
               </h2>
-              <p className="text-white text-[16px] w-[400px]">
-                Elop the in-demand skills and build a strong portforio to
-                increase your chances of landing your dream job or contract
+              <p className="max-[440px]:text-sm text-white text-[16px] max-[640px]:w-fit">
+                Tackle real-world projects through Challenges and hackathons
+                that mirror real world challenges faced by businesses and
+                organizations.Therefore, showcase your skills and
+                accomplishments to potential employers and clients through a
+                portforio of completed projects
               </p>
             </div>
-            <div className="bg-[#2B71F0]  space-y-[30px] rounded-[10px] w-full p-[48px] flex flex-col">
-              <img
-                src="/bagLogo.webp"
-                draggable="false"
-                className="w-[60px] rounded-[10px] h-auto"
-                alt="bag logo"
-              />
-              <h2 className="font-bold text-white text-[24px]">
-                Earn Recognition and Prizes
-              </h2>
-              <p className="text-white text-[16px]">
-                Earn both Money and knowledge Prizes by participating in various
-                contests and competitions by working on real world projects and{" "}
-                hackathons from partner companies or organizations
-              </p>
+            <div className="flex flex-row w-full">
+              <div className="bg-[#2B71F0] space-y-[30px] rounded-[10px] p-[48px] max-[440px]:p-5 flex flex-col">
+                <img
+                  src="/bagLogo.webp"
+                  draggable="false"
+                  className="w-[60px] rounded-[10px] h-auto"
+                  alt="bag logo"
+                />
+                <h2 className="font-bold text-white text-[24px]">
+                  Enhance Your Employment Path
+                </h2>
+                <p className="text-white text-[16px]">
+                  Elop the in-demand skills and build a strong portforio to
+                  increase your chances of landing your dream job or contract
+                </p>
+              </div>
+              <div className="bg-[#2B71F0] rounded-[10px] p-[48px] w-full flex flex-col">
+                <img
+                  src="/bagLogo.webp"
+                  draggable="false"
+                  className="w-[60px] rounded-[10px] h-auto"
+                  alt="bag logo"
+                />
+                <h2 className="font-bold text-white text-[24px]">
+                  Earn Recognition and Prizes
+                </h2>
+                <p className="text-white text-[16px]">
+                  Earn both Money and knowledge Prizes by participating in
+                  various contests and competitions by working on real world
+                  projects and hackathons from partner companies or
+                  organizations
+                </p>
+              </div>
             </div>
           </div>
         </div>
