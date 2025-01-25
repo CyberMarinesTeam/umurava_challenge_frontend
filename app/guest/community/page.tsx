@@ -14,40 +14,41 @@ const Page = () => {
     <main>
       <NavBar />
       <main>
-        <section className="firstSection flex flex-row space-x-[20px] py-[80px] items-center justify-center">
-          <div className="flex flex-col space-y-[20px]">
-            <h2 className="text-[#2B71f0] w-[520px] leading-[33px] text-[26px] font-bold">
-              Accelerate Your Students and Trainees' Employability and Career
+        <section className="firstSection flex max-md:space-y-[40px] flex-row max-md:flex-col lg:space-x-[30px]  max-md:py-[60px] lg:py-[80px] items-center justify-center">
+          <div className="flex flex-col space-y-[20px] max-md:px-[10px]">
+            <h2 className="text-[#2B71f0] lg:w-[560px] max-md:text-[16px] max-md:w-[390px] max-md:leading-[25px] leading-[33px] text-[26px] font-bold">
+              Accelerate Your Students and Trainees Employability and Career
               Growth through Project-Based Learning Solutions
             </h2>
-            <div className="flex flex-col space-y-[20px] w-[538px]">
-              <p className="text-[16px] leading-[30px] text-[#2b3338]">
-                We partner with universities, schools, and training institutions
-                to provide valuable work experience for students and trainees
-                through project-based learning challenges and hackathons.
+            <div className="flex flex-col lg:space-y-[20px] lg:w-[478px] max-md:w-[320px]">
+              <p className="text-[16px] leading-[30px] text-[#2b3338] max-md:leading-[24px] max-md:text-[14px]">
+                We partner with Universities, Schools, and Trainings
+                institutions to provide valuable work experience for their
+                students and trainees through project-based learning challenges
+                and hackathons.
               </p>
             </div>
-            <button className="bg-[#2B71f0] mt-[40px] w-[207px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
+            <button className="bg-[#2B71f0] mt-[40px] max-md:w-[170px] max-md:text-[13px] w-[207px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
               Partner with us
             </button>
           </div>
           <img
             src="/girls.webp"
             alt="photo"
-            className="h-[377px] w-[550px] rounded-[32px]"
+            className="h-[377px] w-[550px] max-md:w-[340px]  max-md:h-auto lg:rounded-[32px] max-md:rounded-[16px]"
           />
         </section>
-        <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
-          <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
+        <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center  pt-[50px] max-md:pt-[20px] justify-center">
+          <h2 className="text-[#03192E] leading-[48px] max-md:text-[20px] text-[40px] w-[700px] text-center font-bold">
             Why we are solving this problem
           </h2>
-          <div className="flex  flex-col items-center justify-center mt-[70px] w-[1072px]  space-y-[20px]">
-            <div className="flex flex-row space-x-[20px] ">
-              <div className="bg-[#2B71F0] space-y-[20px]  rounded-[10px] w-[371px] h-[361px] p-[48px] pt-[40px] flex flex-col">
+          <div className="flex max-md:excluded flex-col items-center justify-center mt-[40px] max-md:mt-0 lg:w-[1072px] max-md:w-full space-y-[20px]">
+            <div className="flex max-md:excluded flex-row lg:space-x-[20px] max-md:flex-col max-md:space-y-[15px]">
+              <div className="max-md:excluded bg-[#2B71F0] space-y-[20px] lg:w-[371px]  rounded-[10px] max-md:w-[371px] lg:h-[371px] p-[48px] max-md:p-[30px] lg:pt-[40px] max-md:pt-[25px] flex flex-col">
                 <img
                   src="/bagLogo.webp"
                   draggable="false"
-                  className="w-[60px] rounded-[10px] h-auto"
+                  className="lg:w-[60px] max-md:w-[60px] rounded-[10px] h-auto"
                   alt="bag logo"
                 />
                 <h2 className="font-bold text-white text-[19px]">
@@ -61,7 +62,7 @@ const Page = () => {
                   success.
                 </p>
               </div>
-              <div className="bg-[#2B71F0]  space-y-[20px] w-[471px] h-[361px] rounded-[10px] p-[48px] pt-[40px] flex flex-col">
+              <div className="bg-[#2B71F0] max-md:w-[371px] space-y-[20px] lg:w-[471px] lg:h-[371px] rounded-[10px] p-[48px] max-md:p-[30px] max-md:pt-[25px] pt-[40px] flex flex-col">
                 <img
                   src="/bagLogo.webp"
                   draggable="false"
@@ -77,7 +78,7 @@ const Page = () => {
                   learn in their academic courses.
                 </p>
               </div>
-              <div className="bg-[#2B71F0]  w-[371px] h-[361px] space-y-[20px] rounded-[10px] p-[48px] pt-[40px] flex flex-col">
+              <div className="bg-[#2B71F0]  w-[371px] h-[371px] space-y-[20px] rounded-[10px] p-[48px] max-md:p-[30px] max-md:pt-[25px] pt-[40px] flex flex-col">
                 <img
                   src="/bagLogo.webp"
                   draggable="false"
@@ -97,8 +98,8 @@ const Page = () => {
               </div>
             </div>
 
-            <div className="flex flex-row space-x-[20px]">
-              <div className="bg-[#2B71F0] space-y-[20px]  rounded-[10px] w-[806px] h-[238px] p-[48px] pt-[40px] flex flex-col">
+            <div className="flex flex-row lg:space-x-[20px] max-md:space-y-[15px] max-md:flex-col">
+              <div className="bg-[#2B71F0] space-y-[20px]  rounded-[10px] lg:w-[806px] max-md:w-[371px] lg:h-[238px] max-md:p-[30px] max-md:pt-[25px] p-[48px] pt-[40px] flex flex-col">
                 <img
                   src="/bagLogo.webp"
                   draggable="false"
@@ -108,7 +109,7 @@ const Page = () => {
                 <h2 className="font-bold text-white text-[19px]">
                   Access to Industry Experts & Mentors{" "}
                 </h2>
-                <p className="text-white text-[13px] w-[700px]">
+                <p className="text-white text-[13px] lg:w-[700px]">
                   Skills Challenges expose students to industry experts and
                   mentors who offer guidance, support, and insights on the
                   trends of digital careers. This can help students gain a deep
