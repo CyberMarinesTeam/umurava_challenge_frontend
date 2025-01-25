@@ -107,20 +107,20 @@ export default function Home() {
     items.push(
       <div
         key={i}
-        className="flex flex-col border-[1.5px] items-center pt-[18px] rounded-[10px] w-[350px] h-[480px] border-[#E4E7EC]"
+        className="flex flex-col border-[1.5px] items-center pt-[18px] max-[440px]:w-56 max-[440px]:p-2 max-[440px]:h-64 rounded-[10px] w-[350px] h-[480px] border-[#E4E7EC]"
       >
-        <div className="relative">
+        <div className="relative max-[440px]:w-full">
           <img
             src="/umuravaBg.webp"
             draggable={false}
             alt="umurava_bg"
-            className="w-[313px] object-cover rounded-[10px] h-[200px]"
+            className="w-[313px] object-cover rounded-[10px] max-[440px]:w-full max-[440px]:h-auto h-[200px]"
           />
           <span className="bg-[#0F973D] text-white absolute w-[70px] grid place-items-center h-[28px] rounded-full top-[10px] text-[14px] right-[10px]">
             Open
           </span>
         </div>
-        <h2 className="text-[#101928] mt-[30px] text-[18px] font-semibold">
+        <h2 className="text-[#101928] max-[440px]:text-sm max-[440px]:mt-5 mt-[30px] text-[18px] font-semibold">
           Design a Dashboard for SokoFund
         </h2>
         <div className="flex flex-col pl-[10px] text-start space-x-[-10px] space-y-[10px] mt-[10px]">
@@ -257,38 +257,38 @@ export default function Home() {
         </div>
       </section>
       <section className="flex w-full items-center p-[70px] max-[440px]:p-2 justify-center">
-        <div className="bg-[url('/cardBg.webp')] text-white bg-cover max-[440px]:text-sm bg-center h-[259px] max-[440px]:h-32 space-x-[135px] max-[440px]:space-x-2 rounded-[30px] w-full flex flex-row items-center justify-center">
+        <div className="bg-[url('/cardBg.webp')] text-white bg-cover max-[440px]:text-sm bg-center h-[259px] max-[440px]:h-32 space-x-[135px] max-[440px]:space-x-1 rounded-[30px] w-full flex flex-row items-center justify-center max-[440px]:justify-around max-[440px]:p-3">
           <div className="flex flex-col justify-center items-center gap-2">
-            <span className="font-bold text-[40px] max-[440px]:text-lg">1</span>
-            <span className="text-[21.65px]">year</span>
+            <p className="font-bold text-[40px] max-[440px]:text-2xl">1</p>
+            <p className="text-[21.65px] max-[440px]:text-sm">Year</p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
-            <span className="font-bold text-[40px] max-[440px]:text-2xl">500+</span>
-            <span className="text-[21.65px]">Challenges Completed</span>
+            <p className="font-bold text-[40px] max-[440px]:text-2xl">500+</p>
+            <p className="text-[21.65px] max-[440px]:text-sm">Challenges Completed</p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
-            <span className="font-bold text-[40px] max-[440px]:text-2xl">10k+</span>
-            <span className="text-[21.65px]">users</span>
+            <p className="font-bold text-[40px] max-[440px]:text-2xl">10k+</p>
+            <p className="text-[21.65px] max-[440px]:text-sm">Users</p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
-            <span className="font-bold text-[40px] max-[440px]:text-2xl">6+</span>
-            <span className="text-[21.65px]">Countries</span>
+            <p className="font-bold text-[40px] max-[440px]:text-2xl">6+</p>
+            <p className="text-[21.65px] max-[440px]:text-sm">Countries</p>
           </div>
         </div>
       </section>
-      <section className="flex flex-col  pb-[50px] items-center pt-[50px] justify-center">
-        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[1000px] text-center font-bold">
+      <section className="flex flex-col w-full pb-[50px] items-center pt-[50px] justify-center">
+        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[1000px] max-[440px]:w-full max-[440px]:text-2xl text-center font-bold">
           Skills Challenges Cover various in-demand skills and Careers for the
           digital economy{" "}
         </h2>
-        <p className="text-[#687588]  mb-[45px] text-[18px] w-[580px] text-center">
+        <p className="text-[#687588]  mb-[45px] text-[18px] w-[580px] max-[440px]:w-full text-center">
           Explore the projects that various talents are working on{" "}
         </p>
-        <div className="flex flex-wrap   justify-center gap-[20px] w-[700px] ">
+        <div className="flex flex-wrap justify-center max-[440px]:w-full max-[440px]:gap-2 max-[440px]:px-3 gap-[20px] w-[700px] ">
           {courseNames.map((courseName: string, index) => (
             <button
               key={index}
-              className="bg-[#f1f1f1] hover:bg-[#2b71f0] rounded-[6px] text-[#657888] py-[14px] px-[24px] transition-all duration-150 hover:text-white"
+              className="bg-[#f1f1f1] hover:bg-[#2b71f0] max-[440px]:py-2 max-[440px]:px-3 rounded-[6px] text-[#657888] py-[14px] px-[24px] transition-all duration-150 hover:text-white"
             >
               {courseName}
             </button>
@@ -296,15 +296,15 @@ export default function Home() {
         </div>
         <Carousel images={images} />
       </section>
-      <section className="flex flex-col  pb-[50px] items-center justify-center">
-        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[1000px] text-center font-bold">
+      <section className="flex flex-col max-[440px]:w-full pb-[50px] items-center justify-center">
+        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] max-[440px]:w-full w-[1000px] text-center font-bold">
           Explore Challenges & Hackathons
         </h2>
-        <p className="text-[#687588]  mb-[45px] text-[18px] w-[710px] text-center">
+        <p className="text-[#687588] max-[440px]:w-full mb-[45px] text-[18px] w-[710px] text-center">
           Join skills Challenges Program to accelerate your career growth and
           become part of Africa's largest workforce of digital professionals.
         </p>
-        <div className="grid grid-cols-3 gap-[30px]">{items}</div>
+        <div className="flex flex-row w-full overflow-x-auto">{items}</div>
         <button className="w-[207px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] mt-[60px] grid place-items-center border-[#2b71f0] border-[1.5px]">
           View More
         </button>

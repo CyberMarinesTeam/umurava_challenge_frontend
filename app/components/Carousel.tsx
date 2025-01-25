@@ -31,11 +31,11 @@ const Carousel = ({ images }: { images: string[] }) => {
   };
 
   return (
-    <div className="relative mb-[100px] w-full grid place-items-center">
-      <div className="overflow-hidden relative h-[450px]  bg-[#f1f1f1] py-[80px] mt-[100px]  px-[100px] w-[1200px] rounded-[20px] grid grid-cols-2 place-items-center ">
+    <div className="relative mb-[100px] w-full grid place-items-center max-[440px]:p-5">
+      <div className="overflow-hidden relative h-[450px] bg-[#f1f1f1] py-[80px] mt-[100px]  px-[100px] w-[1200px] max-[440px]:w-full max-[440px]:flex max-[440px]:flex-col max-[440px]:gap-8 max-[440px]:p-3 rounded-[20px] grid grid-cols-2 place-items-center ">
         {images.map((image, index) => (
           <Fragment key={index}>
-            <div className="flex flex-col  h-[450px]  space-y-[40px] items-start">
+            <div className="flex flex-col h-[450px] max-[440px]:h-48 max-[440px]:space-y-5 space-y-[40px] items-start">
               <span className="bg-white p-[10px] rounded-[10px]">
                 <img
                   src="/EmbeddedFinance.webp"
@@ -64,7 +64,6 @@ const Carousel = ({ images }: { images: string[] }) => {
           </Fragment>
         ))}
       </div>
-
       <div className="absolute bottom-[-60px] left-0 right-0 flex justify-center space-x-2">
         {images.map((_, index) => (
           <button
