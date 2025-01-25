@@ -1,6 +1,12 @@
 "use client";
+import { DM_Sans } from "next/font/google";
 import Link from "next/link";
 import React, { useState } from "react";
+
+const dm_sans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["300", "100", "400", "700", "900"],
+});
 
 const NavBar = () => {
   const [currentUser, setCurrentUser] = useState("guest"); // Change this value to "admin" or "talent" for testing
@@ -30,7 +36,9 @@ const NavBar = () => {
   const currentNavItems = navItems.guest;
 
   return (
-    <nav className="h-[96px] border-b-[1px] items-center justify-center flex flex-row space-x-[100px]">
+    <nav
+      className={`h-[96px] ${dm_sans.className} border-b-[1px] items-center justify-center flex flex-row space-x-[100px]`}
+    >
       <img
         src="/umuravaLogo.webp"
         draggable="false"
@@ -40,7 +48,10 @@ const NavBar = () => {
       <ul className="sm:text-sm flex flex-row text-gray-700 space-x-[40px]">
         {currentNavItems.map((item, index) => (
           <li key={index}>
-            <Link href={`${item.path}`} className="max-[640px]:hidden hover:text-[#2B71f0]">
+            <Link
+              href={`${item.path}`}
+              className="max-[640px]:hidden hover:text-[#2B71f0]"
+            >
               {item.label}
             </Link>
           </li>
