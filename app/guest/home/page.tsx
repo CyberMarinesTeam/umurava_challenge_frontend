@@ -164,7 +164,6 @@ export default function Home() {
   return (
     <main className="">
       <NavBar />
-
       <section className="firstSection flex pb-[50px] max-[440px]:flex-col flex-row items-center justify-center mt-[20px] ">
         <div className="max-[440px]:px-5 flex flex-col space-y-[30px]  text-left mt-[60px] lg:w-[576px]">
           <h2 className="max-[440px]:text-lg text-[#2B71f0] leading-[52.8px] font-bold text-[40px]">
@@ -192,7 +191,6 @@ export default function Home() {
           />
         </div>
       </section>
-
       <section className="firstSection max-[440px]:px-20 flex flex-col px-48 bg-[#F9FAFB] items-center justify-center lg:pt-[50px]">
         <div className="max-[440px]:w-screen lg:pb-[50px] max-[440px]:px-5 flex flex-col justify-center max-md:py-[40px] lg:space-y-[20px] max-md:space-y-[20px] items-center w-fit">
           <h2 className="max-[440px]:text-lg text-[#03192E] leading-[48px] max-md:leading-[30px] text-[40px] text-center lg:w-[700px] font-bold">
@@ -202,7 +200,6 @@ export default function Home() {
             Join Skills Challenges Program to accelerate yout career growth and
             become part of Africa's largest workforce of digital professionals{" "}
           </p>
-
           <div className="flex flex-col max-[440px]:w-full lg:space-y-[20px] h-fit items-center justify-center">
             <div className="bg-[#2B71F0] max-[440px]:mb-5 mt-[60px] max-md:mt-[30px] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-8 flex flex-col">
               <img
@@ -222,7 +219,6 @@ export default function Home() {
                 portforio of completed projects
               </p>
             </div>
-
             <div className="flex flex-row w-full max-[440px]:flex-col lg:space-x-[20px] max-[440px]:gap-5">
               <div className="bg-[#2B71F0] space-y-[30px] rounded-[10px] p-[48px] max-[440px]:p-5 flex flex-col">
                 <img
