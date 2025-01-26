@@ -22,14 +22,14 @@ export default function Home() {
     videoCards.push(
       <div
         key={i}
-        className="carousel-item flex flex-col border-[#E4E7EC] border-[1.5px] p-[20px] rounded-[10px]"
+        className="carousel-item flex max-[440px]:w-72 max-[440px]:p-2 flex-col border-[#E4E7EC] border-[1.5px] p-[20px] rounded-[10px]"
       >
         {/* <img
           src="/umuravaBg.webp"
           alt="image"
           className="rounded-[10px] w-[470px] object-cover h-[280px]"
         /> */}
-        <div className="relative w-[470px] h-[280px] rounded-lg shadow-lg overflow-hidden">
+        <div className="relative max-[440px]:w-full max-[440px]:h-auto w-[470px] h-[280px] rounded-lg shadow-lg overflow-hidden">
           <video className="w-full h-full" controls>
             <source src="/umuravaVideo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -51,14 +51,14 @@ export default function Home() {
             </button> */}
           {/* </div> */}
         </div>
-        <div className="flex flex-row space-x-[10px] items-center mt-[20px]">
+        <div className="flex flex-row space-x-[10px] items-center max-[440px]:mt-3 mt-[20px]">
           <img
             src="/umuravaBg.webp"
             alt="image"
-            className="w-[60px]  object-cover h-[60px] rounded-full"
+            className="w-[60px] max-[440px]:w-[40px] max-[440px]:h-[40px] object-cover h-[60px] rounded-full"
           />
           <span className="flex flex-col">
-            <h2 className="text-[#00473B] text-[19px] font-semibold">
+            <h2 className="text-[#00473B] text-[19px] max-[440px]:text-lg font-semibold">
               Manzi James
             </h2>
             <p className="text-[#737373] text-[14px]">
@@ -107,7 +107,7 @@ export default function Home() {
     items.push(
       <div
         key={i}
-        className="flex flex-col border-[1.5px] items-center pt-[18px] max-[440px]:w-56 max-[440px]:p-2 max-[440px]:h-64 rounded-[10px] w-[350px] h-[480px] border-[#E4E7EC]"
+        className="flex flex-col border-[1.5px] items-center pt-[18px] max-md:w-[600px] max-[440px]:p-2 max-[440px]:h-96 rounded-[10px] lg:w-[350px] h-[480px] border-[#E4E7EC]"
       >
         <div className="relative max-[440px]:w-full">
           <img
@@ -120,7 +120,7 @@ export default function Home() {
             Open
           </span>
         </div>
-        <h2 className="text-[#101928] max-[440px]:text-sm max-[440px]:mt-5 mt-[30px] text-[18px] font-semibold">
+        <h2 className="text-[#101928] max-[440px]:text-sm max-[440px]:mt-2 mt-[30px] text-[18px] font-semibold">
           Design a Dashboard for SokoFund
         </h2>
         <div className="flex flex-col pl-[10px] text-start space-x-[-10px] space-y-[10px] mt-[10px]">
@@ -139,8 +139,8 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="flex space-x-[10px] mt-[10px] flex-row items-center justify-center">
-          <h2 className="text-[#25272B] text-[14px] font-semibold">
+        <div className="flex space-x-[10px] mt-[10px] max-[440px]:flex-col flex-row items-center justify-center">
+          <h2 className="text-[#25272B] text-[14px] max-[440px]:w-full font-semibold">
             Seniority Level:
           </h2>
           <h1 className="text-[#475367] text-[14px]">
@@ -308,25 +308,25 @@ export default function Home() {
           Join skills Challenges Program to accelerate your career growth and
           become part of Africa's largest workforce of digital professionals.
         </p>
-        <div className="flex flex-row w-full md:overflow-x-auto lg:items-center lg:justify-center lg:space-x-[30px] ">
+        <div className="flex max-[440px]:bg-[#eee] flex-row max-[440px]:h-[400px] w-full max-[440px]:overflow-x-auto max-[440px]:gap-5 md:overflow-x-auto lg:items-center lg:justify-center lg:space-x-[30px] ">
           {items}
         </div>
-        <button className="w-[207px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] mt-[60px] grid place-items-center border-[#2b71f0] border-[1.5px]">
+        <button className="w-[207px] max-[440px]:w-fit max-[440px]:h-fit max-[440px]:px-4 max-[440px]:py-3 h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] mt-[60px] grid place-items-center border-[#2b71f0] border-[1.5px]">
           View More
         </button>
       </section>
-      <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
-        <h2 className=" text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
+      <section className="firstSection flex max-[440px]:w-full flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
+        <h2 className=" text-[#03192E] leading-[48px] max-[440px]:w-full max-[440px]:text-xl max-[440px]:px-2 text-[40px] w-[700px] text-center font-bold">
           What else can I gain from participating in Skills Challenges ?
         </h2>
-        <p className="text-[#687588] mt-[20px]  text-[18px] w-[710px] text-center">
+        <p className="text-[#687588] mt-[20px]  text-[18px] w-[710px] max-[440px]:w-full max-[440px]:text-sm max-[440px]:px-2 text-center">
           Join Skills Challenges Program to accelerate yout career growth and
           become part of Africa's largest workforce of digital professionals{" "}
         </p>
-        <main className="flex flex-row space-x-[50px] mt-[70px] items-center justify-center">
-          <div className="grid grid-cols-2 gap-[30px]">
+        <main className="flex max-[440px]:w-full max-[440px]:flex-col-reverse max-[440px]:gap-10 flex-row space-x-[50px] mt-[70px] items-center justify-center">
+          <div className="grid max-[440px]:flex max-[440px]:flex-col grid-cols-2 gap-[30px]">
             {gridSectionData.map((data, index) => (
-              <div className="flex-col flex " key={index}>
+              <div className="flex-col flex" key={index}>
                 <div className="w-[60px] h-[60px] grid place-items-center bg-[#2b71f0] rounded-[5px]">
                   <img
                     src={`/${data.image}`}
@@ -348,15 +348,15 @@ export default function Home() {
             src="/cardPhoto2.webp"
             alt="image"
             draggable={false}
-            className="w-[450px] h-auto"
+            className="w-[450px] h-auto max-[440px]:w-40 max-[440px]:self-center"
           />
         </main>
       </section>
-      <section className="flex flex-col pt-[60px]  ml-[130px]  pb-[50px] items-start justify-center">
-        <h2 className="text-[#03192E] text-[40px] mb-[20px] leading-[48px] w-[700px] text-left font-bold">
+      <section className="flex max-[440px]:w-full flex-col pt-[60px] ml-[130px] max-[440px]:m-0 pb-[50px] items-start justify-center">
+        <h2 className="text-[#03192E] max-[440px]:w-full max-[440px]:text-xl max-[440px]:px-5 text-[40px] mb-[20px] leading-[48px] w-[700px] text-left font-bold">
           Users Are In Love with Skills Challenges Program
         </h2>
-        <p className="text-[#687588]  mb-[45px] text-[18px] w-[610px] text-left">
+        <p className="text-[#687588] max-[440px]:w-full max-[440px]:text-sm max-[440px]:px-5 mb-[45px] text-[18px] w-[610px] text-left">
           See what your clients say about working with us. Their success speaks
           for our dedication and expertise.
         </p>
@@ -364,13 +364,13 @@ export default function Home() {
           {videoCards}
         </div>
       </section>
-      <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
-        <h2 className="text-[#03192E] leading-[48px] text-[40px] w-[700px] text-center font-bold">
+      <section className="firstSection max-[440px]:w-full flex flex-col pb-[50px] bg-[#F9FAFB] items-center max-[440px]:pt-5 pt-[50px] justify-center">
+        <h2 className="text-[#03192E] max-[440px]:w-full max-[440px]:px-2 max-[440px]:text-xl leading-[48px] text-[40px] w-[700px] text-center font-bold">
           How To Get Started
         </h2>
-        <main className="flex flex-row space-x-[30px] mt-[60px]">
-          <div className="grid grid-cols-1 gap-[30px]">
-            <div className="relative shadow-sm bg-white rounded-[10px] w-[470px] pt-[50px] pl-[50px] h-[364px] flex flex-col">
+        <main className="flex max-[440px]:flex-col max-[440px]:gap-2 max-[440px]:w-full flex-row max-[440px]:space-x-0 space-x-[30px] max-[440px]:mt-0 mt-[60px]">
+          <div className="max-[440px]:flex max-[440px]:pt-5 max-[440px]:w-full max-[440px]:px-2 max-[440px]:flex-col max-[440px]:gap-2 grid grid-cols-1 gap-[30px]">
+            <div className="relative max-[440px]:w-full max-[440px]:pl-5 max-[440px]:pt-5 max-[440px]:h-[270px] shadow-sm bg-white rounded-[10px] w-[470px] pt-[50px] pl-[50px] h-[364px] flex flex-col">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 1
               </button>
@@ -383,10 +383,10 @@ export default function Home() {
               <img
                 src="/cardPhoto3.webp"
                 alt="photo"
-                className="absolute bottom-0 right-0 rounded-br-[10px] w-[263px] h-[147px]"
+                className="absolute bottom-0 right-0 rounded-br-[10px] max-[440px]:w-56 max-[440px]:h-auto w-[263px] h-[147px]"
               />
             </div>
-            <div className="relative shadow-sm bg-white rounded-[10px] w-[470px] pt-[50px] pl-[50px] h-[364px] flex flex-col">
+            <div className="relative max-[440px]:w-full max-[440px]:pl-5 max-[440px]:pt-5 max-[440px]:h-80 shadow-sm bg-white rounded-[10px] w-[470px] pt-[50px] pl-[50px] h-[364px] flex flex-col">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 2
               </button>
@@ -404,8 +404,8 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-[30px]">
-            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
+          <div className="max-[440px]:flex max-[440px]:w-full max-[440px]:px-2 max-[440px]:flex-col max-[440px]:gap-2 grid grid-cols-1 gap-[30px]">
+            <div className="max-[400px]:pt-5 max-[440px]:pl-5 max-[440px]:pb-5 max-[440px]:h-fit max-[440px]:w-full bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 3
               </button>
@@ -416,7 +416,7 @@ export default function Home() {
                 Sign up for the challenge and start working on the project.
               </p>
             </div>
-            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
+            <div className="max-[400px]:pt-5 max-[440px]:pl-5 max-[440px]:pb-5 max-[440px]:h-fit max-[440px]:w-full bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 4
               </button>
@@ -427,7 +427,7 @@ export default function Home() {
                 Submit your completed project for evaluation
               </p>
             </div>{" "}
-            <div className="bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
+            <div className="max-[400px]:pt-5 max-[440px]:pl-5 max-[440px]:pb-5 max-[440px]:h-fit max-[440px]:w-full bg-white shadow-sm rounded-[10px] pt-[50px] pl-[50px] w-[624px] h-[235px]">
               <button className="bg-[#2b71f0] text-[12px] text-white w-[63px] h-[30px] rounded-[5px]">
                 Step 5
               </button>
@@ -441,12 +441,12 @@ export default function Home() {
           </div>
         </main>
       </section>
-      <section className="py-[80px] grid place-items-center">
-        <div className="h-[503px] w-[1221px] rounded-[20px] bg-[url('/cardBg2.webp')] bg-cover bg-no-repeat place-items-center grid grid-cols-2">
+      <section className="py-[80px] max-[440px]:w-full max-[440px]:px-2 max-[440px]:h-fit max-[440px]:flex max-[440px]:flex-col grid place-items-center">
+        <div className="h-[503px] max-[440px]:w-full max-[440px]:h-fit max-[440px]:flex max-[440px]:flex-col w-[1221px] rounded-[20px] bg-[url('/cardBg2.webp')] bg-cover bg-no-repeat place-items-center grid grid-cols-2">
           <img
             src="/people.webp"
             alt="image"
-            className="w-[398px] h-[395px] rounded-[10px]"
+            className="w-[398px] h-[395px] max-[440px]:w-40 max-[440px]:h-auto rounded-[10px]"
           />
           <div>
             {" "}
