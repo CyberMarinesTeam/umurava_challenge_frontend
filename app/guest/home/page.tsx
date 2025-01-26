@@ -191,9 +191,9 @@ export default function Home() {
           />
         </div>
       </section>
-      <section className="firstSection max-[440px]:px-20 flex flex-col px-48 bg-[#F9FAFB] items-center lg:pt-[50px] justify-center">
-      <div className="max-[440px]:w-screen max-[440px]:px-5 flex flex-col justify-center lg:space-y-[20px] items-center w-fit">
-        <h2 className="max-[440px]:text-lg text-[#03192E] leading-[48px] text-[40px] text-center lg:w-[700px] font-bold">
+      <section className="firstSection max-[440px]:px-20 flex flex-col px-48 bg-[#F9FAFB] items-center justify-center lg:pt-[50px]">
+        <div className="max-[440px]:w-screen lg:pb-[50px] max-[440px]:px-5 flex flex-col justify-center lg:space-y-[20px] items-center w-fit">
+          <h2 className="max-[440px]:text-lg text-[#03192E] leading-[48px] text-[40px] text-center lg:w-[700px] font-bold">
             Experience a New Way of Building Work Experience
           </h2>
           <p className="max-[440px]:text-sm lg:w-[710px] text-[#687588] text-[18px] text-center">
@@ -201,7 +201,7 @@ export default function Home() {
             become part of Africa's largest workforce of digital professionals{" "}
           </p>
           <div className="flex flex-col max-[440px]:w-full lg:space-y-[20px] h-fit items-center justify-center">
-            <div className="bg-[#2B71F0] mt-[60px] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-8 flex flex-col">
+            <div className="bg-[#2B71F0] max-[440px]:mb-5 mt-[60px] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-8 flex flex-col">
               <img
                 src="/bagLogo.webp"
                 draggable="false"
@@ -219,38 +219,40 @@ export default function Home() {
                 portforio of completed projects
               </p>
             </div>
-            <div className="flex flex-row w-full lg:space-x-[20px]">
-              <div className="bg-[#2B71F0] space-y-[30px] rounded-[10px] p-[48px] max-[440px]:p-5 flex flex-col">
-                <img
-                  src="/bagLogo.webp"
-                  draggable="false"
-                  className="w-[60px] rounded-[10px] h-auto"
-                  alt="bag logo"
-                />
-                <h2 className="font-bold text-white text-[24px]">
-                  Enhance Your Employment Path
-                </h2>
-                <p className="text-white text-[16px]">
-                  Elop the in-demand skills and build a strong portforio to
-                  increase your chances of landing your dream job or contract
-                </p>
-              </div>
-              <div className="bg-[#2B71F0] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-5 w-full flex flex-col">
-                <img
-                  src="/bagLogo.webp"
-                  draggable="false"
-                  className="w-[60px] rounded-[10px] h-auto"
-                  alt="bag logo"
-                />
-                <h2 className="font-bold text-white text-[24px]">
-                  Earn Recognition and Prizes
-                </h2>
-                <p className="text-white text-[16px]">
-                  Earn both Money and knowledge Prizes by participating in
-                  various contests and competitions by working on real world
-                  projects and hackathons from partner companies or
-                  organizations
-                </p>
+            <div className="flex flex-row w-full max-[440px]:flex-col lg:space-x-[20px] max-[440px]:gap-5">
+              <div className="flex flex-row w-full max-[440px]:flex-col lg:space-x-[20px] max-[440px]:gap-5">
+                <div className="bg-[#2B71F0] space-y-[30px] rounded-[10px] p-[48px] max-[440px]:p-5 flex flex-col">
+                  <img
+                    src="/bagLogo.webp"
+                    draggable="false"
+                    className="w-[60px] rounded-[10px] h-auto"
+                    alt="bag logo"
+                  />
+                  <h2 className="font-bold text-white text-[24px]">
+                    Enhance Your Employment Path
+                  </h2>
+                  <p className="text-white text-[16px]">
+                    d8 Elop the in-demand skills and build a strong portforio to
+                    increase your chances of landing your dream job or contract
+                  </p>
+                </div>
+                <div className="bg-[#2B71F0] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-5 w-full flex flex-col">
+                  <img
+                    src="/bagLogo.webp"
+                    draggable="false"
+                    className="w-[60px] rounded-[10px] h-auto"
+                    alt="bag logo"
+                  />
+                  <h2 className="font-bold text-white text-[24px]">
+                    Earn Recognition and Prizes
+                  </h2>
+                  <p className="text-white text-[16px]">
+                    Earn both Money and knowledge Prizes by participating in
+                    various contests and competitions by working on real world
+                    projects and hackathons from partner companies or
+                    organizations
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -264,7 +266,9 @@ export default function Home() {
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
             <p className="font-bold text-[40px] max-[440px]:text-2xl">500+</p>
-            <p className="text-[21.65px] max-[440px]:text-sm">Challenges Completed</p>
+            <p className="text-[21.65px] max-[440px]:text-sm">
+              Challenges Completed
+            </p>
           </div>
           <div className="flex flex-col justify-center items-center gap-2">
             <p className="font-bold text-[40px] max-[440px]:text-2xl">10k+</p>
@@ -304,7 +308,9 @@ export default function Home() {
           Join skills Challenges Program to accelerate your career growth and
           become part of Africa's largest workforce of digital professionals.
         </p>
-        <div className="flex flex-row w-full overflow-x-auto">{items}</div>
+        <div className="flex flex-row w-full md:overflow-x-auto lg:items-center lg:justify-center lg:space-x-[30px] ">
+          {items}
+        </div>
         <button className="w-[207px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] mt-[60px] grid place-items-center border-[#2b71f0] border-[1.5px]">
           View More
         </button>

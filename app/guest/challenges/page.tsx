@@ -11,7 +11,7 @@ const page = () => {
     <main className="">
       <NavBar />
       <main className="bg-[#f9fafb]">
-        <div className="flex  flex-row items-center space-x-[20px] justify-start px-[100px] pt-[100px]">
+        <div className="flex  flex-row items-center space-x-[20px] justify-start lg:px-[100px] lg:pt-[100px] max-md:pt-[30px] max-md:pl-[30px]">
           <Link
             href={"/"}
             className="border-[#E4E7EC] border-[1px] p-[3px] rounded-[5px] bg-white"

@@ -29,12 +29,21 @@ div:not(.challengeCard):not(.excluded):not(.excludedDashBoard) {
   animation-timeline: view();
   animation-range: entry 0%;
 }
+@media (max-width: 768px) {
+  section:not(.firstSection),
+  footer:not(.firstFooter),
+  div:not(.challengeCard):not(.excluded):not(.excludedDashBoard) {
+    animation: appear 1s linear;
+    animation-timeline: view();
+    animation-range: entry 100%;
+  }
+}
 
-.rounded-border::before{
+.rounded-border::before {
   content: "";
   height: 100%;
   width: 5px;
-  background-color: #2B71F0;
+  background-color: #2b71f0;
   border-radius: 2.5px;
   position: absolute;
   left: 0;
