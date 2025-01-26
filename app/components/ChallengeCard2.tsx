@@ -6,7 +6,8 @@ const ChallengeCard2 = () => {
     <div className="challengeCard flex flex-col border-[2px] bg-white items-start pt-[10px] rounded-[8px] w-[320px] h-auto border-[#E4E7EC]">
       <div className="excluded relative px-3">
         <img
-          src="/umuravaBg.webp"
+          src="/umuravaB
+          g.webp"
           draggable={false}
           alt="umurava_bg"
           className="w-[300px] object-cover rounded-[8px] h-[160px]"
