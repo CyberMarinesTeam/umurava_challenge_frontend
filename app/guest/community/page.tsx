@@ -35,11 +35,11 @@ const Page = () => {
           <img
             src="/girls.webp"
             alt="photo"
-            className="h-[377px] w-[550px] max-md:w-[340px]  max-md:h-auto lg:rounded-[32px] max-md:rounded-[16px]"
+            className="h-[377px] w-[550px] max-md:w-[371px]  max-md:h-auto lg:rounded-[32px] max-md:rounded-[16px]"
           />
         </section>
-        <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center  pt-[50px] max-md:pt-[20px] justify-center">
-          <h2 className="text-[#03192E] leading-[48px] max-md:text-[20px] text-[40px] w-[700px] text-center font-bold">
+        <section className="firstSection flex flex-col  pb-[50px] bg-[#F9FAFB] items-center  pt-[50px] max-md:pt-[40px] justify-center">
+          <h2 className="text-[#03192E] leading-[48px]  max-md:text-[20px] text-[40px] w-[700px] text-center font-bold">
             Why we are solving this problem
           </h2>
           <div className="flex max-md:excluded flex-col items-center justify-center mt-[40px] max-md:mt-0 lg:w-[1072px] max-md:w-full space-y-[20px]">
@@ -62,7 +62,7 @@ const Page = () => {
                   success.
                 </p>
               </div>
-              <div className="bg-[#2B71F0] max-md:w-[371px] space-y-[20px] lg:w-[471px] lg:h-[371px] rounded-[10px] p-[48px] max-md:p-[30px] max-md:pt-[25px] pt-[40px] flex flex-col">
+              <div className="bg-[#2B71F0] max-md:excluded max-md:w-[371px] space-y-[20px] lg:w-[471px] lg:h-[371px] rounded-[10px] p-[48px] max-md:p-[30px] max-md:pt-[25px] pt-[40px] flex flex-col">
                 <img
                   src="/bagLogo.webp"
                   draggable="false"
@@ -116,7 +116,7 @@ const Page = () => {
                   understanding of their chosen field.
                 </p>
               </div>
-              <div className="bg-[#2B71F0]  space-y-[20px] rounded-[10px] w-[417px] h-[238px]  p-[48px] pt-[40px] flex flex-col">
+              <div className="bg-[#2B71F0]  space-y-[20px] rounded-[10px] lg:w-[417px] max-md:w-[371px] h-[238px]  p-[48px] pt-[40px] flex flex-col">
                 <img
                   src="/bagLogo.webp"
                   draggable="false"
@@ -135,32 +135,68 @@ const Page = () => {
           </div>
         </section>
         <section className="flex flex-col pb-[50px] space-y-[50px]  items-center pt-[50px] justify-center">
-          <h2 className="text-[#03192E] leading-[43px] text-[36px] w-[812px] text-center font-bold">
+          <h2 className="text-[#03192E] leading-[43px] text-[36px] max-md:w-[371px] max-md:leading-[30px]  max-md:text-[20px] w-[812px] text-center font-bold">
             Join a few Educational Institutions using Skills Challenges by
             Umurava
           </h2>
           <div className="flex flex-col space-y-[30px]">
-            <div className="flex flex-row space-x-[20px]">
-              <img src="/tori.webp" alt="photo" className="w-[218px] h-auto" />
-              <img src="/gdg.webp" alt="photo" className="w-[175px] h-auto" />
+            <div className="flex flex-row space-x-[20px] max-md:grid max-md:grid-cols-2">
+              <img
+                src="/tori.webp"
+                alt="photo"
+                className="w-[218px] max-md:w-[120px] h-auto"
+              />
+              <img
+                src="/gdg.webp"
+                alt="photo"
+                className="w-[175px] max-md:w-[120px] h-auto"
+              />
               <img
                 src="/ashesi.webp"
                 alt="photo"
-                className="w-[216px] h-auto"
+                className="w-[216px] max-md:w-[120px] h-auto"
               />
-              <img src="/kepler.webp" alt="photo" className="w-[91px] h-auto" />
-              <img src="/hiil.webp" alt="photo" className="w-[197px] h-auto" />
-              <img src="/ciba.webp" alt="photo" className="w-[95px] h-auto" />
+              <img
+                src="/kepler.webp"
+                alt="photo"
+                className="w-[91px] max-md:w-[120px] h-auto"
+              />
+              <img
+                src="/hiil.webp"
+                alt="photo"
+                className="w-[197px] max-md:w-[120px] h-auto"
+              />
+              <img
+                src="/ciba.webp"
+                alt="photo"
+                className="w-[95px] max-md:w-[120px] h-auto"
+              />
             </div>
-            <div className="flex flex-row space-x-[20px]">
-              <img src="/ared.webp" alt="photo" className="w-[172px] h-auto" />
-              <img src="/igihe.webp" alt="photo" className="w-[189px] h-auto" />
-              <img src="/viamo.webp" alt="photo" className="w-[216px] h-auto" />
-              <img src="/kepler.webp" alt="photo" className="w-[91px] h-auto" />
+            <div className="flex flex-row space-x-[20px] max-md:grid max-md:grid-cols-2">
+              <img
+                src="/ared.webp"
+                alt="photo"
+                className="w-[172px] max-md:w-[120px] h-auto"
+              />
+              <img
+                src="/igihe.webp"
+                alt="photo"
+                className="w-[189px] max-md:w-[120px] h-auto"
+              />
+              <img
+                src="/viamo.webp"
+                alt="photo"
+                className="w-[216px] max-md:w-[120px] h-auto"
+              />
+              <img
+                src="/kepler.webp"
+                alt="photo"
+                className="w-[91px] max-md:w-[120px] h-auto"
+              />
               <img
                 src="/laterite.webp"
                 alt="photo"
-                className="w-[197px] h-auto"
+                className="w-[197px] max-md:w-[120px] h-auto"
               />
               <img
                 src="/sokofund.webp"
@@ -171,20 +207,20 @@ const Page = () => {
           </div>
         </section>
         <section className="firstSection flex flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
-          <h2 className="text-[#03192E] text-[32px] w-[700px] leading-[38px] text-center font-bold">
+          <h2 className="text-[#03192E] text-[32px] max-md:w-[317px] max-md:text-[20px] max-md:leading-[30px] w-[700px] leading-[38px] text-center font-bold">
             How Skills Challenges Program can Be Intergrated into your Learning
             Institution
           </h2>
 
-          <main className="flex flex-row space-x-[100px] mt-[70px] items-center justify-center">
+          <main className="flex flex-row max-md:flex-col lg:space-x-[100px] max-md:space-y-[30px] mt-[70px] items-center justify-center">
             <div className="flex flex-col space-y-[30px] items-start">
               {data.map((data, index) => (
                 <div
                   key={index}
-                  className="flex flex-row space-x-[10px] items-center justify-center"
+                  className="flex flex-row space-x-[10px] items-center max-md:w-[371px] justify-center"
                 >
                   {" "}
-                  <span className="text-white bg-[#2B71F0] w-[42px] h-[42px] rounded-full border-[2px] grid place-items-center border-gray-700">
+                  <span className="text-white bg-[#2B71F0] w-[42px]  max-md:text-[12px] max-md:w-[30px] max-md:h-[30px] h-[42px]  rounded-full border-[2px] grid place-items-center border-gray-700">
                     {index + 1}
                   </span>
                   <p className="text-[#0e225A] text-[15px] w-[400px]">{data}</p>
@@ -195,15 +231,15 @@ const Page = () => {
               src="/cardPhoto2.webp"
               alt="image"
               draggable={false}
-              className="w-[450px] h-auto"
+              className="w-[450px] max-md:w-[371px] h-auto"
             />
           </main>
-          <div className="bg-[url('/cardBg2.webp')] grid place-items-center w-[1221px] mt-[70px] h-[351px] bg-no-repeat bg-cover rounded-[26px]">
+          <div className="bg-[url('/cardBg2.webp')]  max-md:w-[371px] grid place-items-center w-[1221px] mt-[70px] h-[351px] bg-no-repeat bg-cover rounded-[26px]">
             <div className="flex flex-col justify-center items-center space-y-[30px]">
-              <h2 className="font-bold text-[32px] text-white w-[444px] text-center">
+              <h2 className="font-bold text-[32px] text-white max-md:text-[20px] max-md:w-[320px] w-[444px] text-center">
                 Ready to transform your Learning Institutions
               </h2>
-              <button className="w-[230px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0]">
+              <button className="w-[230px] max-md:w-[200px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0]">
                 Let's Partner
               </button>
             </div>
