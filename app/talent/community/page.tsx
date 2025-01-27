@@ -5,8 +5,8 @@ import { FaAngleRight } from "react-icons/fa6";
 import ChallengeCard from "@/app/components/ChallengeCard";
 
 const Community = () => {
-  return (
-    <div className="p-[36px] gap-[16px]">
+  return ( 
+    <div className=" p-[36px] gap-[16px]">
       <div className="flex flex-row justify-between">
         <div>
           <p className="text-2xl font-bold">Welcome back Hilaire,</p>

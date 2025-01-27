@@ -6,8 +6,7 @@ const ChallengeCard2 = () => {
     <div className="challengeCard flex flex-col border-[2px] bg-white items-start pt-[10px] rounded-[8px] w-[320px] h-auto border-[#E4E7EC]">
       <div className="excluded relative px-3">
         <img
-          src="/umuravaB
-          g.webp"
+          src="/umuravaBg.webp"
           draggable={false}
           alt="umurava_bg"
           className="w-[300px] object-cover rounded-[8px] h-[160px]"
@@ -47,7 +46,10 @@ const ChallengeCard2 = () => {
         <h1 className="text-[#475367] text-[12px]">15 Days</h1>
       </div>
       <div className="excluded flex-1 w-full justify-left pl-[11px] border-t-[2px] flex items-center border-[#E4E7EC] my-[10px]">
-        <Link href="/talent/view-challenge" className="bg-[#2B71F0] text-[12px] font-semibold text-white py-2 text-center mt-2 w-[130px] rounded-[8px]">
+        <Link
+          href="/talent/view-challenge"
+          className="bg-[#2B71F0] text-[12px] font-semibold text-white py-2 text-center mt-2 w-[130px] rounded-[8px]"
+        >
           View Challenge
         </Link>
       </div>

@@ -1,6 +1,7 @@
 import Carousel from "@/app/components/Carousel";
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
+import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoPlaySharp } from "react-icons/io5";
 
@@ -309,9 +310,12 @@ export default function Home() {
         <div className="flex max-[440px]:bg-[#eee] flex-row max-[440px]:h-[400px] w-full max-[440px]:overflow-x-auto max-[440px]:gap-5 md:overflow-x-auto lg:items-center lg:justify-center lg:space-x-[30px] ">
           {items}
         </div>
-        <button className="w-[207px] max-[440px]:w-fit max-[440px]:h-fit max-[440px]:px-4 max-[440px]:py-3 h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] mt-[60px] grid place-items-center border-[#2b71f0] border-[1.5px]">
+        <Link
+          href={"/guest/challenges"}
+          className="w-[207px] max-[440px]:w-fit hover:bg-[#2b71f0] transition-all ease-in-out duration-300 hover:text-white  max-[440px]:h-fit max-[440px]:px-4 max-[440px]:py-3 h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] mt-[60px] grid place-items-center border-[#2b71f0] border-[1.5px]"
+        >
           View More
-        </button>
+        </Link>
       </section>
       <section className="firstSection flex max-[440px]:w-full flex-col pb-[50px] bg-[#F9FAFB] items-center pt-[50px] justify-center">
         <h2 className=" text-[#03192E] leading-[48px] max-[440px]:w-full max-[440px]:text-xl max-[440px]:px-2 text-[40px] w-[700px] text-center font-bold">
@@ -456,9 +460,11 @@ export default function Home() {
               build an impressive portforio and increase your chances to land
               your job opportunities and accelerate your career growth.
             </p>
-            <button className="w-[230px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0]">
-              View Challenge
-            </button>
+            <Link href={"/guest/challenges"}>
+              <button className="w-[230px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0]">
+                View Challenge
+              </button>
+            </Link>
           </div>
         </div>
       </section>

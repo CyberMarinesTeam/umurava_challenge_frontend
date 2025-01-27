@@ -9,24 +9,24 @@ import Modal from "../components/Modal";
 
 const Challenges = () => {
   return (
-    <div className="p-[36px] h-full gap-[16px] bg-[#F9FAFB]">
-      <div className="flex flex-row justify-between">
-        <div>
+    <div className="excluded p-[36px] h-full gap-[16px] bg-[#F9FAFB]">
+      <div className="excluded flex flex-row justify-between">
+        <div className="excluded">
           <p className="text-2xl font-bold">Challenges</p>
           <p>
             Join a challenge or a hackathon to gain more valuable work
             experience
           </p>
         </div>
-        <div>
+        <div className="excluded">
           <button className="py-[10px] flex h-[55px] flex-row items-center gap-2 px-[18px] bg-[#2B71F0] text-white rounded-lg">
             <MdOutlineRemoveRedEye className="w-[24px] h-[24px]" />
             View Profile
           </button>
         </div>
       </div>
-      <div className="py-[16px] flex w-full items-center">
-        <div className="flex justify-start gap-[10px] border-b pb-5 w-full flex-row">
+      <div className="py-[16px] excluded flex w-full items-center">
+        <div className="flex excluded justify-start gap-[10px] border-b pb-5 w-full flex-row">
           <SmallStatusCard
             count={0}
             icon={<FiFileText />}
@@ -49,18 +49,18 @@ const Challenges = () => {
           />
         </div>
       </div>
-      <div className="flex flex-row pt-1 gap-[20px]">
+      <div className="flex excluded flex-row pt-1 gap-[20px]">
         <ChallengeCard2 />
         <ChallengeCard2 />
         <ChallengeCard2 />
       </div>
-      <div className="flex flex-row justify-between py-10 px-10">
-        <div>
-          <button className="px-3 py-2 text-[#98A2B3] bg-white text-sm w-[96px] h-[36px] rounded-md active:bg-[#2B71F0] active:text-white">
+      <div className="flex excluded flex-row justify-between py-10 px-10">
+        <div className="excluded">
+          <button className="px-3  py-2 text-[#98A2B3] bg-white text-sm w-[96px] h-[36px] rounded-md active:bg-[#2B71F0] active:text-white">
             Previous
           </button>
         </div>
-        <div>
+        <div className="excluded">
           <button className="px-3 py-2 text-[#98A2B3] bg-white text-sm w-[96px] h-[36px] rounded-md active:bg-[#2B71F0] active:text-white">
             Next
           </button>

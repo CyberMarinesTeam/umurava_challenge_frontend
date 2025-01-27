@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <div className="flex flex-row items-center justify-center w-full pt-[50px]">
       {current === "signin" && (
-        <div className="excluded bg-white  p-8 rounded-lg shadow-md w-[500px]">
+        <div className="excluded bg-white border-[#E4E7EC] border-[1.5px]  p-8 rounded-lg shadow w-[500px]">
           <div className="excluded flex flex-row mb-4">
             <button className="excluded text-[#2B71F0] flex-1 font-bold pt-[10px] border-t-[3px] border-[#2B71F0]">
               Sign In
@@ -87,7 +87,7 @@ const Page = () => {
         </div>
       )}
       {current === "register" && (
-        <div className="excluded bg-white p-8 rounded-lg shadow-md  w-[500px]">
+        <div className="excluded bg-white p-8 border-[#E4E7EC] border-[1.5px] rounded-lg shadow  w-[500px]">
           <div className="excluded flex flex-row mb-4">
             <button
               className="text-gray-500 pt-[10px] flex-1"
