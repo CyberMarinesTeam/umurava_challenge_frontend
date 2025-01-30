@@ -7,7 +7,7 @@ const Header = () => {
   const [notificationShow, setNotificationShow] = useState(false);
 
   return (
-    <div className="flex relative items-center justify-between p-4 bg-white  border-b-[1.5px] border-[#E4E7EC]">
+    <div className="flex relative items-center justify-between p-4 bg-white border-[#E4E7EC]">
       {/* Search Bar */}
       <div className="flex items-center gap-4 bg-gray-100 rounded-md w-[60%] ml-8 px-4 py-2">
         <IoSearchSharp className="text-gray-500" />
