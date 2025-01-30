@@ -7,10 +7,10 @@ interface Rnode {
 const layout = ({ children }: Rnode) => {
   return (
     <main>
-      <div className="flex bg-slate-50 ">
+      <div className="flex excluded bg-slate-50 ">
         <SideBar />
 
-        <div className="flex-1">
+        <div className="excluded flex-1">
           <Header />
           {children}
         </div>
