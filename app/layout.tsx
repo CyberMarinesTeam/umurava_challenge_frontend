@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./globals.css";
+// import { store } from "@/store/store";
+// import { Provider } from "react-redux";
 
 const work_Sans = Work_Sans({
   subsets: ["latin"],

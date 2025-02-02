@@ -10,10 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
-<<<<<<< HEAD
     "axios": "^1.7.9",
-=======
->>>>>>> 37ea1bccbf4148067e9fda14a9a8527569d76552
     "daisyui": "^4.12.23",
     "next": "15.1.4",
     "react": "^19.0.0",
