@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { challengeSlice } from "./slices/challengeSlice";
 export const store = configureStore({
   reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    [challengeSlice.reducerPath]: challengeSlice.reducer,
   },
-  middleware: (getDefaultMiddleware) => {
-    getDefaultMiddleware().concat(apiSlice.middleware);
-  },
+//   middleware: (getDefaultMiddleware) => {
+//     getDefaultMiddleware().concat(challengeSlice.middleware);
+//   },
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
