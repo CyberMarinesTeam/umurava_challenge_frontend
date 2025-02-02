@@ -1,11 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { challengeSlice } from "./slices/challengeSlice";
+import { authApi } from "./slices/authSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       [challengeSlice.reducerPath]: challengeSlice.reducer,
+      [authApi.reducerPath]: authApi.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware()
+        .concat(challengeSlice.middleware)
+        .concat(authApi.middleware),
   });
 };
 
