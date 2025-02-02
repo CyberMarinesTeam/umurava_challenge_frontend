@@ -6,6 +6,7 @@ import { AppStore, makeStore } from "@/lib/redux/store";
 import { useRef } from "react";
 import { Provider } from "react-redux";
 
+
 const work_Sans = Work_Sans({
   subsets: ["latin"],
   weight: ["300", "100", "400", "700", "900"],
