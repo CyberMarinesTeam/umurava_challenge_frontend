@@ -1,5 +1,6 @@
 "use client";
 import {
+  RoleEnum,
   useLoginMutation,
   useSignupMutation,
 } from "@/lib/redux/slices/authSlice";
@@ -12,7 +13,7 @@ const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
-  const [role, setRole] = useState("");
+  const [roles, setRole] = useState(RoleEnum);
   const handleLoginSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const loginResponse = await login({ email, password }).unwrap();
@@ -20,20 +21,20 @@ const Page = () => {
     setEmail("");
     setPassword("");
   };
-  const handleSignupSubmit = (event: React.FormEvent) => {
+  const handleSignupSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(role, username, email, password);
-    // const signupResponse = signup({
-    //   username,
-    //   role,
-    //   email,
-    //   password,
-    // }).unwrap();
-    // console.log(signupResponse);
-    // setUserName("");
-    // setRole("");
-    // setEmail("");
-    // setPassword("");
+    console.log(roles, username, email, password);
+    const signupResponse = await signup({
+      username,
+      roles,
+      email,
+      password,
+    }).unwrap();
+    console.log(signupResponse);
+    setUserName("");
+    setRole("");
+    setEmail("");
+    setPassword("");
   };
   return (
     <div className="flex flex-row items-center justify-center w-full pt-[50px]">
@@ -148,7 +149,7 @@ const Page = () => {
                 Join as:
               </label>
               <select
-                value={role}
+                value={roles}
                 onChange={(e) => setRole(e.target.value)}
                 id="role"
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"

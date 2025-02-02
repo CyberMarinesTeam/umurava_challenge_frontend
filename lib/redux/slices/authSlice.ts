@@ -20,7 +20,7 @@ export interface SignupBodyDto {
   username: string;
   password: string;
   email: string;
-  role: string;
+  roles: RoleEnum[];
 }
 
 export interface SignupResponseDto {
