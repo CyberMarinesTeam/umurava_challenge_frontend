@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
+import { Provider, connect } from "react-redux";
+import store from "@/lib/redux/store";
 import "./globals.css";
 
 const work_Sans = Work_Sans({
@@ -18,8 +20,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${work_Sans.className}  antialiased`}>{children}</body>
-    </html>
+    <Provider store={store}>
+      <html lang="en">
+        <body className={`${work_Sans.className}  antialiased`}>
+          {children}
+        </body>
+      </html>
+    </Provider>
   );
 }

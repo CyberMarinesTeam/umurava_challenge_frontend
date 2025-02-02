@@ -4,10 +4,10 @@ const counterSlice = createSlice({
   name: "auth-slice",
   initialState: { authenticated: false },
   reducers: {
-    login(state) {
+    login: (state) => {
       state.authenticated = true;
     },
-    logout(state) {
+    logout: (state) => {
       state.authenticated = false;
     }
   },
