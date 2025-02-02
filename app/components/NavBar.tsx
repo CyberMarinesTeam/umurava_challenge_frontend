@@ -88,9 +88,9 @@ const NavBar = () => {
 
       {/* Join or Logout Button */}
       {currentUser === "guest" ? (
-        <button className="bg-[#041738] hover:opacity-80 transition-all ease-in-out duration-300 hidden md:block p-[14px] text-white text-[14px] rounded-[10px]">
+        <Link href="/login" className="bg-[#041738] hover:opacity-80 transition-all ease-in-out duration-300 hidden md:block p-[14px] text-white text-[14px] rounded-[10px]">
           Join the Program
-        </button>
+        </Link>
       ) : (
         <button
           onClick={handleLogout}

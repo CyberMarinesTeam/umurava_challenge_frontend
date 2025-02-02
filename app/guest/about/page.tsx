@@ -7,12 +7,12 @@ const Page = () => {
     <main>
       <NavBar />
       <main>
-        <section className="firstSection flex flex-row max-md:flex-col max-md:space-y-[30px]  lg:space-x-[60px] max-md:py-[40px] py-[80px] items-center justify-center">
+        <section className="firstSection flex w-full flex-row max-md:flex-col max-md:space-y-[10px] lg:space-x-[60px] max-md:py-[40px] py-[80px] items-center justify-center px-12">
           <div className="flex flex-col space-y-[20px]">
             <h2 className="text-[#2b71f0] text-[32px] font-bold max-md:text-[20px]">
               Our Story
             </h2>
-            <div className="flex flex-col space-y-[20px] w-[529px] max-md:w-[371px]">
+            <div className="flex flex-col space-y-[20px] w-[500px] max-md:w-[371px]">
               <p className="text-[18px] max-md:text-[14px] max-md:leading-[25px] leading-[30px] text-[#2b3338]">
                 With 3 years of experience matching African digital talents to
                 local and global job markets, we still remain with a big number
@@ -30,8 +30,9 @@ const Page = () => {
           </div>
           {/* <video className="w-auto h-[390px] rounded-[20px]" autoPlay loop> */}
           <video
-            className="lg:w-auto h-[390px] max-md:w-[371px] max-md:h-auto max-md:rounded-[10px] rounded-[20px]"
+            className="lg:w-auto h-[320px] max-md:w-[371px] max-md:h-auto max-md:rounded-[10px] rounded-[20px]"
             controls
+            autoPlay
           >
             <source src="/umuravaVideo.mp4" type="video/mp4"></source>
           </video>
