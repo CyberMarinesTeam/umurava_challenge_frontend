@@ -18,7 +18,7 @@ const Card2 = ({
 }) => {
   return (
     <div
-      className={`relative bg-white rounded-lg border-[1.5px] border-[#E4E7EC] px-6  py-[0px] h-[150px] w-[${width}]`}
+      className={`relative bg-white rounded-lg border-[1.5px] border-[#E4E7EC] -z-10 px-6  py-[0px] h-[150px] w-[${width}]`}
     >
       <div className="absolute top-2 right-2 flex items-center gap-1  h-[17px] font-normal text-[12px] leading-[18px] text-[#98A2B3]">
         <DropDown />
