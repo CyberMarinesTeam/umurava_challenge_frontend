@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
+import { useSelector, useDispatch } from "react-redux";
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
@@ -13,12 +14,13 @@ const dm_sans = DM_Sans({
 const NavBar = () => {
   const currentPath = usePathname();
   const [showMenu, setShowMenu] = useState(false);
-  const [currentUser, setCurrentUser] = useState("guest"); // Change this value to "admin" or "talent" for testing
+
+  const currentUser = "guest";
+
   const isActive = (path: string) => {
-    if (currentPath === path) {
-      return true;
-    }
+    return currentPath === path;
   };
+
   const navItems = {
     admin: [
       { label: "Dashboard", path: "/admin/dashboard" },
@@ -43,32 +45,29 @@ const NavBar = () => {
 
   const currentNavItems = navItems[currentUser];
 
+  const handleLogout = () => {};
+
   return (
     <nav
       className={`h-[96px] ${dm_sans.className} border-b-[1px] items-center justify-center flex flex-row max-md:justify-between max-md:px-[20px] space-x-[100px]`}
     >
-      {/* <div className=" mx-auto px-4 sm:px-6 lg:px-2 h-[80px] flex items-center justify-between"> */}
       {/* Logo */}
-      {/* <div className="flex items-center"> */}
       <img
         src="/umuravaLogo.webp"
         draggable="false"
         alt="umurava logo"
         className="max-[640px] w-[125px]"
       />
-      {/* </div> */}
 
       {/* Desktop Navigation */}
       <ul className="hidden sm:text-sm md:flex flex-row text-gray-700 space-x-[40px]">
-        {currentNavItems.map((item, index) => (
+        {currentNavItems.map((item: any, index: any) => (
           <li key={index}>
             <Link
               href={item.path}
-              className={`max-[640px]:hidden hover:text-[#2B71f0] ${
+              className={`hover:text-[#2B71f0] ${
                 isActive(item.path) ? "text-[#2B71f0]" : ""
               }`}
-
-              // className="hover:text-blue-600 transition duration-300"
             >
               {item.label}
             </Link>
@@ -89,27 +88,23 @@ const NavBar = () => {
 
       {/* Join or Logout Button */}
       {currentUser === "guest" ? (
-        // <button className="hidden md:block bg-[#041738] text-white px-4 py-2 rounded-lg hover:bg-[#041738] transition duration-300">
-        //   Join the Program
-        // </button>
         <button className="bg-[#041738] hover:opacity-80 transition-all ease-in-out duration-300 hidden md:block p-[14px] text-white text-[14px] rounded-[10px]">
           Join the Program
         </button>
       ) : (
         <button
-          onClick={() => setCurrentUser("guest")}
+          onClick={handleLogout}
           className="hidden md:block bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
         >
           Logout
         </button>
       )}
-      {/* </div> */}
 
       {/* Mobile Navigation */}
       {showMenu && (
         <div className="md:hidden z-50 bg-white flex flex-col space-y-4 items-center pt-[20px] justify-between shadow-md absolute top-[100px] left-0 right-0">
           <ul className="flex flex-col space-y-4 text-gray-700">
-            {currentNavItems.map((item, index) => (
+            {currentNavItems.map((item: any, index: any) => (
               <li key={index}>
                 <Link
                   href={item.path}
@@ -128,7 +123,7 @@ const NavBar = () => {
             </button>
           ) : (
             <button
-              onClick={() => setCurrentUser("guest")}
+              onClick={handleLogout}
               className="mt-4 w-full bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
             >
               Logout

@@ -1,4 +1,5 @@
 "use client";
+import { useCreateChallengeMutation } from "@/lib/redux/slices/challengeSlice";
 import Link from "next/link";
 import React, { useState } from "react";
 import { IoMdAdd, IoMdAddCircleOutline } from "react-icons/io";
@@ -6,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { VscArrowSmallLeft } from "react-icons/vsc";
 
 const Page: React.FC = () => {
+  const [createChallenge] = useCreateChallengeMutation();
   const [challengeTitle, setChallengeTitle] = useState("");
   const [deadline, setDeadline] = useState("");
   const [duration, setDuration] = useState("");
@@ -17,7 +19,7 @@ const Page: React.FC = () => {
   const [productDesign, setProductDesign] = useState<string[]>([""]);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     console.log({
       challengeTitle,

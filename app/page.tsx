@@ -1,3 +1,5 @@
+"use client";
+import { Provider } from "react-redux";
 import Home from "./guest/home/page";
 import React from "react";
 const page = () => {
