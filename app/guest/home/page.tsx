@@ -1,11 +1,16 @@
-"use client";
-
 import Carousel from "@/app/components/Carousel";
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
 import Link from "next/link";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { IoPlaySharp } from "react-icons/io5";
 
 export default function Home() {
+<<<<<<< HEAD
+=======
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+>>>>>>> refs/remotes/origin/main
   const courseNames = [
     "UI/UX Design",
     "Data Science",
@@ -101,8 +106,8 @@ export default function Home() {
     "cardPhoto1.webp",
     "cardPhoto2.webp",
   ];
-  const items = [];
-  const numItems = 3;
+  let items = [];
+  let numItems = 3;
   for (let i = 1; i <= numItems; i++) {
     items.push(
       <div
@@ -174,11 +179,9 @@ export default function Home() {
             working on Hands-on projects & Hackathons from various businesses &
             organizations
           </p>
-          <Link href={"/login"}>
-            <button className="bg-[#2B71f0] mt-[40px] w-[171px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
-              Get Started
-            </button>
-          </Link>
+          <button className="bg-[#2B71f0] mt-[40px] w-[171px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
+            Get Started
+          </button>
         </div>
         <div className="flex max-[440px]:self-start flex-row space-x-[20px] ">
           <img
