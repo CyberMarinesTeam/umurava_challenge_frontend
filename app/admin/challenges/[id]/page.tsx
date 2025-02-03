@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CiDollar } from "react-icons/ci";
 import React, { use, useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 // import { FaArrowUpLong } from "react-icons/fa6";
 import {
   IoBagOutline,
@@ -20,7 +21,7 @@ import { ChallengeType } from "@/lib/redux/slices/challengeSlice";
 const Page = () => {
   const params = useParams<{ id: string }>();
   const [challenge, setChallenge] = useState<ChallengeType>();
-
+  const router = useRouter();
  const getChallenge = async (id: string) => {
     const response = await axios.get(`http://localhost:4000/challenges/${id}`);
     if (response) {
@@ -28,6 +29,22 @@ const Page = () => {
       setChallenge(response.data.Challenge);
     }
   };
+
+  const deleteChallenge = async(id:string) => {
+    const res = await axios.delete(`http://localhost:4000/challenges/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`, 
+      }
+    });
+    if(res){
+      console.log("deleted")
+      router.push("/admin/challenges");
+      
+    }else {
+      console.log("failed to del")
+    }
+  }
   useEffect(() => {
     getChallenge(params.id);
   }, [params.id]);
@@ -191,7 +208,7 @@ const Page = () => {
               </div>
             </div>
             <div className="flex flex-row items-center mt-[50px] space-x-[10px] justify-center">
-              <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#E5533C] ">
+              <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#E5533C] " onClick={() => deleteChallenge(challenge?._id)}>
                 Delete
               </button>
               <Link href={`/admin/challenges/edit/${challenge?._id}`}>

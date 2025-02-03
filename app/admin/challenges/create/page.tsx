@@ -5,8 +5,14 @@ import React, { useState } from "react";
 import { IoMdAdd, IoMdAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { VscArrowSmallLeft } from "react-icons/vsc";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import axios from "axios";
 
 const Page: React.FC = () => {
+  const user = useSelector((state: RootState) => state.auth.user);
+  const router = useRouter();
   const [createChallenge] = useCreateChallengeMutation();
   const [challengeTitle, setChallengeTitle] = useState("");
   const [deadline, setDeadline] = useState("");
@@ -18,19 +24,37 @@ const Page: React.FC = () => {
   ]);
   const [productDesign, setProductDesign] = useState<string[]>([""]);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
+  const [skills_needed, setSkills_needed] = useState<string[]>([""]);
+  const [category, setCategory] = useState("");
+  const [seniority_level, setSeniority_level] = useState("");
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log({
-      challengeTitle,
+    const newToCreateChallenge = {
+      title: challengeTitle,
       deadline,
-      duration,
-      moneyPrize,
+      duration: parseInt(duration),
+      moneyPrize: parseInt(moneyPrize),
       contactEmail,
       projectRequirements,
       productDesign,
       deliverables,
-    });
+      category,
+      seniority_level,
+      skills_needed
+    };
+   if(user) {
+    console.log(newToCreateChallenge);
+    await axios.post("http://localhost:4000/challenges/"+user?.id, 
+    newToCreateChallenge,
+     {headers:{
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem('token')}`
+       }
+    })
+   }else {
+    alert("You must be logged in to create a challenge")
+   }
   };
 
   const addField = (setter: React.Dispatch<React.SetStateAction<string[]>>) => {
@@ -91,9 +115,10 @@ const Page: React.FC = () => {
                 Deadline
               </label>
               <input
-                type="date"
+                type="text"
+                placeholder="dd/mm/yyyy"
                 id="deadline"
-                className="appearance-none placeholder:text-[14px] text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none placeholder:text-[14px] text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
               />
@@ -141,11 +166,46 @@ const Page: React.FC = () => {
             <input
               type="email"
               id="contactEmail"
-              placeholder="Email"
+              placeholder="example@gmail.com"
               className="appearance-none placeholder:text-[14px]  border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={contactEmail}
               onChange={(e) => setContactEmail(e.target.value)}
             />
+          </div>
+          <div className="excluded mb-4">
+            <label
+              htmlFor="category"
+              className="block text-[#475367] text-[14px] mb-2"
+            >
+              Category
+            </label>
+            <input
+              type="text"
+              id="category"
+              placeholder="challenge category"
+              className="appearance-none placeholder:text-[14px]  border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          </div>
+          <div className="excluded mb-4">
+            <label
+              htmlFor="seniority_level"
+              className="block text-[#475367] text-[14px] mb-2"
+            >
+              Seniority Level
+            </label>
+            <select
+              id="seniority_level"
+              className="appearance-none placeholder:text-[14px]  border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={seniority_level}
+              onChange={(e) => setSeniority_level(e.target.value)}
+            >
+              <option></option>
+              <option>Senior</option>
+              <option>Intermediate</option>
+              <option>Junior</option>
+            </select>
           </div>
 
           <div className="excluded mb-4">
@@ -158,73 +218,88 @@ const Page: React.FC = () => {
             <textarea
               id="projectBrief"
               className="appearance-none placeholder:text-[14px]  h-[114px] border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              maxLength={50}
+              maxLength={900}
               placeholder="Enter text here ..."
             />
           </div>
-          {[projectRequirements, productDesign, deliverables].map(
-            (field, fieldIndex) => (
-              <div key={fieldIndex} className="excluded mb-4">
-                <label className="block text-[#475367] text-[14px] mb-2">
-                  {fieldIndex === 0
-                    ? "Project Requirements"
-                    : fieldIndex === 1
-                    ? "Product Design"
-                    : "Deliverables"}
-                </label>
-                {field.map((value, index) => (
-                  <div key={index} className="flex space-x-2 mb-2">
-                    <input
-                      type="text"
-                      className="border-[0.5px] border-[#E4E7EC] rounded w-[500px] p-[16px] text-gray-700"
-                      value={value}
-                      onChange={(e) => {
-                        const newValues = [...field];
-                        newValues[index] = e.target.value;
-                        fieldIndex === 0
-                          ? setProjectRequirements(newValues)
-                          : fieldIndex === 1
-                          ? setProductDesign(newValues)
-                          : setDeliverables(newValues);
-                      }}
-                    />
-                    <span
-                      type="button"
-                      onClick={() =>
-                        removeField(
-                          index,
-                          fieldIndex === 0
-                            ? setProjectRequirements
-                            : fieldIndex === 1
-                            ? setProductDesign
-                            : setDeliverables
-                        )
-                      }
-                    >
-                      <MdDelete className="text-[30px] cursor-pointer text-red-400" />
-                    </span>
-                  </div>
-                ))}
-                <span
-                  type="button"
-                  onClick={() =>
-                    addField(
+
+          {[
+            projectRequirements,
+            productDesign,
+            deliverables,
+            skills_needed,
+          ].map((field, fieldIndex) => (
+            <div key={fieldIndex} className="excluded mb-4">
+              <label className="block text-[#475367] text-[14px] mb-2">
+                {fieldIndex === 0
+                  ? "Project Requirements"
+                  : fieldIndex === 1
+                  ? "Product Design"
+                  : fieldIndex === 2
+                  ? "Deliverables"
+                  : "Skills_needed"}
+              </label>
+              {field.map((value, index) => (
+                <div key={index} className="flex space-x-2 mb-2">
+                  <input
+                    type="text"
+                    className="border-[0.5px] border-[#E4E7EC] rounded w-[500px] p-[16px] text-gray-700"
+                    value={value}
+                    onChange={(e) => {
+                      const newValues = [...field];
+                      newValues[index] = e.target.value;
                       fieldIndex === 0
-                        ? setProjectRequirements
+                        ? setProjectRequirements(newValues)
                         : fieldIndex === 1
-                        ? setProductDesign
-                        : setDeliverables
-                    )
-                  }
-                >
-                  <IoMdAddCircleOutline className="text-[30px] cursor-pointer text-blue-500" />
-                </span>
-              </div>
-            )
-          )}
+                        ? setProductDesign(newValues)
+                        : fieldIndex === 2
+                        ? setDeliverables(newValues)
+                        : setSkills_needed(newValues);
+                    }}
+                  />
+                  <span
+                    type="button"
+                    onClick={() =>
+                      removeField(
+                        index,
+                        fieldIndex === 0
+                          ? setProjectRequirements
+                          : fieldIndex === 1
+                          ? setProductDesign
+                          : fieldIndex === 2
+                          ? setDeliverables
+                          : setSkills_needed
+                      )
+                    }
+                  >
+                    <MdDelete className="text-[30px] cursor-pointer text-red-400" />
+                  </span>
+                </div>
+              ))}
+              <span
+                type="button"
+                onClick={() =>
+                  addField(
+                    fieldIndex === 0
+                      ? setProjectRequirements
+                      : fieldIndex === 1
+                      ? setProductDesign
+                      : fieldIndex === 2
+                      ? setDeliverables
+                      : setSkills_needed
+                  )
+                }
+              >
+                <IoMdAddCircleOutline className="text-[30px] cursor-pointer text-blue-500" />
+              </span>
+            </div>
+          ))}
 
           <div className="excluded flex flex-row space-x-[20px] items-center justify-between">
-            <button className="w-[220px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0]  grid place-items-center border-[#2b71f0] border-[1.5px]">
+            <button
+              className="w-[220px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0]  grid place-items-center border-[#2b71f0] border-[1.5px]"
+              onClick={() => router.push("/admin/challenges")}
+            >
               Cancel
             </button>
             <button className="bg-[#2B71f0] w-[324px]  h-[56px]  text-[16px] rounded-[5px] font-semibold text-white">

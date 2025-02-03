@@ -29,11 +29,12 @@ const Page = () => {
       dispatch(
         setCredentials({ token: loginResponse.accessToken, user: loginResponse.user })
       );
-      toast.success("Logged in successfully");
      if(loginResponse.user.roles == "talent"){
       router.push("/talent/dashboard");
+      toast.success("Logged in successfully");
      }else {
       router.push("/admin/dashboard");
+      toast.success("Logged in successfully");
      }
     }
   };

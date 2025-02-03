@@ -8,13 +8,20 @@ import { useParams } from "next/navigation";
 import {
   ChallengeType,
   useGetChallengeByIdQuery,
+  useUpdateChallengeMutation,
 } from "@/lib/redux/slices/challengeSlice";
+// import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const Page = () => {
+  const [updateChallenge, { isLoading, isError, isSuccess }] =
+    useUpdateChallengeMutation();
+
+  const router = useRouter();
   const params = useParams<{ id: string }>();
   const [challenge, setChallenge] = useState<ChallengeType | null>(null);
   const { data } = useGetChallengeByIdQuery(params.id);
-
 
   useEffect(() => {
     if (data?.Challenge) {
@@ -27,45 +34,59 @@ const Page = () => {
   const [duration, setDuration] = useState("");
   const [moneyPrize, setMoneyPrize] = useState("");
   const [contactEmail, setContactEmail] = useState("");
+  const [projectBrief, setProjectBrief] = useState("");
   const [projectRequirements, setProjectRequirements] = useState<string[]>([
     "",
   ]);
   const [productDesign, setProductDesign] = useState<string[]>([""]);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
 
-  const convertToDate = (dateString:string) => {
-     // Format: MM/DD/YYYY
-    const [month, day, year] = dateString.split("/");
-    const formattedDateString = `${year}-${month}-${day}`; // Convert to YYYY-MM-DD
-    const dateObject = new Date(formattedDateString);
-    return dateObject;  
-  }
   useEffect(() => {
     if (challenge) {
       setChallengeTitle(challenge.title);
-      setDeadline(convertToDate(challenge.deadline));
+      setDeadline(challenge.deadline);
       setDuration(challenge.duration.toString());
       setMoneyPrize(challenge.moneyPrice.toString());
       setContactEmail(challenge.contactEmail);
       setProjectRequirements(challenge.requirements);
       setProductDesign(challenge.product_design);
       setDeliverables(challenge.deliverables);
+      setProjectBrief(challenge.projectBrief);
     }
   }, [challenge]);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log({
-      challengeTitle,
+    console.log("updating");
+    const updatedChallenge = {
+      title: challengeTitle,
       deadline,
-      duration,
-      moneyPrize,
+      duration: parseInt(duration), // Ensure duration is a number
+      moneyPrice: parseFloat(moneyPrize), // Ensure moneyPrize is a number
       contactEmail,
-      projectRequirements,
-      productDesign,
+      projectBrief,
+      requirements: projectRequirements,
+      product_design: productDesign,
       deliverables,
-    });
-    // Here you would typically send the updated data to your API
+      category: challenge?.category, // Assuming category remains unchanged
+      status: challenge?.status, // Assuming status remains unchanged
+    };
+    
+    const res = await axios.put(
+      `http://localhost:4000/challenges/${params.id}`,
+      updatedChallenge,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    console.log("updated");
+    if (res) {
+      console.log(res.data);
+      router.push("/admin/challenges/" + params.id);
+    }
   };
 
   const addField = (setter: React.Dispatch<React.SetStateAction<string[]>>) => {
@@ -126,7 +147,7 @@ const Page = () => {
                 Deadline
               </label>
               <input
-                type="date"
+                type="string"
                 id="deadline"
                 className="appearance-none placeholder:text-[14px] text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
                 value={deadline}
@@ -194,6 +215,8 @@ const Page = () => {
               id="projectBrief"
               className="appearance-none placeholder:text-[14px] h-[114px] border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               maxLength={50}
+              value={projectBrief}
+              onChange={(e) => setProjectBrief(e.target.value)}
               placeholder="Enter text here ..."
             />
           </div>
@@ -262,7 +285,11 @@ const Page = () => {
             <button className="w-[220px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] grid place-items-center border-[#2b71f0] border-[1.5px]">
               Cancel
             </button>
-            <button className="bg-[#2B71f0] w-[324px] h-[56px] text-[16px] rounded-[5px] font-semibold text-white">
+            <button
+              type="submit"
+              className="bg-[#2B71f0] w-[324px] h-[56px] text-[16px] rounded-[5px] font-semibold text-white"
+              // Disable button while loading
+            >
               Edit Challenge
             </button>
           </div>
