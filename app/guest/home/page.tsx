@@ -6,11 +6,6 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoPlaySharp } from "react-icons/io5";
 
 export default function Home() {
-<<<<<<< HEAD
-=======
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
->>>>>>> refs/remotes/origin/main
   const courseNames = [
     "UI/UX Design",
     "Data Science",
