@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
-import { clearCredentials } from "@/lib/redux/slices/authSlice"; 
+import { clearCredentials } from "@/lib/redux/slices/authSlice";
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
@@ -17,35 +17,17 @@ const NavBar = () => {
   const currentPath = usePathname();
   const [showMenu, setShowMenu] = useState(false);
 
-  const currentUser = "guest";
-
   const isActive = (path: string) => {
     return currentPath === path;
   };
 
-  const navItems = {
-    admin: [
-      { label: "Dashboard", path: "/admin/dashboard" },
-      { label: "Create Challenge", path: "/admin/create-challenge" },
-      { label: "Participants", path: "/admin/participants" },
-      { label: "Settings", path: "/admin/settings" },
-    ],
-    talent: [
-      { label: "Dashboard", path: "/talent/dashboard" },
-      { label: "Challenges", path: "/talent/challenges" },
-      { label: "Community", path: "/talent/community" },
-      { label: "Settings", path: "/talent/settings" },
-    ],
-    guest: [
-      { label: "Home", path: "/" },
-      { label: "Challenge & Hackathons", path: "/guest/challenges" },
-      { label: "For Learning Institutions", path: "/guest/community" },
-      { label: "About Us", path: "/guest/about" },
-      { label: "Contact Us", path: "/guest/contact" },
-    ],
-  };
-
-  const currentNavItems = navItems[currentUser];
+  const links = [
+    { label: "Home", path: "/" },
+    { label: "Challenge & Hackathons", path: "/guest/challenges" },
+    { label: "For Learning Institutions", path: "/guest/community" },
+    { label: "About Us", path: "/guest/about" },
+    { label: "Contact Us", path: "/guest/contact" },
+  ];
 
   const handleLogout = () => {};
 
@@ -63,7 +45,7 @@ const NavBar = () => {
 
       {/* Desktop Navigation */}
       <ul className="hidden sm:text-sm md:flex flex-row text-gray-700 space-x-[40px]">
-        {currentNavItems.map((item: any, index: any) => (
+        {links.map((item: any, index: any) => (
           <li key={index}>
             <Link
               href={item.path}
@@ -89,26 +71,18 @@ const NavBar = () => {
       </div>
 
       {/* Join or Logout Button */}
-      {currentUser === "guest" ? (
-       <Link href={'/login'}>
-             <button className="bg-[#041738] hover:opacity-80 transition-all ease-in-out duration-300 hidden md:block p-[14px] text-white text-[14px] rounded-[10px]">
+
+      <Link href={"/login"}>
+        <button className="bg-[#041738] hover:opacity-80 transition-all ease-in-out duration-300 hidden md:block p-[14px] text-white text-[14px] rounded-[10px]">
           Join the Program
         </button>
-       </Link>
-      ) : (
-        <button
-          onClick={handleLogout}
-          className="hidden md:block bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
-        >
-          Logout
-        </button>
-      )}
+      </Link>
 
       {/* Mobile Navigation */}
       {showMenu && (
         <div className="md:hidden z-50 bg-white flex flex-col space-y-4 items-center pt-[20px] justify-between shadow-md absolute top-[100px] left-0 right-0">
           <ul className="flex flex-col space-y-4 text-gray-700">
-            {currentNavItems.map((item: any, index: any) => (
+            {links.map((item: any, index: any) => (
               <li key={index}>
                 <Link
                   href={item.path}
@@ -121,18 +95,9 @@ const NavBar = () => {
             ))}
           </ul>
 
-          {currentUser === "guest" ? (
-            <button className="bg-[#041738] p-[14px] rounded-b-[5px] w-full text-white text-[14px]">
-              Join the Program
-            </button>
-          ) : (
-            <button
-              onClick={handleLogout}
-              className="mt-4 w-full bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300"
-            >
-              Logout
-            </button>
-          )}
+          <button className="bg-[#041738] p-[14px] rounded-b-[5px] w-full text-white text-[14px]">
+            Join the Program
+          </button>
         </div>
       )}
     </nav>
