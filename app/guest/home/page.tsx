@@ -6,11 +6,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoPlaySharp } from "react-icons/io5";
 
 export default function Home() {
-<<<<<<< HEAD
-=======
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
->>>>>>> refs/remotes/origin/main
+
   const courseNames = [
     "UI/UX Design",
     "Data Science",
@@ -106,8 +102,8 @@ export default function Home() {
     "cardPhoto1.webp",
     "cardPhoto2.webp",
   ];
-  let items = [];
-  let numItems = 3;
+  const items = [];
+  const numItems = 3;
   for (let i = 1; i <= numItems; i++) {
     items.push(
       <div
