@@ -25,7 +25,7 @@ import React from 'react'
 const loading = () => {
   return (
     <div>
-      fgchjk
+      the page is loading  .................
     </div>
   )
 }

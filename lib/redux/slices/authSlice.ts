@@ -47,9 +47,9 @@ interface AuthState {
 }
 
 const loadAuthState = (): AuthState => {
-  if (typeof window === "undefined") {
-    return { token: null, user: null };
-  }
+  // if (typeof window === "undefined") {
+  //   return { token: null, user: null };
+  // }
 
   const storedToken = localStorage.getItem("token");
   const storedUser = localStorage.getItem("user");
