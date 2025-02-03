@@ -1,8 +1,10 @@
-import { GetServerSideProps } from "next";
+"use client";
+
 import Link from "next/link";
 import { CiDollar } from "react-icons/ci";
-import React from "react";
-import { FaArrowUpLong } from "react-icons/fa6";
+import React, { use, useState, useEffect } from "react";
+import axios from "axios";
+// import { FaArrowUpLong } from "react-icons/fa6";
 import {
   IoBagOutline,
   IoCalendarOutline,
@@ -11,14 +13,24 @@ import {
 } from "react-icons/io5";
 import { RxFileText } from "react-icons/rx";
 import { VscArrowSmallLeft } from "react-icons/vsc";
-interface paramsInt {
-  params: {
-    id: string;
+// import { useGetChallengeByIdQuery } from "@/lib/redux/slices/challengeSlice";
+import { useParams } from "next/navigation";
+import { ChallengeType } from "@/lib/redux/slices/challengeSlice";
+
+const Page = () => {
+  const params = useParams<{ id: string }>();
+  const [challenge, setChallenge] = useState<ChallengeType>();
+
+ const getChallenge = async (id: string) => {
+    const response = await axios.get(`http://localhost:4000/challenges/${id}`);
+    if (response) {
+      console.log(response.data);
+      setChallenge(response.data.Challenge);
+    }
   };
-}
-const Page = async ({ params }: paramsInt) => {
-  const { id } = await params;
-  await console.log(id);
+  useEffect(() => {
+    getChallenge(params.id);
+  }, [params.id]);
 
   return (
     <div className="excluded">
@@ -35,7 +47,8 @@ const Page = async ({ params }: paramsInt) => {
             <span className="text-[#667185]">Create New Challenge</span>
             <span className="text-[#667185]">/</span>
             <span className="text-[#2B71F0]">
-              Design a Dashboard for Sokofund
+              {challenge?.title}
+              {/* Challenge Title */}
             </span>
           </h2>
         </div>
@@ -64,15 +77,10 @@ const Page = async ({ params }: paramsInt) => {
 
           <div className="excluded flex flex-col w-[545px] space-y-[20px] text-left ">
             <h2 className="text-[20px] text-black font-semibold">
-              Project Brief: Payroll and HR Management System
+              Project Brief: {challenge?.title}
             </h2>
             <p className="text-[14px]">
-              A Fintech company is developing a digital financial platform
-              designed for businesses and their workforce in Africa, partnering
-              with Umurava to run a skills challenge for product design. This
-              Fintech Company offers payroll management systems to employers and
-              embedded financial services and products to employees and gig
-              workers across Africa.
+             {challenge?.projectBrief}
             </p>
             <div className="excluded flex flex-col w-[545px] space-y-[20px] text-left ">
               <h2 className="text-[20px] text-black font-semibold">Tasks</h2>
@@ -80,49 +88,33 @@ const Page = async ({ params }: paramsInt) => {
                 Product Requirements
               </h2>
               <ul className="text-[14px] list-disc ml-[15px] flex flex-col space-y-[10px]">
-                <li>UX research to understand Project Requirements</li>
-                <li>Understanding User Needs</li>
-                <li>Understanding Business Goals</li>
-                <li>Determine interaction between users</li>
-                <li>Requirements Catalog</li>
+               {
+                challenge?.requirements.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))
+               }
               </ul>
               <h2 className="text-[20px] text-black font-semibold">
                 Product Design
               </h2>
               <ul className="text-[14px] list-disc ml-[15px] flex flex-col space-y-[10px]">
-                <li>User Interface Design for each step</li>
-                <li>
-                  Creating wireframes to outline the basic structure and layout
-                  of the web and mobile app.
-                </li>
-                <li>
-                  Designing visually appealing and user-friendly interfaces for
-                  the web and mobile apps focusing on usability and user
-                  experience.
-                </li>
-                <li>
-                  Ensuring the web application works seamlessly across web,
-                  mobile, and tablet devices.
-                </li>
-                <li>Provide a feedback session for in-development guidance</li>
+              {
+                challenge?.product_design.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))
+               }
               </ul>
               <h2 className="text-[20px] text-black font-semibold">
                 Deliverables
               </h2>
               <ul className="text-[14px] list-disc ml-[15px] flex flex-col space-y-[10px]">
-                <li>Requirements Catalog and User Interaction Diagram</li>
-                <li>User Interface Mockups</li>
-                <li>Payroll and HR System Design Completed</li>
+              {
+                challenge?.deliverables.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))
+               }
               </ul>
-              <h2 className="text-[20px] text-black font-semibold">
-                Deliverables
-              </h2>
-              <ul className="text-[14px] list-disc ml-[15px] flex flex-col space-y-[10px]">
-                <li>
-                  The Product Designer will provide all documents and
-                  deliverables to the client before the review meetings
-                </li>
-              </ul>
+             
               <h2 className="text-[20px] text-black font-semibold">NOTE</h2>
               <ul className="text-[14px] list-disc ml-[15px] flex flex-col space-y-[10px]">
                 <li>
@@ -156,7 +148,7 @@ const Page = async ({ params }: paramsInt) => {
                 </button>
                 <div className="flex flex-col flex-1 gap-1 ">
                   <p className=" text-[15px] font-semibold">
-                    talent@umurava.africadescription
+                   {challenge?.contactEmail}
                   </p>
                   <p className=" text-[13px]">Contact Email</p>
                 </div>
@@ -169,7 +161,7 @@ const Page = async ({ params }: paramsInt) => {
                   <IoBagOutline className="text-[#2B71F0] text-[23px]" />
                 </button>
                 <div className="flex flex-col flex-1 gap-1 ">
-                  <p className=" text-[15px] font-semibold">Web design</p>
+                  <p className=" text-[15px] font-semibold">{challenge?.category}</p>
                   <p className=" text-[13px]">Challenge Category</p>
                 </div>
               </div>
@@ -181,7 +173,7 @@ const Page = async ({ params }: paramsInt) => {
                   <IoCalendarOutline className="text-[#2B71F0] text-[23px]" />
                 </button>
                 <div className="flex flex-col flex-1 gap-1 ">
-                  <p className=" text-[15px] font-semibold">7 Days </p>
+                  <p className=" text-[15px] font-semibold">{challenge?.duration} Days </p>
                   <p className=" text-[13px]">Duration</p>
                 </div>
               </div>
@@ -193,7 +185,7 @@ const Page = async ({ params }: paramsInt) => {
                   <CiDollar className="text-[#2B71F0] font-bold text-[23px]" />
                 </button>
                 <div className="flex flex-col flex-1 gap-1 ">
-                  <p className=" text-[15px] font-semibold">$150 - $400</p>
+                  <p className=" text-[15px] font-semibold">$150 - ${challenge?.moneyPrice}</p>
                   <p className=" text-[13px]">Money Prize</p>
                 </div>
               </div>
@@ -202,7 +194,7 @@ const Page = async ({ params }: paramsInt) => {
               <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#E5533C] ">
                 Delete
               </button>
-              <Link href={`/admin/challenges/edit/${id}`}>
+              <Link href={`/admin/challenges/edit/${challenge?._id}`}>
                 <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#2B71F0] ">
                   Edit
                 </button>
