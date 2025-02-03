@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 // Define the types for the authentication data
 export interface LoginBodyDto {
   email: string;
@@ -45,19 +46,21 @@ interface AuthState {
   } | null;
 }
 
-// Load user data from localStorage if available
 const loadAuthState = (): AuthState => {
-    const storedToken = localStorage.getItem("token");
-    const storedUser = localStorage.getItem("user");
-    return {
-      token: storedToken,
-      user: storedUser ? JSON.parse(storedUser) : null,
-    };
-  
-  return { token: null, user: null };
+  if (typeof window === "undefined") {
+    return { token: null, user: null };
+  }
+
+  const storedToken = localStorage.getItem("token");
+  const storedUser = localStorage.getItem("user");
+
+  return {
+    token: storedToken || null,
+    user: storedUser ? JSON.parse(storedUser) : null,
+  };
 };
 
-const initialState: AuthState = loadAuthState();
+const initialState: AuthState = { token: null, user: null };
 
 const authSlice = createSlice({
   name: "auth",
@@ -67,17 +70,19 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.user = action.payload.user;
 
-      // Store user & token in localStorage
-      localStorage.setItem("token", action.payload.token);
-      localStorage.setItem("user", JSON.stringify(action.payload.user));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("token", action.payload.token);
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
+      }
     },
     clearCredentials: (state) => {
       state.token = null;
       state.user = null;
 
-      // Remove from localStorage on logout
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
     },
   },
 });

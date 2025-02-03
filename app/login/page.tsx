@@ -33,6 +33,7 @@ const Page = () => {
         })
       );
       toast.success("Logged in successfully");
+      console.log(loginResponse);
       if (loginResponse.user.roles == "talent") {
         router.push("/talent/dashboard");
       } else {
