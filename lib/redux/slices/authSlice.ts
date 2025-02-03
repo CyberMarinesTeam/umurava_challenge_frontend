@@ -59,8 +59,7 @@ const loadAuthState = (): AuthState => {
   };
 };
 
-const initialState: AuthState = { token: null, user: null };
-
+const initialState: AuthState = loadAuthState();
 const authSlice = createSlice({
   name: "auth",
   initialState,
