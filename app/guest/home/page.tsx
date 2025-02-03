@@ -6,7 +6,6 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoPlaySharp } from "react-icons/io5";
 
 export default function Home() {
-
   const courseNames = [
     "UI/UX Design",
     "Data Science",

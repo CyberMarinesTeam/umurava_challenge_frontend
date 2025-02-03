@@ -1,5 +1,7 @@
+
 "use client";
 import React from "react";
+
 
 import { HashLoader } from "react-spinners";
 
@@ -12,4 +14,3 @@ const loading = () => {
 };
 
 export default loading;
-
