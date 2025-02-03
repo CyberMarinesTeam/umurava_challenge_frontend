@@ -8,7 +8,7 @@ import { RootState } from "@/lib/redux/store";
 
 const SOCKET_SERVER_URL = "ws://localhost:4000";
 const Header = () => {
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<{ message: string; isRead: boolean }[]>([]);
   const [notificationShow, setNotificationShow] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const socket = io(SOCKET_SERVER_URL, { transports: ["websocket"] });
@@ -22,6 +22,7 @@ const Header = () => {
     });
 
     socket.on("notification", (message) => {
+      console.log("received message", message)
       setNotifications((prev) => [...prev, { message, isRead: false }]);
       setUnreadCount((prev) => prev + 1);
     });
