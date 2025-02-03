@@ -56,7 +56,7 @@ const SideBar = () => {
     }
   };
   return (
-    <div className="w-[272px] bg-[#2b71F0] text-white px-2 h-[1300px]">
+    <div className="w-[272px] bg-[#2b71F0] text-white px-2 h-[1400px]">
       <div className="flex flex-col justify-between">
         <img
           src="/umuravaLogo2.webp"
