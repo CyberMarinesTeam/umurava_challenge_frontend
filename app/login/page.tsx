@@ -169,7 +169,7 @@ const Page = () => {
               </label>
               <select
                 value={roles}
-                onChange={(e) => setRole(e.target.value)}
+                onChange={(e: any) => setRole(e.target.value)}
                 id="role"
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               >
