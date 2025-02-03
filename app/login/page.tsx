@@ -30,7 +30,7 @@ const Page = () => {
         setCredentials({ token: loginResponse.accessToken, user: loginResponse.user })
       );
       toast.success("Logged in successfully");
-     if(loginResponse.user.roles.includes(RoleEnum.TALENT)){
+     if(loginResponse.user.roles == "talent"){
       router.push("/talent/dashboard");
      }else {
       router.push("/admin/dashboard");

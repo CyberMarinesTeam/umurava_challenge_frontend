@@ -48,7 +48,7 @@ interface AuthState {
 // Load user data from localStorage if available
 const loadAuthState = (): AuthState => {
     const storedToken = localStorage.getItem("token");
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem("user"); 
     return {
       token: storedToken,
       user: storedUser ? JSON.parse(storedUser) : null,
