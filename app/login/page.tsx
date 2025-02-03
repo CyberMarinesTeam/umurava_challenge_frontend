@@ -1,25 +1,41 @@
 "use client";
 import {
   RoleEnum,
+  setCredentials,
   useLoginMutation,
   useSignupMutation,
 } from "@/lib/redux/slices/authSlice";
+import { toast } from "react-toastify";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [login] = useLoginMutation();
   const [signup] = useSignupMutation();
   const [current, setCurrent] = useState("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
-  const [roles, setRole] = useState(RoleEnum);
+  const [roles, setRole] = useState<RoleEnum | "">("");
+
   const handleLoginSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const loginResponse = await login({ email, password }).unwrap();
-    console.log(loginResponse);
-    setEmail("");
-    setPassword("");
+
+    if (loginResponse.status === 200) {
+      dispatch(
+        setCredentials({ token: loginResponse.accessToken, user: loginResponse.user })
+      );
+      toast.success("Logged in successfully");
+     if(loginResponse.user.roles == "talent"){
+      router.push("/talent/dashboard");
+     }else {
+      router.push("/admin/dashboard");
+     }
+    }
   };
   const handleSignupSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -30,11 +46,14 @@ const Page = () => {
       email,
       password,
     }).unwrap();
-    console.log(signupResponse);
-    setUserName("");
-    setRole("");
-    setEmail("");
-    setPassword("");
+    if (signupResponse.status === 200) {
+      toast.success("Account created successfully");
+      setUserName("");
+      setRole("");
+      setEmail("");
+      setPassword("");
+      setCurrent('signin')
+    }
   };
   return (
     <div className="flex flex-row items-center justify-center w-full pt-[50px]">
@@ -154,9 +173,9 @@ const Page = () => {
                 id="role"
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               >
-                <option>Select talent or admin</option>
-                <option value="talent">Talent</option>
-                <option value="admin">Admin</option>
+                <option>Select talent or none</option>
+                <option>talent</option>
+                <option>admin</option>
               </select>
             </div>
             <div className="excluded mb-4">

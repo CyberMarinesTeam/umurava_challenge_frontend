@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { GoHome } from "react-icons/go";
 import {
   IoDocumentTextOutline,
@@ -11,6 +11,10 @@ import {
 import { FiLogOut } from "react-icons/fi";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCredentials } from "@/lib/redux/slices/authSlice";
+import { useRouter } from "next/navigation";
+import { RootState } from "@/lib/redux/store";
 
 const links = [
   {
@@ -49,12 +53,31 @@ const secondaryLinks = [
 ];
 
 const TalentSideBar = () => {
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
   const currentPath = usePathname();
   const isActive = (path: string) => {
     if (currentPath === path) {
       return true;
     }
   };
+
+  const handleLogout = () => {
+    setShowLogoutModal(true); // Show confirmation modal
+  };
+
+  const confirmLogout = () => {
+    router.push("/login"); // Redirect to login page
+    dispatch(clearCredentials()); // Clear user session
+    setShowLogoutModal(false); // Close modal
+  };
+
+  const user = useSelector((state: RootState) => state.auth.user);
+
+
   return (
     <div className="w-[272px] bg-[#2b71F0] text-white px-2 h-[1300px]">
       <div className="flex flex-col justify-between">
@@ -106,15 +129,31 @@ const TalentSideBar = () => {
               className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
             />
             <div className="flex flex-col gap-1">
-              <p className="text-[14px] font-normal leading-5">Hilaire, PM</p>
+              <p className="text-[14px] font-normal leading-5">{user?.username}, PM</p>
               <p className="text-[14px] font-normal leading-5">
-                hilaire@gmail.com
+                {user?.email}
               </p>
             </div>
           </div>
-          <FiLogOut className="h-[20px] w-[20px]" />
+          <FiLogOut className="h-[20px] w-[20px]" onClick={handleLogout}/>
         </div>
       </div>
+
+      {showLogoutModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-black">
+            <p className="text-lg font-medium">Are you sure you want to logout?</p>
+            <div className="flex justify-end gap-4 mt-4">
+              <button className="px-4 py-2 bg-gray-300 rounded-md" onClick={() => setShowLogoutModal(false)}>
+                Cancel
+              </button>
+              <button className="px-4 py-2 bg-red-500 text-white rounded-md" onClick={confirmLogout}>
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -31,7 +31,7 @@ export interface SignupResponseDto {
 }
 
 export enum RoleEnum {
-  USER = "talent",
+  TALENT = "talent",
   ADMIN = "admin",
 }
 
@@ -45,10 +45,19 @@ interface AuthState {
   } | null;
 }
 
-const initialState: AuthState = {
-  token: null,
-  user: null,
+// Load user data from localStorage if available
+const loadAuthState = (): AuthState => {
+    const storedToken = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user"); 
+    return {
+      token: storedToken,
+      user: storedUser ? JSON.parse(storedUser) : null,
+    };
+  
+  return { token: null, user: null };
 };
+
+const initialState: AuthState = loadAuthState();
 
 const authSlice = createSlice({
   name: "auth",
@@ -57,10 +66,18 @@ const authSlice = createSlice({
     setCredentials: (state, action: PayloadAction<LoginResponseDto>) => {
       state.token = action.payload.token;
       state.user = action.payload.user;
+
+      // Store user & token in localStorage
+      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
     },
     clearCredentials: (state) => {
       state.token = null;
       state.user = null;
+
+      // Remove from localStorage on logout
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     },
   },
 });

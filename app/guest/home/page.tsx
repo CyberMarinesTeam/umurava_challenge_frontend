@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Carousel from "@/app/components/Carousel";
 import Footer from "@/app/components/Footer";
@@ -175,10 +175,10 @@ export default function Home() {
             working on Hands-on projects & Hackathons from various businesses &
             organizations
           </p>
-         <Link href={"/login"}>
-          <button className="bg-[#2B71f0] mt-[40px] w-[171px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
-            Get Started
-          </button>
+          <Link href={"/login"}>
+            <button className="bg-[#2B71f0] mt-[40px] w-[171px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
+              Get Started
+            </button>
           </Link>
         </div>
         <div className="flex max-[440px]:self-start flex-row space-x-[20px] ">
@@ -201,7 +201,7 @@ export default function Home() {
           </h2>
           <p className="max-[440px]:text-sm lg:w-[710px] text-[#687588] text-[18px] text-center">
             Join Skills Challenges Program to accelerate yout career growth and
-            become part of Africa&aps;s largest workforce of digital professionals{" "}
+            become part of Africa's largest workforce of digital professionals{" "}
           </p>
           <div className="flex flex-col max-[440px]:w-full lg:space-y-[20px] h-fit items-center justify-center">
             <div className="bg-[#2B71F0] max-[440px]:mb-5 mt-[60px] max-md:mt-[30px] max-[440px]:gap-5 rounded-[10px] p-[48px] max-[440px]:p-8 flex flex-col">

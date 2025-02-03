@@ -1,19 +1,25 @@
 "use client";
-import React, { Fragment, useState } from "react";
-import Header from "@/app/components/Header";
-import SideBar from "@/app/components/SideBar";
-import ChallengeCard from "@/app/components/ChallengeCard";
-import { RxFileText } from "react-icons/rx";
-import ChallengeCard2 from "@/app/components/ChallengeCard2";
-import { MdOutlineNavigateNext } from "react-icons/md";
-import { GrFormPrevious } from "react-icons/gr";
+import React, { Fragment, useEffect, useState } from "react";
+// import Header from "@/app/components/Header";
+// import SideBar from "@/app/components/SideBar";
+// import ChallengeCard from "@/app/components/ChallengeCard";
+// import { RxFileText } from "react-icons/rx";
+// import ChallengeCard2 from "@/app/components/ChallengeCard2";
+// import { MdOutlineNavigateNext } from "react-icons/md";
+// import { GrFormPrevious } from "react-icons/gr";
+import {useGetChallengesQuery} from '@/lib/redux/slices/challengeSlice'
 import { IoDocumentTextOutline } from "react-icons/io5";
 import Link from "next/link";
 
-const Challenges = () => {
-  const [CurrentPage, setCurrent] = useState(1);
 
-  let challenges = [];
+const Challenges = () => {
+
+  const [CurrentPage, setCurrent] = useState(1);
+  const {data} = useGetChallengesQuery();
+  if(data) {
+    console.log("data is found => ", data);
+  }
+  const challenges = [];
   for (let i = 1; i < 15; i++) {
     challenges.push(
       <div className="challengeCard flex flex-col border-[2px] bg-white items-start pt-[10px] rounded-[8px] w-[320px] h-auto border-[#E4E7EC]">
@@ -74,7 +80,7 @@ const Challenges = () => {
   const totalNumberElements = 6;
   const lastIndex = CurrentPage * totalNumberElements;
   const firstIndex = lastIndex - totalNumberElements;
-  let paginatedchallenges = challenges.slice(firstIndex, lastIndex);
+  const paginatedchallenges = data?.slice(firstIndex, lastIndex);
   const totalNumberPages = Math.ceil(challenges.length / totalNumberElements);
   const handleNext = () => {
     if (CurrentPage < totalNumberPages) {
@@ -89,6 +95,10 @@ const Challenges = () => {
       setCurrent(CurrentPage - 1);
     }
   };
+
+  useEffect(() => {
+    
+  })
   return (
     <main className="px-8">
       <div className="mb-[50px]">
@@ -159,7 +169,7 @@ const Challenges = () => {
         </div>
       </div>
       <div className="excluded grid pb-[40px] border-t-[0.5px] border-gray-200 pt-[7px] place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {paginatedchallenges.map((card, index) => (
+        {paginatedchallenges?.map((card, index) => (
           <Fragment key={index}>{card}</Fragment>
         ))}
       </div>

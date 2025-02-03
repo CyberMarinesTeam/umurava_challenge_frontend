@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-type ChallengeType = {
+export type ChallengeType = {
+  _id:string;
   title: string;
   deadline: string;
   duration: number;
@@ -11,11 +12,22 @@ type ChallengeType = {
   product_design: string[];
   deliverables: string[];
   category: string;
+  status:string;
 };
 
 export const challengeSlice = createApi({
   reducerPath: "challenge",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/challenges" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/challenges" ,
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem('token'); 
+
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+
+      return headers;
+    }
+   }),
   endpoints: (builder) => ({
     getChallenges: builder.query<ChallengeType[], void>({
       query: () => "/",

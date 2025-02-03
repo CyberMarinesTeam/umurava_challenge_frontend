@@ -1,17 +1,27 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
-import { IoMdAdd, IoMdAddCircleOutline } from "react-icons/io";
+import React, { useEffect, useState } from "react";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { VscArrowSmallLeft } from "react-icons/vsc";
-interface paramsInt {
-  params: {
-    id: string;
-  };
-}
-const Page = ({ params }: paramsInt) => {
-  const { id } = params;
-  console.log(id);
+import { useParams } from "next/navigation";
+import {
+  ChallengeType,
+  useGetChallengeByIdQuery,
+} from "@/lib/redux/slices/challengeSlice";
+
+const Page = () => {
+  const params = useParams<{ id: string }>();
+  const [challenge, setChallenge] = useState<ChallengeType | null>(null);
+  const { data } = useGetChallengeByIdQuery(params.id);
+
+
+  useEffect(() => {
+    if (data?.Challenge) {
+      setChallenge(data.Challenge);
+    }
+  }, [data]);
+
   const [challengeTitle, setChallengeTitle] = useState("");
   const [deadline, setDeadline] = useState("");
   const [duration, setDuration] = useState("");
@@ -22,6 +32,26 @@ const Page = ({ params }: paramsInt) => {
   ]);
   const [productDesign, setProductDesign] = useState<string[]>([""]);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
+
+  const convertToDate = (dateString:string) => {
+     // Format: MM/DD/YYYY
+    const [month, day, year] = dateString.split("/");
+    const formattedDateString = `${year}-${month}-${day}`; // Convert to YYYY-MM-DD
+    const dateObject = new Date(formattedDateString);
+    return dateObject;  
+  }
+  useEffect(() => {
+    if (challenge) {
+      setChallengeTitle(challenge.title);
+      setDeadline(convertToDate(challenge.deadline));
+      setDuration(challenge.duration.toString());
+      setMoneyPrize(challenge.moneyPrice.toString());
+      setContactEmail(challenge.contactEmail);
+      setProjectRequirements(challenge.requirements);
+      setProductDesign(challenge.product_design);
+      setDeliverables(challenge.deliverables);
+    }
+  }, [challenge]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -35,6 +65,7 @@ const Page = ({ params }: paramsInt) => {
       productDesign,
       deliverables,
     });
+    // Here you would typically send the updated data to your API
   };
 
   const addField = (setter: React.Dispatch<React.SetStateAction<string[]>>) => {
@@ -50,9 +81,9 @@ const Page = ({ params }: paramsInt) => {
 
   return (
     <div className="excluded flex flex-col space-y-[30px] pb-[70px] items-center">
-      <div className="excluded flex  flex-row w-full  border-y-[1.5px] items-center  border-[#E4E7EC] space-x-[20px] bg-white justify-start px-[20px] h-[62px]">
+      <div className="excluded flex flex-row w-full border-y-[1.5px] items-center border-[#E4E7EC] space-x-[20px] bg-white justify-start px-[20px] h-[62px]">
         <Link
-          href={`/admin/challenges/${id}`}
+          href={`/admin/challenges/${params.id}`}
           className="border-[#E4E7EC] border-[1px] p-[3px] rounded-[5px] bg-white"
         >
           <VscArrowSmallLeft className="text-[21px]" />
@@ -64,7 +95,7 @@ const Page = ({ params }: paramsInt) => {
           <span className="text-[#2B71F0]">Edit the Challenge</span>
         </h2>
       </div>
-      <div className="excluded bg-white  border-[#E4E7EC] border-[1.5px] shadow-sm rounded-[10px] w-[624px] items-center  px-8 pt-6 pb-8 flex flex-col">
+      <div className="excluded bg-white border-[#E4E7EC] border-[1.5px] shadow-sm rounded-[10px] w-[624px] items-center px-8 pt-6 pb-8 flex flex-col">
         <h2 className="text-[24px] font-semibold mb-2">Edit a Challenge</h2>
         <p className="text-[#8C94a6] mb-[30px]">
           Fill out these details to build your broadcast
@@ -75,12 +106,12 @@ const Page = ({ params }: paramsInt) => {
               htmlFor="challengeTitle"
               className="block text-[#475367] text-[14px] mb-2"
             >
-              Challenge/Hackathaton Title
+              Challenge/Hackathon Title
             </label>
             <input
               type="text"
               id="challengeTitle"
-              className="appearance-none placeholder:text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none placeholder:text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={challengeTitle}
               placeholder="Enter Title"
               onChange={(e) => setChallengeTitle(e.target.value)}
@@ -97,7 +128,7 @@ const Page = ({ params }: paramsInt) => {
               <input
                 type="date"
                 id="deadline"
-                className="appearance-none placeholder:text-[14px] text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none placeholder:text-[14px] text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
               />
@@ -113,7 +144,7 @@ const Page = ({ params }: paramsInt) => {
                 type="text"
                 id="duration"
                 placeholder="Duration"
-                className="appearance-none placeholder:text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none placeholder:text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
               />
@@ -130,7 +161,7 @@ const Page = ({ params }: paramsInt) => {
               type="text"
               id="moneyPrize"
               placeholder="Prize"
-              className="appearance-none placeholder:text-[14px]  border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none placeholder:text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={moneyPrize}
               onChange={(e) => setMoneyPrize(e.target.value)}
             />
@@ -146,7 +177,7 @@ const Page = ({ params }: paramsInt) => {
               type="email"
               id="contactEmail"
               placeholder="Email"
-              className="appearance-none placeholder:text-[14px]  border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none placeholder:text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               value={contactEmail}
               onChange={(e) => setContactEmail(e.target.value)}
             />
@@ -161,7 +192,7 @@ const Page = ({ params }: paramsInt) => {
             </label>
             <textarea
               id="projectBrief"
-              className="appearance-none placeholder:text-[14px]  h-[114px] border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none placeholder:text-[14px] h-[114px] border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               maxLength={50}
               placeholder="Enter text here ..."
             />
@@ -228,11 +259,11 @@ const Page = ({ params }: paramsInt) => {
           )}
 
           <div className="excluded flex flex-row space-x-[20px] items-center justify-between">
-            <button className="w-[220px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0]  grid place-items-center border-[#2b71f0] border-[1.5px]">
+            <button className="w-[220px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] grid place-items-center border-[#2b71f0] border-[1.5px]">
               Cancel
             </button>
-            <button className="bg-[#2B71f0] w-[324px]  h-[56px]  text-[16px] rounded-[5px] font-semibold text-white">
-              Create Challenge
+            <button className="bg-[#2B71f0] w-[324px] h-[56px] text-[16px] rounded-[5px] font-semibold text-white">
+              Edit Challenge
             </button>
           </div>
         </form>

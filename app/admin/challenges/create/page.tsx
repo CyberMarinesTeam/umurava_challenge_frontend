@@ -45,7 +45,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="excluded flex flex-col space-y-[30px] pb-[70px] items-center">
+    <div className="excluded flex flex-col space-y-[30px] pb-[40px] items-center">
       <div className="excluded flex  flex-row w-full  border-y-[1.5px] items-center  border-[#E4E7EC] space-x-[20px] bg-white justify-start px-[20px] h-[62px]">
         <Link
           href={"/admin/challenges"}
