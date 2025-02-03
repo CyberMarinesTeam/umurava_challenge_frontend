@@ -53,7 +53,7 @@ const Dashboard = () => {
           <p className="font-bold">Recent Challenges</p>
         </div>
         <Link
-          href="/guest/challenges"
+          href="/talent/challenges"
           className="text-blue-600 excluded flex flex-row items-center gap-2"
         >
           <p>See All</p>

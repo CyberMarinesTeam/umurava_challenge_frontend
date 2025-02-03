@@ -1,22 +1,19 @@
-"use client"
-
-import React, { useEffect } from "react";
-import SideBar from "@/app/components/SideBar";
-import Header from "@/app/components/Header";
+"use client";
+import { useState } from "react";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 import Card from "@/app/components/Card";
 import { FaChevronRight } from "react-icons/fa6";
 import Card2 from "@/app/components/Card2";
 import { useSelector } from "react-redux";
+import  TimeRangeEnum  from "@/app/components/Card";
 import { RootState } from "@/lib/redux/store";
 const Page = () => {
-
   const user = useSelector((state: RootState) => state.auth.user);
- 
-  const { data} = useGetChallengesQuery();
+  const [timeRange, setTimeRange] = useState<"">("");
+  const { data } = useGetChallengesQuery();
   return (
-    <div className="excludedDashBoard px-12 py-4">
+    <div className="excludedDashBoard px-12 py-4 z-1">
       <div className="excludedDashBoard h-[56px] flex flex-col gap-[4px] mb-12 mt-[10px]">
         <h1 className="font-semibold text-[24px] leading-[28px]">
           Welcome back, {user?.username}
@@ -29,7 +26,7 @@ const Page = () => {
         <div className="grid grid-cols-2  gap-4">
           <Card
             width={540}
-            timeDescription={"This week"}
+            timeRange={timeRange}
             description={"Total Challenges"}
             number={23178}
             percentage={20}
@@ -76,9 +73,9 @@ const Page = () => {
           </button>
         </div>
         <div className="excludedDashBoard gap-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between ">
-        {data?.map((challenge) => (
-          <ChallengeCard2 key={challenge._id} challenge={challenge} />
-        ))}
+          {data?.slice(0, 3).map((challenge) => (
+            <ChallengeCard2 key={challenge._id} challenge={challenge} />
+          ))}
         </div>
       </div>
     </div>

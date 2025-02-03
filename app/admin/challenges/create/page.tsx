@@ -22,11 +22,12 @@ const Page: React.FC = () => {
   const [projectRequirements, setProjectRequirements] = useState<string[]>([
     "",
   ]);
-  const [productDesign, setProductDesign] = useState<string[]>([""]);
+  const [product_design, setProductDesign] = useState<string[]>([""]);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
   const [skills_needed, setSkills_needed] = useState<string[]>([""]);
   const [category, setCategory] = useState("");
   const [seniority_level, setSeniority_level] = useState("");
+  const [projectBrief, setProjectBrief] = useState("");
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -34,14 +35,15 @@ const Page: React.FC = () => {
       title: challengeTitle,
       deadline,
       duration: parseInt(duration),
-      moneyPrize: parseInt(moneyPrize),
+      moneyPrice: parseInt(moneyPrize),
       contactEmail,
-      projectRequirements,
-      productDesign,
+      requirements: projectRequirements,
+      product_design,
       deliverables,
       category,
       seniority_level,
-      skills_needed
+      skills_needed,
+      projectBrief,
     };
    if(user) {
     console.log(newToCreateChallenge);
@@ -52,6 +54,7 @@ const Page: React.FC = () => {
       "Authorization": `Bearer ${localStorage.getItem('token')}`
        }
     })
+    router.push("/admin/challenges");
    }else {
     alert("You must be logged in to create a challenge")
    }
@@ -219,13 +222,15 @@ const Page: React.FC = () => {
               id="projectBrief"
               className="appearance-none placeholder:text-[14px]  h-[114px] border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               maxLength={900}
+              value={projectBrief}
+              onChange={(e) => setProjectBrief(e.target.value)}
               placeholder="Enter text here ..."
             />
           </div>
 
           {[
             projectRequirements,
-            productDesign,
+            product_design,
             deliverables,
             skills_needed,
           ].map((field, fieldIndex) => (

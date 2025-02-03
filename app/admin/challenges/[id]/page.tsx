@@ -49,6 +49,10 @@ const Page = () => {
     getChallenge(params.id);
   }, [params.id]);
 
+
+  useEffect(()=> {
+      console.log(challenge)
+  }, [params.id])
   return (
     <div className="excluded">
       <div className="excluded flex  flex-row w-full  border-y-[1.5px] items-center  border-[#E4E7EC]  bg-white justify-start px-[20px] h-[62px]">
