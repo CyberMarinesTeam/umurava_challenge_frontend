@@ -27,14 +27,17 @@ const Page = () => {
 
     if (loginResponse.status === 200) {
       dispatch(
-        setCredentials({ token: loginResponse.accessToken, user: loginResponse.user })
+        setCredentials({
+          token: loginResponse.accessToken,
+          user: loginResponse.user,
+        })
       );
       toast.success("Logged in successfully");
-     if(loginResponse.user.roles == "talent"){
-      router.push("/talent/dashboard");
-     }else {
-      router.push("/admin/dashboard");
-     }
+      if (loginResponse.user.roles == "talent") {
+        router.push("/talent/dashboard");
+      } else {
+        router.push("/admin/dashboard");
+      }
     }
   };
   const handleSignupSubmit = async (event: React.FormEvent) => {
@@ -52,7 +55,7 @@ const Page = () => {
       setRole("");
       setEmail("");
       setPassword("");
-      setCurrent('signin')
+      setCurrent("signin");
     }
   };
   return (
