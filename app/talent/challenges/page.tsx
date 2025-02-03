@@ -58,7 +58,7 @@ const Challenges = () => {
         </button>
       </div>
       <div className="py-[16px] excluded flex w-full items-center">
-        <div className="flex justify-start gap-[10px] border-b pb-5 w-full">
+        <div className="flex excluded justify-start gap-[10px] border-b pb-5 w-full">
           <SmallStatusCard
             count={0}
             icon={<FiFileText />}
@@ -81,12 +81,12 @@ const Challenges = () => {
           />
         </div>
       </div>
-      <div className="flex flex-wrap gap-[20px]">
+      <div className="flex excluded flex-wrap gap-[20px]">
         {paginatedData.map((challenge) => (
           <ChallengeCard2 key={challenge._id} challenge={challenge} />
         ))}
       </div>
-      <div className="flex justify-between py-10 px-10">
+      <div className="flex excluded justify-between py-10 px-10">
         <button
           onClick={handlePrevious}
           disabled={currentPage === 1}
