@@ -1,16 +1,25 @@
-import React from "react";
+"use client"
+
+import React, { useEffect } from "react";
 import SideBar from "@/app/components/SideBar";
 import Header from "@/app/components/Header";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
+import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 import Card from "@/app/components/Card";
 import { FaChevronRight } from "react-icons/fa6";
 import Card2 from "@/app/components/Card2";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
 const Page = () => {
+
+  const user = useSelector((state: RootState) => state.auth.user);
+ 
+  const { data} = useGetChallengesQuery();
   return (
     <div className="excludedDashBoard px-12 py-4">
       <div className="excludedDashBoard h-[56px] flex flex-col gap-[4px] mb-12 mt-[10px]">
         <h1 className="font-semibold text-[24px] leading-[28px]">
-          Welcome back, Hilaire
+          Welcome back, {user?.username}
         </h1>
         <p className="text-[16px] leading-[23px] font-normal text-[#475367]">
           Build Work Exprience through Skills Challenges
@@ -67,9 +76,9 @@ const Page = () => {
           </button>
         </div>
         <div className="excludedDashBoard gap-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between ">
-          <ChallengeCard2 />
-          <ChallengeCard2 />
-          <ChallengeCard2 />
+        {data?.map((challenge) => (
+          <ChallengeCard2 key={challenge._id} challenge={challenge} />
+        ))}
         </div>
       </div>
     </div>

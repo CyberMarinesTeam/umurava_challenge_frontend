@@ -1,25 +1,22 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdAdd, IoMdAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { VscArrowSmallLeft } from "react-icons/vsc";
-interface paramsInt {
-  params: {
-    id: string;
-  };
-}
-const Page = ({ params }: paramsInt) => {
-  const { id } = params;
-  console.log(id);
+import { useParams } from "next/navigation";
+import axios from 'axios'
+import { ChallengeType, useGetChallengeByIdQuery } from "@/lib/redux/slices/challengeSlice";
+
+const Page = () => {
+  const params = useParams<{ id: string }>();
+
   const [challengeTitle, setChallengeTitle] = useState("");
   const [deadline, setDeadline] = useState("");
   const [duration, setDuration] = useState("");
   const [moneyPrize, setMoneyPrize] = useState("");
   const [contactEmail, setContactEmail] = useState("");
-  const [projectRequirements, setProjectRequirements] = useState<string[]>([
-    "",
-  ]);
+  const [projectRequirements, setProjectRequirements] = useState<string[]>([ "",]);
   const [productDesign, setProductDesign] = useState<string[]>([""]);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
 
@@ -48,11 +45,17 @@ const Page = ({ params }: paramsInt) => {
     setter((prev) => prev.filter((_, i) => i !== index));
   };
 
+  
+  const { data } = useGetChallengeByIdQuery(params.id);
+
+
+
+
   return (
     <div className="excluded flex flex-col space-y-[30px] pb-[70px] items-center">
       <div className="excluded flex  flex-row w-full  border-y-[1.5px] items-center  border-[#E4E7EC] space-x-[20px] bg-white justify-start px-[20px] h-[62px]">
         <Link
-          href={`/admin/challenges/${id}`}
+          href={`/admin/challenges/${params.id}`}
           className="border-[#E4E7EC] border-[1px] p-[3px] rounded-[5px] bg-white"
         >
           <VscArrowSmallLeft className="text-[21px]" />

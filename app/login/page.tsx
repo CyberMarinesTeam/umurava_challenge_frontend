@@ -1,8 +1,60 @@
 "use client";
+import {
+  RoleEnum,
+  setCredentials,
+  useLoginMutation,
+  useSignupMutation,
+} from "@/lib/redux/slices/authSlice";
+import { toast } from "react-toastify";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [login] = useLoginMutation();
+  const [signup] = useSignupMutation();
   const [current, setCurrent] = useState("signin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUserName] = useState("");
+  const [roles, setRole] = useState<RoleEnum | "">("");
+
+  const handleLoginSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const loginResponse = await login({ email, password }).unwrap();
+
+    if (loginResponse.status === 200) {
+      dispatch(
+        setCredentials({ token: loginResponse.accessToken, user: loginResponse.user })
+      );
+      toast.success("Logged in successfully");
+     if(loginResponse.user.roles.includes(RoleEnum.TALENT)){
+      router.push("/talent/dashboard");
+     }else {
+      router.push("/admin/dashboard");
+     }
+    }
+  };
+  const handleSignupSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log(roles, username, email, password);
+    const signupResponse = await signup({
+      username,
+      roles,
+      email,
+      password,
+    }).unwrap();
+    if (signupResponse.status === 200) {
+      toast.success("Account created successfully");
+      setUserName("");
+      setRole("");
+      setEmail("");
+      setPassword("");
+      setCurrent('signin')
+    }
+  };
   return (
     <div className="flex flex-row items-center justify-center w-full pt-[50px]">
       {current === "signin" && (
@@ -30,6 +82,8 @@ const Page = () => {
               </label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 id="email"
                 placeholder="Enter Your Email"
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -46,11 +100,13 @@ const Page = () => {
                 <input
                   type="password"
                   id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className="block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <button
-                title="."
+                  title="."
                   type="button"
                   className="absolute right-3 text-gray-500 focus:outline-none"
                 >
@@ -73,6 +129,7 @@ const Page = () => {
             </div>
             <div className="excluded mb-4">
               <button
+                onClick={handleLoginSubmit}
                 type="submit"
                 className="w-full py-2 px-4 bg-[#2B71F0] hover:bg-[#2B71F0] text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               >
@@ -111,38 +168,28 @@ const Page = () => {
                 Join as:
               </label>
               <select
+                value={roles}
+                onChange={(e) => setRole(e.target.value)}
                 id="role"
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               >
                 <option>Select talent or none</option>
-                <option>Talent</option>
-                {/* <option>Admin</option> */}
+                <option>talent</option>
+                <option>admin</option>
               </select>
             </div>
             <div className="excluded mb-4">
               <label
-                htmlFor="first-name"
+                htmlFor="username"
                 className="block text-sm font-medium text-gray-700"
               >
-                First Name
+                Username
               </label>
               <input
                 type="text"
-                id="first-name"
-                placeholder="Enter your First name"
-                className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
-              />
-            </div>
-            <div className="excluded mb-4">
-              <label
-                htmlFor="last-name"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="last-name"
+                id="username"
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
                 placeholder="Enter your Last name"
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               />
@@ -156,6 +203,8 @@ const Page = () => {
               </label>
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 id="email"
                 placeholder="Enter your Email"
                 className="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
@@ -171,12 +220,14 @@ const Page = () => {
               <div className="excluded flex items-center mt-1">
                 <input
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   id="password"
                   placeholder="Enter your Password"
                   className="block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
                 />
                 <button
-                title="."
+                  title="."
                   type="button"
                   className="absolute right-3 text-gray-500 focus:outline-none"
                 >
@@ -200,6 +251,7 @@ const Page = () => {
             <div className="excluded mb-4">
               <button
                 type="submit"
+                onClick={handleSignupSubmit}
                 className="w-full py-2 px-4 bg-[#2B71F0] hover:bg-[#2B71F0] text-white font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B71F0]"
               >
                 Create Account

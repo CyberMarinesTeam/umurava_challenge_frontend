@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // Define the types for the authentication data
 export interface LoginBodyDto {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -27,57 +27,73 @@ export interface SignupResponseDto {
   id: string;
   username: string;
   email: string;
-  roles: RoleEnum[];
+  roles: string;
 }
 
 export enum RoleEnum {
-  USER = "talent",
+  TALENT = "talent",
   ADMIN = "admin",
 }
 
-
 interface AuthState {
-    token: string | null;
-    user: {
-      id: string;
-      username: string;
-      email: string;
-      roles: RoleEnum[];
-    } | null;
-  }
-  
-  const initialState: AuthState = {
-    token: null,
-    user: null,
-  };
+  token: string | null;
+  user: {
+    id: string;
+    username: string;
+    email: string;
+    roles: RoleEnum[];
+  } | null;
+}
 
-  const authSlice = createSlice({
-    name: "auth",
-    initialState,
-    reducers: {
-      setCredentials: (state, action: PayloadAction<LoginResponseDto>) => {
-        state.token = action.payload.token;
-        state.user = action.payload.user;
-      },
-      clearCredentials: (state) => {
-        state.token = null;
-        state.user = null;
-      },
+// Load user data from localStorage if available
+const loadAuthState = (): AuthState => {
+    const storedToken = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+    return {
+      token: storedToken,
+      user: storedUser ? JSON.parse(storedUser) : null,
+    };
+  
+  return { token: null, user: null };
+};
+
+const initialState: AuthState = loadAuthState();
+
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    setCredentials: (state, action: PayloadAction<LoginResponseDto>) => {
+      state.token = action.payload.token;
+      state.user = action.payload.user;
+
+      // Store user & token in localStorage
+      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
     },
-  });
+    clearCredentials: (state) => {
+      state.token = null;
+      state.user = null;
+
+      // Remove from localStorage on logout
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    },
+  },
+});
 
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/auth" }),
   endpoints: (builder) => ({
-    login: builder.mutation<LoginResponseDto, LoginBodyDto>({
+    login: builder.mutation<any, LoginBodyDto>({
       query: (credentials) => ({
         url: "/login",
         method: "POST",
         body: credentials,
       }),
     }),
-    signup: builder.mutation<SignupResponseDto, SignupBodyDto>({
+    signup: builder.mutation<any, SignupBodyDto>({
       query: (userData) => ({
         url: "/signup",
         method: "POST",

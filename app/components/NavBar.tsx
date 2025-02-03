@@ -17,11 +17,7 @@ const NavBar = () => {
   const currentPath = usePathname();
   const [showMenu, setShowMenu] = useState(false);
 
-  const { user } = useSelector((state: RootState) => state.auth);
-  const dispatch = useDispatch();
-
-
-  const currentUser = user ? user.roles[0] : "guest";
+  const currentUser = "guest";
 
   const isActive = (path: string) => {
     return currentPath === path;
@@ -51,11 +47,7 @@ const NavBar = () => {
 
   const currentNavItems = navItems[currentUser];
 
-
-  const handleLogout = () => {
-    dispatch(clearCredentials()); 
-    setShowMenu(false); 
-  };
+  const handleLogout = () => {};
 
   return (
     <nav
@@ -71,7 +63,7 @@ const NavBar = () => {
 
       {/* Desktop Navigation */}
       <ul className="hidden sm:text-sm md:flex flex-row text-gray-700 space-x-[40px]">
-        {currentNavItems.map((item, index) => (
+        {currentNavItems.map((item: any, index: any) => (
           <li key={index}>
             <Link
               href={item.path}
@@ -116,7 +108,7 @@ const NavBar = () => {
       {showMenu && (
         <div className="md:hidden z-50 bg-white flex flex-col space-y-4 items-center pt-[20px] justify-between shadow-md absolute top-[100px] left-0 right-0">
           <ul className="flex flex-col space-y-4 text-gray-700">
-            {currentNavItems.map((item, index) => (
+            {currentNavItems.map((item: any, index: any) => (
               <li key={index}>
                 <Link
                   href={item.path}

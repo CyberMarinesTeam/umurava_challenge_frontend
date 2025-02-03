@@ -1,13 +1,24 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { challengeSlice } from "./slices/challengeSlice";
-export const store = configureStore({
-	reducer: {
-		[challengeSlice
-			.reducerPath]: challengeSlice.reducer,
-	},
-//   middleware: (getDefaultMiddleware) => {
-//     getDefaultMiddleware().concat(challengeSlice.middleware);
-//   },
-});
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+import { authApi } from "./slices/authSlice";
+import authReducer from "./slices/authSlice";
+
+export const makeStore = () => {
+  return configureStore({
+    reducer: {
+      auth: authReducer,
+      [challengeSlice.reducerPath]: challengeSlice.reducer,
+      [authApi.reducerPath]: authApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware()
+        .concat(challengeSlice.middleware)
+        .concat(authApi.middleware),
+  });
+};
+
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<AppStore["getState"]>;
+export type AppDispatch = AppStore["dispatch"];
+
+
