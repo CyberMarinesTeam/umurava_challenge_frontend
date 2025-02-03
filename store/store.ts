@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { challengeSlice } from "./slices/challengeSlice";
-import { authApi } from "./slices/authSlice";
-import authReducer from "./slices/authSlice"; 
+import { challengeSlice } from "@/lib/redux/slices/challengeSlice";
+import { authApi } from "@/lib/redux/slices/authSlice";
+import authReducer  from "@/lib/redux/slices/authSlice";
 
 export const store = configureStore({
   reducer: {

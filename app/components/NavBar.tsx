@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store/store";
-import { clearCredentials } from "@/store/slices/authSlice"; 
+import { clearCredentials } from "@/lib/redux/slices/authSlice"; 
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
@@ -98,9 +98,11 @@ const NavBar = () => {
 
       {/* Join or Logout Button */}
       {currentUser === "guest" ? (
-        <button className="bg-[#041738] hover:opacity-80 transition-all ease-in-out duration-300 hidden md:block p-[14px] text-white text-[14px] rounded-[10px]">
+       <Link href={'/login'}>
+             <button className="bg-[#041738] hover:opacity-80 transition-all ease-in-out duration-300 hidden md:block p-[14px] text-white text-[14px] rounded-[10px]">
           Join the Program
         </button>
+       </Link>
       ) : (
         <button
           onClick={handleLogout}
