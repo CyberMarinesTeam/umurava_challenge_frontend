@@ -1,8 +1,5 @@
 "use client"
 
-import React, { useEffect } from "react";
-import SideBar from "@/app/components/SideBar";
-import Header from "@/app/components/Header";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 import Card from "@/app/components/Card";
@@ -16,7 +13,7 @@ const Page = () => {
  
   const { data} = useGetChallengesQuery();
   return (
-    <div className="excludedDashBoard px-12 py-4">
+    <div className="excludedDashBoard px-12 py-4 z-1">
       <div className="excludedDashBoard h-[56px] flex flex-col gap-[4px] mb-12 mt-[10px]">
         <h1 className="font-semibold text-[24px] leading-[28px]">
           Welcome back, {user?.username}
