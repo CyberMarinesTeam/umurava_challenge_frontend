@@ -48,12 +48,8 @@ const Page = () => {
       password,
     }).unwrap();
     if (signupResponse.status === 200) {
-      toast.success("Account created successfully");
-      setUserName("");
-      setRole("");
-      setEmail("");
-      setPassword("");
       setCurrent('signin')
+      toast.success("Account created successfully");    
     }
   };
   return (
