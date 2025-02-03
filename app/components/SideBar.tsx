@@ -52,12 +52,10 @@ const secondaryLinks = [
 ];
 
 const SideBar = () => {
-
   const dispatch = useDispatch();
   const router = useRouter();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  
   const currentPath = usePathname();
   const isActive = (path: string) => {
     if (currentPath === path) {
@@ -77,12 +75,11 @@ const SideBar = () => {
 
   const user = useSelector((state: RootState) => state.auth.user);
 
-
   useEffect(() => {
-    if(!user) {
-      router.push('/login')
+    if (!user) {
+      router.push("/login");
     }
-  })
+  });
 
   return (
     <div className="w-[272px] bg-[#2b71F0] text-white px-2 h-[1400px]">
@@ -133,27 +130,40 @@ const SideBar = () => {
               src="/profile2.webp"
               alt="profileImage"
               className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
-            /> 
+            />
             <div className="flex flex-col gap-1 w-[80%]">
-              <p className="text-[14px] font-normal leading-5">{user?.username}, PM</p>
+              <p className="text-[14px] font-normal leading-5">
+                {user?.username}, PM
+              </p>
               <p className="text-[14px] font-normal leading-5 w-[80%]">
-               {user?.email}
+                {user?.email}
               </p>
             </div>
           </div>
-          <FiLogOut className="h-[20px] w-[20px] "  onClick={handleLogout}/>
+          <FiLogOut
+            className="h-[20px] w-[20px] cursor-pointer"
+            onClick={handleLogout}
+          />
         </div>
       </div>
 
       {showLogoutModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 px-[10px] flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg text-black">
-            <p className="text-lg font-medium">Are you sure you want to logout?</p>
+            <p className=" font-medium text-[14px]">
+              Are you sure you want to logout?
+            </p>
             <div className="flex justify-end gap-4 mt-4">
-              <button className="px-4 py-2 bg-gray-300 rounded-md" onClick={() => setShowLogoutModal(false)}>
+              <button
+                className="px-4 py-2 bg-gray-300 text-[14px] rounded-md"
+                onClick={() => setShowLogoutModal(false)}
+              >
                 Cancel
               </button>
-              <button className="px-4 py-2 bg-red-500 text-white rounded-md" onClick={confirmLogout}>
+              <button
+                className="px-4 py-2 bg-red-500 hover:opacity-70 text-[14px] text-white rounded-md"
+                onClick={confirmLogout}
+              >
                 Logout
               </button>
             </div>

@@ -1,33 +1,15 @@
-// "use client";
-// import React from "react";
-// import { InfinitySpin, Bars } from "react-loader-spinner";
+"use client";
+import React from "react";
 
-// const Loading = () => {
-//   return (
-//     <div className="flex justify-center items-center h-screen">
-//       <Bars
-//         height="100"
-//         width="100"
-//         color="#2B71F0"
-//         ariaLabel="bars-loading"
-//         wrapperStyle={{}}
-//         wrapperClass=""
-//         visible={true}
-//       />
-//     </div>
-//   );
-// };
-
-// export default Loading;
-
-import React from 'react'
+import { HashLoader } from "react-spinners";
 
 const loading = () => {
-  return (
-    <div>
-      the page is loading  .................
+  return ( 
+    <div className="flex justify-center items-center h-screen">
+      <HashLoader size={80} color="#2B71F0" />
     </div>
-  )
-}
+  );
+};
 
-export default loading
+export default loading;
+

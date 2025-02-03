@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/lib/redux/store";
 import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
+import Link from "next/link";
 const Dashboard = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   const router = useRouter();
@@ -51,13 +52,16 @@ const Dashboard = () => {
         <div className="excluded">
           <p className="font-bold">Recent Challenges</p>
         </div>
-        <div className="text-blue-600 excluded flex flex-row items-center gap-2">
+        <Link
+          href="/guest/challenges"
+          className="text-blue-600 excluded flex flex-row items-center gap-2"
+        >
           <p>See All</p>
           <FaAngleRight />
-        </div>
+        </Link>
       </div>
-      <div className="flex excluded flex-row gap-[20px]">
-        {data?.map((challenge) => (
+      <div className="grid excluded grid-cols-3 gap-[20px]">
+        {data?.slice(0, 3).map((challenge) => (
           <ChallengeCard2 key={challenge._id} challenge={challenge} />
         ))}
       </div>
