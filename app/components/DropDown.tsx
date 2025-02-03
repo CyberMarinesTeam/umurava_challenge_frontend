@@ -1,35 +1,27 @@
-"use client";
-import { FaChevronDown } from "react-icons/fa6";
 import React, { useState } from "react";
 
 const DropDown = () => {
-  const [dropped, setDropped] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("This Day");
+
+  const handleSelectionChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    setSelectedOption(selectedValue);
+    try {
+      const response = await fetch(`/api/filter?range=${selectedValue}`);
+      const data = await response.json();
+    } catch (error) {
+      console.error("Error fetching filtered data:", error);
+    }
+  };
+
   return (
-    <div
-      className="flex z-50 flex-row gap-2 items-center relative"
-      onClick={() => setDropped(!dropped)}
-    >
-      <div>
-        <p>This Day</p>
-      </div>
-      <div>
-        <FaChevronDown />
-      </div>
-      <div
-        className={`absolute ${
-          dropped ? "flex" : "hidden"
-        } bg-[#F9FAFB] rounded-lg top-6 w-32 -right-8 p-1 border border-[#E4E7EC] flex-col`}
-      >
-        <div className="px-3 py-1 border border-[#FFFFFF00] hover:border-[#F9FAFB] hover:bg-[#f0f3f5] rounded-lg">
-          <p>This Week</p>
-        </div>
-        <div className="px-3 py-1 border border-[#FFFFFF00] hover:border-[#F9FAFB] hover:bg-[#f0f3f5] rounded-lg">
-          <p>Last 30 Days</p>
-        </div>
-        <div className="px-3 py-1 border border-[#FFFFFF00] hover:border-[#F9FAFB] hover:bg-[#f0f3f5] rounded-lg">
-          <p>Last 3 Months</p>
-        </div>
-      </div>
+    <div className="flex z-50 flex-row gap-2 items-center relative">
+      <select value={selectedOption} onChange={handleSelectionChange}>
+        <option value="This Day">This Day</option>
+        <option value="This Week">This Week</option>
+        <option value="Last 30 Days">Last 30 Days</option>
+        <option value="Last 3 Months">Last 3 Months</option>
+      </select>
     </div>
   );
 };

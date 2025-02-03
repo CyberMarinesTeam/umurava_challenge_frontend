@@ -4,13 +4,13 @@ import { FaArrowUpLong } from "react-icons/fa6";
 import DropDown from "./DropDown";
 const Card = ({
   width,
-  timeDescription,
+  timeRange,
   description,
   number,
   percentage,
 }: {
   width: number;
-  timeDescription: string;
+  timeRange: string;
   description: string;
   number: number;
   percentage: number;
