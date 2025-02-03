@@ -6,7 +6,8 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoPlaySharp } from "react-icons/io5";
 
 export default function Home() {
-  const slides = ["hello1", "hello2", "hello3", "This is a text-based slide!"];
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
   const courseNames = [
     "UI/UX Design",
     "Data Science",

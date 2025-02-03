@@ -6,7 +6,6 @@ import { AppStore, makeStore } from "@/lib/redux/store";
 import { useRef, Suspense } from "react";
 import { Provider } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import Loading from "./loading";
 import { ToastContainer, Flip } from "react-toastify";
 
 const work_Sans = Work_Sans({
@@ -30,24 +29,22 @@ export default function RootLayout({
   }
 
   return (
-    <Suspense fallback={<Loading />}>
-      <html lang="en">
-        <body className={`${work_Sans.className}  antialiased`}>
-          <Provider store={storeRef.current}>
-            <ToastContainer
-              position="top-right"
-              hideProgressBar={false}
-              newestOnTop
-              closeOnClick
-              rtl={false}
-              pauseOnHover
-              theme="dark"
-              transition={Flip}
-            />
-            {children}
-          </Provider>
-        </body>
-      </html>
-    </Suspense>
+    <html lang="en">
+      <body className={`${work_Sans.className}  antialiased`}>
+        <Provider store={storeRef.current}>
+          <ToastContainer
+            position="top-right"
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnHover
+            theme="dark"
+            transition={Flip}
+          />
+          {children}
+        </Provider>
+      </body>
+    </html>
   );
 }

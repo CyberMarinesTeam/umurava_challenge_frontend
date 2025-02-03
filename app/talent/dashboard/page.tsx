@@ -13,18 +13,17 @@ import { RootState } from "@/lib/redux/store";
 import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 const Dashboard = () => {
   const user = useSelector((state: RootState) => state.auth.user);
-  const router = useRouter()
+  const router = useRouter();
 
-    // ✅ Redirect inside useEffect (AFTER rendering)
-    useEffect(() => {
-      if (!user) {
-        router.push("/login");
-      }
-      console.log(user)
-    }, [user, router]); 
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+    console.log(user);
+  }, [user, router]);
 
-  const {data} = useGetChallengesQuery();
- 
+  const { data } = useGetChallengesQuery();
+
   console.log("data is found => ", data);
 
   return (
@@ -58,9 +57,9 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex excluded flex-row gap-[20px]">
-      {data?.map((challenge) => (
-        <ChallengeCard2 key={challenge._id} challenge={challenge} />
-      ))}
+        {data?.map((challenge) => (
+          <ChallengeCard2 key={challenge._id} challenge={challenge} />
+        ))}
       </div>
     </div>
   );

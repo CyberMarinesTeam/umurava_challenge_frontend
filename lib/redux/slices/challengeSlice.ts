@@ -13,6 +13,8 @@ export type ChallengeType = {
   deliverables: string[];
   category: string;
   status:string;
+  seniority_level:string;
+  skills_needed:string[];
 };
 
 export const challengeSlice = createApi({

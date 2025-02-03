@@ -32,11 +32,13 @@ const Page = () => {
           user: loginResponse.user,
         })
       );
-      toast.success("Logged in successfully");
+
       if (loginResponse.user.roles == "talent") {
         router.push("/talent/dashboard");
+        toast.success("Logged in successfully");
       } else {
         router.push("/admin/dashboard");
+        toast.success("Logged in successfully");
       }
     }
   };
@@ -50,12 +52,8 @@ const Page = () => {
       password,
     }).unwrap();
     if (signupResponse.status === 200) {
-      toast.success("Account created successfully");
-      setUserName("");
-      setRole("");
-      setEmail("");
-      setPassword("");
       setCurrent("signin");
+      toast.success("Account created successfully");
     }
   };
   return (

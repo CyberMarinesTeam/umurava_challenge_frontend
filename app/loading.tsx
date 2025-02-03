@@ -2,12 +2,12 @@
 import React from "react";
 import { HashLoader } from "react-spinners";
 
-const Loading = () => {
+const loading = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <HashLoader size={80} color="#2B71F0"/>
+      <HashLoader size={80} color="#2B71F0" />
     </div>
   );
 };
 
-export default Loading;
+export default loading;

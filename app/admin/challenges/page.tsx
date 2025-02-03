@@ -10,6 +10,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import {useGetChallengesQuery} from '@/lib/redux/slices/challengeSlice'
 import { IoDocumentTextOutline } from "react-icons/io5";
 import Link from "next/link";
+import ChallengeCard2 from "@/app/components/ChallengeCard2";
 
 
 const Challenges = () => {
@@ -169,8 +170,8 @@ const Challenges = () => {
         </div>
       </div>
       <div className="excluded grid pb-[40px] border-t-[0.5px] border-gray-200 pt-[7px] place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {paginatedchallenges?.map((card, index) => (
-          <Fragment key={index}>{card}</Fragment>
+        {paginatedchallenges?.map((challenge, index) => (
+           <ChallengeCard2 key={challenge._id} challenge={challenge} />
         ))}
       </div>
       <div className="flex px-[40px] pr-[100px] flex-row ml-[30px] mb-[70px]  w-full space-x-[10px] font-bold text-white justify-between max-md:ml-[70px] items-center text-[10px]">
