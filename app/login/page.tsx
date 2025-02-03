@@ -51,10 +51,9 @@ const Page = () => {
       email,
       password,
     }).unwrap();
-    if (signupResponse.status === 200) {
       setCurrent("signin");
-      toast.success("Account created successfully");
-    }
+      console.log(signupResponse)
+   
   };
   return (
     <div className="flex flex-row items-center justify-center w-full pt-[50px]">
