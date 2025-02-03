@@ -1,5 +1,6 @@
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
+import Link from "next/link";
 import React from "react";
 
 const Page = () => {
@@ -28,9 +29,9 @@ const Page = () => {
                 and hackathons.
               </p>
             </div>
-            <button className="bg-[#2B71f0] mt-[40px] max-md:w-[170px] max-md:text-[13px] w-[207px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
+            <Link href="/login" className="bg-[#2B71f0] flex justify-center items-center mt-[40px] max-md:w-[170px] max-md:text-[13px] w-[207px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
               Partner with us
-            </button>
+            </Link>
           </div>
           <img
             src="/girls.webp"
@@ -239,9 +240,9 @@ const Page = () => {
               <h2 className="font-bold text-[32px] text-white max-md:text-[20px] max-md:w-[320px] w-[444px] text-center">
                 Ready to transform your Learning Institutions
               </h2>
-              <button className="w-[230px] max-md:w-[200px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0]">
+              <Link href="/login" className="w-[230px] flex justify-center items-center max-md:w-[200px] mt-[30px] font-semibold h-[56px] rounded-[10px] bg-white text-[#2b71f0]">
                 Let's Partner
-              </button>
+              </Link>
             </div>
           </div>
         </section>
