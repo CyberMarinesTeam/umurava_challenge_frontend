@@ -1,33 +1,9 @@
-// "use client";
-// import React from "react";
-// import { InfinitySpin, Bars } from "react-loader-spinner";
+"use client";
+import React from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
-// const Loading = () => {
-//   return (
-//     <div className="flex justify-center items-center h-screen">
-//       <Bars
-//         height="100"
-//         width="100"
-//         color="#2B71F0"
-//         ariaLabel="bars-loading"
-//         wrapperStyle={{}}
-//         wrapperClass=""
-//         visible={true}
-//       />
-//     </div>
-//   );
-// };
+const Loading = () => {
+  return <div className="flex justify-center items-center h-screen"></div>;
+};
 
-// export default Loading;
-
-import React from 'react'
-
-const loading = () => {
-  return (
-    <div>
-      fgchjk
-    </div>
-  )
-}
-
-export default loading
+export default Loading;

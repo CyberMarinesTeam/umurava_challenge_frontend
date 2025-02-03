@@ -34,14 +34,17 @@ export default function RootLayout({
         <Provider store={storeRef.current}>
           <ToastContainer
             position="top-right"
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnHover
-            theme="dark"
-            transition={Flip}
+            autoClose={5000} // Auto close after 5 seconds for better UX
+            hideProgressBar={false} // Keep progress bar visible for clarity
+            newestOnTop={true} // Display newest notifications first
+            closeOnClick // Enable closing on click
+            rtl={false} // Keep left-to-right text direction
+            pauseOnHover // Allow pause on hover for better readability
+            draggable // Enable dragging for flexibility
+            theme="dark" // Maintain dark theme for consistency
+            transition={Flip} // Apply smooth flip transition
           />
+
           {children}
         </Provider>
       </body>

@@ -1,8 +1,26 @@
+"use client";
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const Page = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    };
+
+    // Listen for route changes in Next.js
+    window.addEventListener("beforeunload", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleRouteChange);
+    };
+  }, []);
+
   return (
     <main>
       <NavBar />
@@ -30,6 +48,7 @@ const Page = () => {
           </div>
           {/* <video className="w-auto h-[390px] rounded-[20px]" autoPlay loop> */}
           <video
+            ref={videoRef}
             className="lg:w-auto h-[320px] max-md:w-[371px] max-md:h-auto max-md:rounded-[10px] rounded-[20px]"
             controls
             autoPlay
