@@ -16,53 +16,13 @@ import { clearCredentials } from "@/lib/redux/slices/authSlice";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/lib/redux/store";
 
-const links = [
-  {
-    label: "Dashboard",
-    icon: <GoHome className="text-[20px]" />,
-    path: "/talent/dashboard",
-  },
-  {
-    label: "Challenges",
-    icon: <IoDocumentTextOutline className="text-[20px]" />,
-    path: "/talent/challenges",
-  },
-  {
-    label: "Community",
-    icon: <IoPersonAddOutline className="text-[20px]" />,
-    path: "/talent/community",
-  },
-];
-
-const secondaryLinks = [
-  {
-    label: "Settings",
-    icon: <IoSettingsOutline className="text-[20px]" />,
-    path: "/talent/dashboard",
-  },
-  {
-    label: "Help Center",
-    icon: <IoHeadsetOutline className="text-[20px]" />,
-    path: "/talent/challenges",
-  },
-  {
-    label: "Refer family & friends",
-    icon: <IoGiftOutline className="text-[20px]" />,
-    path: "/talent/community",
-  },
-];
-
 const TalentSideBar = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const currentPath = usePathname();
-  const isActive = (path: string) => {
-    if (currentPath === path) {
-      return true;
-    }
-  };
+  const isActive = (path: string) => currentPath === path;
 
   const handleLogout = () => {
     setShowLogoutModal(true); // Show confirmation modal
@@ -87,52 +47,95 @@ const TalentSideBar = () => {
         />
         <div className="mb-[473px] mt-[30px]">
           <ul>
-            {links.map((link, index) => (
-              <Link
-                key={index}
-                href={link.path}
-                className={`mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm ${
-                  isActive(link.path) ? "bg-white text-blue-600" : ""
-                }`}
-              >
-                {link.icon}
-                <span className="text-[14px] font-normal leading-5">
-                  {link.label}
-                </span>
-              </Link>
-            ))}
+            <Link
+              href="/talent/dashboard"
+              className={`mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm ${
+                isActive("/talent/dashboard") ? "bg-white text-blue-600" : ""
+              }`}
+            >
+              <GoHome className="text-[20px]" />
+              <span className="text-[14px] font-normal leading-5">
+                Dashboard
+              </span>
+            </Link>
+
+            <Link
+              href="/talent/challenges"
+              className={`mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm ${
+                isActive("/talent/challenges") ? "bg-white text-blue-600" : ""
+              }`}
+            >
+              <IoDocumentTextOutline className="text-[20px]" />
+              <span className="text-[14px] font-normal leading-5">
+                Challenges
+              </span>
+            </Link>
+
+            <Link
+              href="/talent/community"
+              className={`mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm ${
+                isActive("/talent/community") ? "bg-white text-blue-600" : ""
+              }`}
+            >
+              <IoPersonAddOutline className="text-[20px]" />
+              <span className="text-[14px] font-normal leading-5">
+                Community
+              </span>
+            </Link>
           </ul>
         </div>
+
         <div className="mb-[10px] mt-[10px]">
           <ul>
-            {secondaryLinks.map((link, index) => (
-              <Link
-                key={index}
-                href={link.path}
-                className="mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
-              >
-                {link.icon}
-                <span className="text-[14px] font-normal leading-5">
-                  {link.label}
-                </span>
-              </Link>
-            ))}
+            <Link
+              href="/talent/dashboard"
+              className="mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
+            >
+              <IoSettingsOutline className="text-[20px]" />
+              <span className="text-[14px] font-normal leading-5">
+                Settings
+              </span>
+            </Link>
+
+            <Link
+              href="/talent/challenges"
+              className="mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
+            >
+              <IoHeadsetOutline className="text-[20px]" />
+              <span className="text-[14px] font-normal leading-5">
+                Help Center
+              </span>
+            </Link>
+
+            <Link
+              href="/talent/community"
+              className="mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
+            >
+              <IoGiftOutline className="text-[20px]" />
+              <span className="text-[14px] font-normal leading-5">
+                Refer family & friends
+              </span>
+            </Link>
           </ul>
         </div>
-        <div className="flex px-[12px] pr-[10px] items-center py-[8px] mt-4 gap-1 w-[272px] h-[80px]">
-          <div className="h-[40px] flex gap-[12px] mr-[18px]">
+
+        <div className="flex flex-col justify-between px-[28px] pr-[10px] items-center py-[8px] mt-4 gap-1  w-[98%] h-auto">
+          <div className="h-[40px] flex gap-[12px]  mr-[24px] flex-wrap">
             <img
               src="/profile2.webp"
               alt="profileImage"
               className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
             />
-            <div className="flex flex-col gap-1">
-              <p className="text-[12px] font-normal leading-5">
+            <div className="flex flex-col gap-1 w-[80%]">
+              <p className="text-[14px] font-normal leading-5">
                 {user?.username}, PM
               </p>
-              <p className="text-[12px] font-normal leading-5">{user?.email}</p>
+              <p className="text-[14px] font-normal leading-5 w-[80%]">
+                {user?.email}
+              </p>
             </div>
           </div>
+
           <FiLogOut
             className="h-[20px] w-[20px] cursor-pointer"
             onClick={handleLogout}

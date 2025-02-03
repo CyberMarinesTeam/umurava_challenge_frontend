@@ -13,7 +13,7 @@ const TalentLayout = ({ children }: RNode) => {
     setIsOpened(!isOpened);
   };
   return (
-    <div className="w-full excluded flex flex-row">
+    <div className="w-full bg-slate-50 excluded flex flex-row">
       <div className="excluded">
         <TalentSideBar toggleModal={launchModal} />
       </div>
