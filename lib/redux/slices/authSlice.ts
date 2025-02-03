@@ -69,11 +69,8 @@ const authSlice = createSlice({
     setCredentials: (state, action: PayloadAction<LoginResponseDto>) => {
       state.token = action.payload.token;
       state.user = action.payload.user;
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("token", action.payload.token);
-        localStorage.setItem("user", JSON.stringify(action.payload.user));
-      }
+      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
     },
     clearCredentials: (state) => {
       state.token = null;
