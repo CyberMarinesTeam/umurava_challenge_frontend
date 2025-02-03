@@ -51,9 +51,8 @@ const Page = () => {
       email,
       password,
     }).unwrap();
-      setCurrent("signin");
-      console.log(signupResponse)
-   
+    setCurrent("signin");
+    console.log(signupResponse);
   };
   return (
     <div className="flex flex-row items-center justify-center w-full pt-[50px]">

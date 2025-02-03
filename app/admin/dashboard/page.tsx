@@ -22,7 +22,7 @@ const Page = () => {
           Welcome back, {user?.username}
         </h1>
         <p className="text-[16px] leading-[23px] font-normal text-[#475367]">
-          Build Work Exprience through Skills Challenges
+          Build Work Experience through Skills Challenges
         </p>
       </div>
       <div className="excludedDashBoard relative h-[316px] ">

@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const Header = () => {
   const [notificationShow, setNotificationShow] = useState(false);
-
   return (
     <div className="flex relative items-center justify-between p-4 bg-white border-[#E4E7EC]">
       {/* Search Bar */}
@@ -17,21 +16,27 @@ const Header = () => {
           className="text-gray-600 focus:outline-none bg-gray-100 w-full"
         />
       </div>
-
       {/* Right Section */}
       <div className="flex items-center space-x-4 relative">
         {/* Notification Icon */}
-        <div className="">
+        <div className="relative">
           <span
             className="w-[40px] h-[40px] rounded-full grid place-items-center bg-gray-200 cursor-pointer"
-            onClick={() => setNotificationShow(!notificationShow)}
+            onClick={() => {
+              console.log("Notification icon clicked");
+              setNotificationShow(!notificationShow);
+            }}
           >
             <IoMdNotificationsOutline className="text-gray-600 text-xl" />
           </span>
           {/* Notification Modal */}
           {notificationShow && (
-            <div className="messageDiv absolute dashDiv z-50 top-12 h-[400px] overflow-y-auto right-0 w-[400px] bg-white shadow border-[1.5px] border-[#E4E7EC] rounded-lg p-4 ">
-              <div className="flex justify-between items-center border-b pb-2">
+            <div
+              className={`messageDiv h-[400px] z-50 overflow-y-auto w-[400px] bg-white shadow border-[1.5px] border-[#E4E7EC] rounded-lg p-4 absolute right-20 ${
+                notificationShow ? "block" : "hidden"
+              }`}
+            >
+              <div className="flex justify-between items-center border-b pb-2 absolute z-50">
                 <h3 className="text-gray-800 font-semibold">Notifications</h3>
                 <button
                   className="text-gray-500 text-sm"
@@ -123,7 +128,6 @@ const Header = () => {
             </div>
           )}
         </div>
-
         {/* User Profile Image */}
         <img
           src="/profile2.webp"
