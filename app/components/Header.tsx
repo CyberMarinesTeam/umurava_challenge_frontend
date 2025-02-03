@@ -9,15 +9,12 @@ import { RootState } from "@/lib/redux/store";
 const SOCKET_SERVER_URL = "ws://localhost:4000"; // Change to your backend URL
 
 const Header = () => {
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<{ message: string; isRead: boolean }[]>([]);
   const [notificationShow, setNotificationShow] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const socket = io(SOCKET_SERVER_URL, { transports: ["websocket"] });
 
   const user = useSelector((state: RootState) => state.auth.user);
-
-
- 
 
   useEffect(() => {
     console.log(user)
@@ -28,6 +25,7 @@ const Header = () => {
 
     // Listen for incoming notifications
     socket.on("notification", (message) => {
+      console.log("received message", message)
       setNotifications((prev) => [...prev, { message, isRead: false }]);
       setUnreadCount((prev) => prev + 1);
     });
