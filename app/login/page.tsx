@@ -33,14 +33,13 @@ const Page = () => {
         })
       );
 
-     if(loginResponse.user.roles == "talent"){
-      router.push("/talent/dashboard");
-      toast.success("Logged in successfully");
-     }else {
-      router.push("/admin/dashboard");
-      toast.success("Logged in successfully");
-     }
-
+      if (loginResponse.user.roles == "talent") {
+        router.push("/talent/dashboard");
+        toast.success("Logged in successfully");
+      } else {
+        router.push("/admin/dashboard");
+        toast.success("Logged in successfully");
+      }
     }
   };
   const handleSignupSubmit = async (event: React.FormEvent) => {
@@ -53,9 +52,8 @@ const Page = () => {
       password,
     }).unwrap();
     if (signupResponse.status === 200) {
-      setCurrent('signin')
-      toast.success("Account created successfully");    
-
+      setCurrent("signin");
+      toast.success("Account created successfully");
     }
   };
   return (

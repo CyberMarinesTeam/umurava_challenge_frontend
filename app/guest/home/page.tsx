@@ -6,6 +6,8 @@ import NavBar from "@/app/components/NavBar";
 import Link from "next/link";
 
 export default function Home() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
   // const slides = ["hello1", "hello2", "hello3", "This is a text-based slide!"];
   const courseNames = [
     "UI/UX Design",
