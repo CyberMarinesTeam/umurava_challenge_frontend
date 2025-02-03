@@ -5,7 +5,7 @@ import {
   useLoginMutation,
   useSignupMutation,
 } from "@/lib/redux/slices/authSlice";
-import { toast } from "react-toastify";
+import { Flip, toast } from "react-toastify";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -35,7 +35,17 @@ const Page = () => {
 
       if (loginResponse.user.roles == "talent") {
         router.push("/talent/dashboard");
-        toast.success("Logged in successfully");
+        toast.success("Logged in successfully", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          rtl: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+          transition: Flip,
+        });
       } else {
         router.push("/admin/dashboard");
         toast.success("Logged in successfully");
@@ -51,9 +61,8 @@ const Page = () => {
       email,
       password,
     }).unwrap();
-      setCurrent("signin");
-      console.log(signupResponse)
-   
+    setCurrent("signin");
+    console.log(signupResponse);
   };
   return (
     <div className="flex flex-row items-center justify-center w-full pt-[50px]">
