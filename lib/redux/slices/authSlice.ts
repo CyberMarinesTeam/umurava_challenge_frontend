@@ -1,3 +1,5 @@
+"use client";
+
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -46,9 +48,9 @@ interface AuthState {
 }
 
 const loadAuthState = (): AuthState => {
-  // if (typeof window === "undefined") {
-  //   return { token: null, user: null };
-  // }
+  if (typeof window === "undefined") {
+    return { token: null, user: null };
+  }
 
   const storedToken = localStorage.getItem("token");
   const storedUser = localStorage.getItem("user");

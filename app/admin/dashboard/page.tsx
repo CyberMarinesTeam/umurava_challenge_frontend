@@ -48,7 +48,7 @@ const Page = () => {
           <h1 className="text-[18px] leading-[26px] font-semibold text-[#101928]">
             Recent Challenges
           </h1>
-          <button className="text-[#2B71F0] text-[13px] font-normal flex items-center gap-2 h-[14px]">
+          <button className="text-[#2B71F0] text-[13px] font-normal flex items-center gap-2 h-[14px]" onClick={() => router.push("/admin/challenges")}>
             See all <FaChevronRight />
           </button>
         </div>

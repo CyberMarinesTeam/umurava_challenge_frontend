@@ -48,15 +48,12 @@ const Page = () => {
         });
       } else {
         router.push("/admin/dashboard");
-        toast.success("Logged in successfully", {
-          autoClose: 300,
-        });
+         alert("Logged in successfully");
       }
     }
   };
   const handleSignupSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(roles, username, email, password);
     const signupResponse = await signup({
       username,
       roles,
