@@ -35,20 +35,8 @@ const Page = () => {
 
       if (loginResponse.user.roles == "talent") {
         router.push("/talent/dashboard");
-        toast.success("Logged in successfully", {
-          position: "top-right",
-          autoClose: 300,
-          hideProgressBar: false,
-          closeOnClick: true,
-          rtl: false,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-          transition: Flip,
-        });
       } else {
         router.push("/admin/dashboard");
-
          alert("Logged in successfully");
       }
     }
