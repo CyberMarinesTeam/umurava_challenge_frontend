@@ -35,6 +35,7 @@ const Page = () => {
 
       if (loginResponse.user.roles == "talent") {
         router.push("/talent/dashboard");
+        alert("Logged in successfully");
       } else {
         router.push("/admin/dashboard");
          alert("Logged in successfully");
