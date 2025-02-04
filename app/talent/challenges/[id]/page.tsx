@@ -48,7 +48,7 @@ const Page = () => {
     if (statusData) {
       setShowStarted(statusData.status);
     }
-  }, [statusData]);
+  }, []);
 
   // Fetch challenge data
   useEffect(() => {
@@ -250,6 +250,7 @@ const Page = () => {
               ) : (
                 <button
                   onClick={async () => {
+                    setShowStarted(true);
                     await createStartChallenge({
                       userId: user?.id,
                       challengeId: params.id,

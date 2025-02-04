@@ -22,7 +22,7 @@ export const participantsApi = createApi({
     }),
     getChallengesByUserWithStatus: builder.query<
       Participant[],
-      { userId: string; status: string }
+      { userId: string | undefined; status: string }
     >({
       query: ({ userId, status }) => `/${userId}/${status}`,
     }),

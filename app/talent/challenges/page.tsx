@@ -9,37 +9,63 @@ import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
+import { useGetChallengesByUserWithStatusQuery } from "@/lib/redux/slices/participantsSlice";
 
 const Challenges = () => {
+  const [openCount, setOpenCount] = useState(0);
+  const [allCount, setAllCount] = useState(0);
+  const [ongoingCount, setOngoingCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
 
+  const { data: allChallenges } = useGetChallengesQuery();
+  const { data: openChallenges } = useGetChallengesByUserWithStatusQuery({
+    userId: user?.id,
+    status: "open",
+  });
+  const { data: ongoingChallenges } = useGetChallengesByUserWithStatusQuery({
+    userId: user?.id,
+    status: "ongoing",
+  });
+  const { data: completedChallenges } = useGetChallengesByUserWithStatusQuery({
+    userId: user?.id,
+    status: "completed",
+  });
+
+  // Redirect if user is not logged in
   useEffect(() => {
     if (!user) {
       router.push("/login");
     }
   }, [user, router]);
 
-  const { data } = useGetChallengesQuery();
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  // Update counts when data changes
+  useEffect(() => {
+    if (allChallenges?.length) setAllCount(allChallenges.length);
+    if (openChallenges?.length) setOpenCount(openChallenges.length);
+    if (ongoingChallenges?.length) setOngoingCount(ongoingChallenges.length);
+    if (completedChallenges?.length)
+      setCompletedCount(completedChallenges.length);
+  }, [allChallenges, openChallenges, ongoingChallenges, completedChallenges]);
 
-  const totalPages = data ? Math.ceil(data.length / itemsPerPage) : 1;
+  const totalPages = allChallenges
+    ? Math.ceil(allChallenges.length / itemsPerPage)
+    : 1;
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedData = data
-    ? data.slice(startIndex, startIndex + itemsPerPage)
+  const paginatedData = allChallenges
+    ? allChallenges.slice(startIndex, startIndex + itemsPerPage)
     : [];
 
   const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
   const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
   return (
@@ -60,22 +86,22 @@ const Challenges = () => {
       <div className="py-[16px] excluded flex w-full items-center">
         <div className="flex excluded justify-start gap-[10px] border-b pb-5 w-full">
           <SmallStatusCard
-            count={0}
+            count={allCount}
             icon={<FiFileText />}
             text="All Challenges"
           />
           <SmallStatusCard
-            count={0}
+            count={completedCount}
             icon={<FiFileText />}
             text="Completed Challenge"
           />
           <SmallStatusCard
-            count={0}
+            count={openCount}
             icon={<FiFileText />}
             text="Open Challenge"
           />
           <SmallStatusCard
-            count={0}
+            count={ongoingCount}
             icon={<FiFileText />}
             text="Ongoing Challenge"
           />
