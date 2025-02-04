@@ -18,11 +18,10 @@ import { useRouter } from "next/navigation";
 const Challenges = () => {
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
-  const {data} = useGetChallengesQuery();
+  const { data } = useGetChallengesQuery();
 
-
-  if(data) {
-    console.log("data=> " ,data)
+  if (!data) {
+    console.log("data=> date not found");
   }
 
   useEffect(() => {
@@ -32,8 +31,7 @@ const Challenges = () => {
   }, [user, router]);
 
   const [CurrentPage, setCurrent] = useState(1);
-  
- 
+
   const totalNumberElements = 6;
   const lastIndex = CurrentPage * totalNumberElements;
   const firstIndex = lastIndex - totalNumberElements;
@@ -52,7 +50,6 @@ const Challenges = () => {
       setCurrent(CurrentPage - 1);
     }
   };
-
 
   return (
     <main className="px-8">
@@ -124,9 +121,15 @@ const Challenges = () => {
         </div>
       </div>
       <div className="excluded grid pb-[40px] border-t-[0.5px] border-gray-200 pt-[7px] place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {paginatedchallenges?.map((challenge, index) => (
-          <ChallengeCard2 key={challenge._id} challenge={challenge} />
-        ))}
+        {paginatedchallenges && paginatedchallenges.length > 0 ? (
+          paginatedchallenges?.map((challenge, index) => (
+            <ChallengeCard2 key={challenge._id} challenge={challenge} />
+          ))
+        ) : (
+          <div>
+            <h1>No Challenges found yet</h1>
+          </div>
+        )}
       </div>
       <div className="flex px-[40px] pr-[100px] flex-row ml-[30px] mb-[70px]  w-full space-x-[10px] font-bold text-white justify-between max-md:ml-[70px] items-center text-[10px]">
         <button

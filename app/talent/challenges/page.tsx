@@ -108,9 +108,13 @@ const Challenges = () => {
         </div>
       </div>
       <div className="flex excluded flex-wrap gap-[20px]">
-        {paginatedData.map((challenge) => (
-          <ChallengeCard2 key={challenge._id} challenge={challenge} />
-        ))}
+        {paginatedData.length > 0 ? (
+          paginatedData.map((challenge) => (
+            <ChallengeCard2 key={challenge._id} challenge={challenge} />
+          ))
+        ) : (
+          <h1>No challenges found</h1>
+        )}
       </div>
       <div className="flex excluded justify-between py-10 px-10">
         <button

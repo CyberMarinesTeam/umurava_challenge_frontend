@@ -54,9 +54,16 @@ const Page = () => {
         </div>
 
         <div className="excludedDashBoard gap-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {data?.slice(0, 3).map((challenge) => (
-            <ChallengeCard2 key={challenge._id} challenge={challenge} />
-          ))}
+          {data && data.length > 0 ? (
+            data?.slice(0, 3).map((challenge) => (
+              <ChallengeCard2 key={challenge._id} challenge={challenge} />
+            ))
+          ) : (
+            <div>
+              <h1>No Challenges Found yet</h1>
+            </div>
+
+          ) }
         </div>
       </div>
     </div>

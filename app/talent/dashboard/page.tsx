@@ -61,9 +61,15 @@ const Dashboard = () => {
         </Link>
       </div>
       <div className="grid excluded grid-cols-3 gap-[20px]">
-        {data?.slice(0, 3).map((challenge) => (
+       {data && data?.length > 0 ? (
+         data?.slice(0, 3).map((challenge) => (
           <ChallengeCard2 key={challenge._id} challenge={challenge} />
-        ))}
+        ))
+       ) : (
+         <div>
+          <h1>We have any Recents challenges currently</h1>
+         </div>
+       ) }
       </div>
     </div>
   );
