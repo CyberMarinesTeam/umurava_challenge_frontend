@@ -8,6 +8,7 @@ import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import Card from "@/app/components/Card";
 import Card2 from "@/app/components/Card2";
 import { FaChevronRight } from "react-icons/fa6";
+import Link from "next/link";
 
 const Page = () => {
   const router = useRouter();
@@ -48,9 +49,9 @@ const Page = () => {
           <h1 className="text-[18px] leading-[26px] font-semibold text-[#101928]">
             Recent Challenges
           </h1>
-          <button className="text-[#2B71F0] text-[13px] font-normal flex items-center gap-2 h-[14px]">
-            See all <FaChevronRight />
-          </button>
+          <Link href="/guest/challenges" className="text-[#2B71F0] text-[13px] font-normal flex items-center gap-2 h-[14px]">
+            <span>See all </span> <FaChevronRight />
+          </Link>
         </div>
 
         <div className="excludedDashBoard gap-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
