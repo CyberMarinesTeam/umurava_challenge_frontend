@@ -7,7 +7,7 @@ import React, { Fragment, useEffect, useState } from "react";
 // import ChallengeCard2 from "@/app/components/ChallengeCard2";
 // import { MdOutlineNavigateNext } from "react-icons/md";
 // import { GrFormPrevious } from "react-icons/gr";
-import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
+import { ChallengeType, useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import Link from "next/link";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
@@ -18,7 +18,10 @@ import { useRouter } from "next/navigation";
 const Challenges = () => {
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
+
   const { data } = useGetChallengesQuery();
+  const globalSearchQuery = useSelector((state: RootState) => state.search.query);
+  const [filteredChallenges, setFilteredChallenges] = useState<ChallengeType[]>([]);
 
   if (!data) {
     console.log("data=> date not found");
@@ -30,13 +33,21 @@ const Challenges = () => {
     }
   }, [user, router]);
 
+  useEffect(() => {
+    if (data) {
+      const filtered = data.filter((challenge) =>
+        challenge.title.toLowerCase().includes(globalSearchQuery.toLowerCase())
+      );
+      setFilteredChallenges(filtered);
+    }
+  }, [data, globalSearchQuery]);
   const [CurrentPage, setCurrent] = useState(1);
 
   const totalNumberElements = 6;
   const lastIndex = CurrentPage * totalNumberElements;
   const firstIndex = lastIndex - totalNumberElements;
-  const paginatedchallenges = data?.slice(firstIndex, lastIndex);
-  const totalNumberPages = Math.ceil(data?.length / totalNumberElements);
+  const paginatedchallenges = filteredChallenges?.slice(firstIndex, lastIndex);
+  const totalNumberPages = Math.ceil(filteredChallenges?.length / totalNumberElements);
   const handleNext = () => {
     if (CurrentPage < totalNumberPages) {
       setCurrent(CurrentPage + 1);
