@@ -1,22 +1,50 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { FaArrowUpLong } from "react-icons/fa6";
 import { IoPeopleOutline } from "react-icons/io5";
 import DropDown from "./DropDown";
+import { useGetParticipantsByDaysAgoQuery } from "@/lib/redux/slices/participantsSlice";
 
 const Card2 = ({
   width,
-  timeRange,
   description,
-  number,
-  percentage,
 }: {
   width: number;
-  timeRange: string;
   description: string;
   number: number;
   percentage: number;
 }) => {
   const [selectedOption, setSelectedOption] = useState("This Day");
+
+ const [number, setNumber] = useState(0);
+ const [percentage, setPercentage] = useState(0);
+ 
+  const daysAgoMapping: Record<string, number> = {
+    "This Day": 1,
+    "This Week": 7,
+    "Last 30 Days": 30,
+    "Last 3 Months": 90,
+  };
+
+  const selectedDays = daysAgoMapping[selectedOption];
+
+   const {data: totalParticipants= [], isLoading: allLoading} = useGetParticipantsByDaysAgoQuery(selectedDays)
+
+
+  useEffect(() => {
+    if (!allLoading) {
+      let filteredCount = 0;
+
+      // Decide which query data to use based on description
+     
+       if (description === "Total Participants") {
+        filteredCount = totalParticipants.length;
+      }
+
+      const totalCount = totalParticipants.length;
+      setNumber(filteredCount);
+      setPercentage(totalCount > 0 ? Math.round((filteredCount / totalCount) * 100) : 0);
+    }
+  }, [selectedOption, totalParticipants]);
 
   const handleSelectionChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
@@ -34,7 +62,7 @@ const Card2 = ({
       className={`relative bg-white rounded-lg border-[1.5px] border-[#E4E7EC] -z-10 px-6  py-[0px] h-[150px] w-[${width}]`}
     >
       <div className="absolute top-2 right-2 flex items-center gap-1  h-[17px] font-normal text-[12px] leading-[18px] text-[#98A2B3]">
-      <select value={selectedOption} onChange={handleSelectionChange}>
+      <select title="." value={selectedOption} onChange={handleSelectionChange}>
         <option value="This Day">This Day</option>
         <option value="This Week">This Week</option>
         <option value="Last 30 Days">Last 30 Days</option>

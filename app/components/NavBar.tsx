@@ -4,12 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
-<<<<<<< HEAD
-// import { useSelector, useDispatch } from "react-redux";
-// import { RootState } from "@/store/store";
-// import { clearCredentials } from "@/lib/redux/slices/authSlice";
-=======
->>>>>>> 5586f951975554d8cb85414fdf6150f49931b28c
+
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
@@ -25,23 +20,8 @@ const NavBar = () => {
   const currentPath = usePathname();
   const [showMenu, setShowMenu] = useState(false);
 
-<<<<<<< HEAD
-  const isActive = (path: string) => {
-    return currentPath === path;
-  };
 
-
-
-  const links = [
-    { label: "Home", path: "/" },
-    { label: "Challenge & Hackathons", path: "/guest/challenges" },
-    { label: "For Learning Institutions", path: "/guest/community" },
-    { label: "About Us", path: "/guest/about" },
-    { label: "Contact Us", path: "/guest/contact" },
-  ];
-=======
   const isActive = (path: string) => currentPath === path;
->>>>>>> 5586f951975554d8cb85414fdf6150f49931b28c
 
   return (
     <nav
@@ -57,20 +37,7 @@ const NavBar = () => {
 
       {/* Desktop Navigation */}
       <ul className="hidden sm:text-sm md:flex flex-row text-gray-700 space-x-[40px]">
-<<<<<<< HEAD
-        {links.map((item: ItemType, index: number) => (
-          <li key={index}>
-            <Link
-              href={item.path}
-              className={`hover:text-[#2B71f0] ${
-                isActive(item.path) ? "text-[#2B71f0]" : ""
-              }`}
-            >
-              {item.label}
-            </Link>
-          </li>
-        ))}
-=======
+
         <li>
           <Link
             href="/"
@@ -121,7 +88,7 @@ const NavBar = () => {
             Contact Us
           </Link>
         </li>
->>>>>>> 5586f951975554d8cb85414fdf6150f49931b28c
+
       </ul>
 
       {/* Mobile Menu Button */}
@@ -146,19 +113,7 @@ const NavBar = () => {
       {showMenu && (
         <div className="md:hidden z-50 bg-white flex flex-col space-y-4 items-center pt-[20px] justify-between shadow-md absolute top-[100px] left-0 right-0">
           <ul className="flex flex-col space-y-4 text-gray-700">
-<<<<<<< HEAD
-            {links.map((item: ItemType, index: number) => (
-              <li key={index}>
-                <Link
-                  href={item.path}
-                  className="hover:text-blue-600 transition duration-300"
-                  onClick={() => setShowMenu(false)}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-=======
+
             <li>
               <Link
                 href="/"
@@ -204,7 +159,7 @@ const NavBar = () => {
                 Contact Us
               </Link>
             </li>
->>>>>>> 5586f951975554d8cb85414fdf6150f49931b28c
+
           </ul>
 
           <button className="bg-[#041738] p-[14px] rounded-b-[5px] w-full text-white text-[14px]">
