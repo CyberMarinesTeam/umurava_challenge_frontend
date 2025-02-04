@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -20,12 +21,22 @@ const Header = () => {
     console.log(user)
     // Connect to WebSocket server
     socket.on("connect", () => {
-      console.log("Connected to WebSocket server");
+      console.log("Connected to WebSocket server"); // Verify this log appears in the browser console
+    });
+  
+    socket.on("connect_error", (err) => {
+      console.error("WebSocket connection error:", err); // Check for connection errors
     });
 
     // Listen for incoming notifications
     socket.on("notification", (message) => {
       console.log("received message", message)
+      setNotifications((prev) => [...prev, { message, isRead: false }]);
+      setUnreadCount((prev) => prev + 1);
+    });
+
+    socket.on('broadcast-message', (message) => {
+      console.log("broadcasted message", message); // Verify this log appears in the browser console
       setNotifications((prev) => [...prev, { message, isRead: false }]);
       setUnreadCount((prev) => prev + 1);
     });
