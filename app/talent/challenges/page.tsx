@@ -39,7 +39,7 @@ const Challenges = () => {
   });
 
   useEffect(() => {
-    if (!user) {
+    if (user?.roles.toString()!=="talent") {
       router.push("/login");
     }
   }, [user, router]);

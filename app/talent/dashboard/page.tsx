@@ -40,7 +40,7 @@ const Dashboard = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) {
+    if (user?.roles.toString()!=="talent") {
       router.push("/login");
     }
     console.log(user);

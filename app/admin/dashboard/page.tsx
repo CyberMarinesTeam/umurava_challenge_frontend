@@ -15,7 +15,7 @@ const Page = () => {
   const { data } = useGetChallengesQuery();
 
   useEffect(() => {
-    if (!user) {
+    if (user?.roles.toString()!=="admin") {
       router.push("/login");
     }
   }, [user, router]);
