@@ -1,5 +1,5 @@
 import { RxFileText } from "react-icons/rx";
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowUpLong } from "react-icons/fa6";
 import DropDown from "./DropDown";
 const Card = ({
@@ -22,7 +22,10 @@ const Card = ({
     setSelectedOption(selectedValue);
     try {
       const response = await fetch(`/api/filter?range=${selectedValue}`);
-      const data = await response.json();
+      // const data = await response.json();
+      if(response) {
+        console.log(response)
+      }
     } catch (error) {
       console.error("Error fetching filtered data:", error);
     }
@@ -33,7 +36,9 @@ const Card = ({
       className={`relative bg-white rounded-lg border-[1.5px] border-[#E4E7EC] px-6  py-[0px] h-[150px] w-[${width}]`}
     >
       <div className="absolute top-2 right-2 flex items-center gap-1  h-[17px] font-normal text-[12px] leading-[18px] text-[#98A2B3]">
-        <select value={selectedOption} onChange={handleSelectionChange}>
+        <select 
+        title="."
+        value={selectedOption} onChange={handleSelectionChange}>
           <option value="This Day">This Day</option>
           <option value="This Week">This Week</option>
           <option value="Last 30 Days">Last 30 Days</option>

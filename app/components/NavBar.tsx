@@ -4,15 +4,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/store/store";
-import { clearCredentials } from "@/lib/redux/slices/authSlice";
+// import { useSelector, useDispatch } from "react-redux";
+// import { RootState } from "@/store/store";
+// import { clearCredentials } from "@/lib/redux/slices/authSlice";
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
   weight: ["300", "100", "400", "700", "900"],
 });
 
+
+interface ItemType {
+  label: string;
+  path: string;
+}
 const NavBar = () => {
   const currentPath = usePathname();
   const [showMenu, setShowMenu] = useState(false);
@@ -21,6 +26,8 @@ const NavBar = () => {
     return currentPath === path;
   };
 
+
+
   const links = [
     { label: "Home", path: "/" },
     { label: "Challenge & Hackathons", path: "/guest/challenges" },
@@ -28,8 +35,6 @@ const NavBar = () => {
     { label: "About Us", path: "/guest/about" },
     { label: "Contact Us", path: "/guest/contact" },
   ];
-
-  const handleLogout = () => {};
 
   return (
     <nav
@@ -45,7 +50,7 @@ const NavBar = () => {
 
       {/* Desktop Navigation */}
       <ul className="hidden sm:text-sm md:flex flex-row text-gray-700 space-x-[40px]">
-        {links.map((item: any, index: any) => (
+        {links.map((item: ItemType, index: number) => (
           <li key={index}>
             <Link
               href={item.path}
@@ -82,7 +87,7 @@ const NavBar = () => {
       {showMenu && (
         <div className="md:hidden z-50 bg-white flex flex-col space-y-4 items-center pt-[20px] justify-between shadow-md absolute top-[100px] left-0 right-0">
           <ul className="flex flex-col space-y-4 text-gray-700">
-            {links.map((item: any, index: any) => (
+            {links.map((item: ItemType, index: number) => (
               <li key={index}>
                 <Link
                   href={item.path}

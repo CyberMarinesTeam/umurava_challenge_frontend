@@ -1,11 +1,15 @@
+"use client"
 import Carousel from "@/app/components/Carousel";
 import Footer from "@/app/components/Footer";
 import NavBar from "@/app/components/NavBar";
 import Link from "next/link";
-import { IoIosArrowRoundForward } from "react-icons/io";
-import { IoPlaySharp } from "react-icons/io5";
+// import { IoIosArrowRoundForward } from "react-icons/io";
+// import { IoPlaySharp } from "react-icons/io5";
+
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter()
   const courseNames = [
     "UI/UX Design",
     "Data Science",
@@ -174,7 +178,7 @@ export default function Home() {
             working on Hands-on projects & Hackathons from various businesses &
             organizations
           </p>
-          <button className="bg-[#2B71f0] mt-[40px] w-[171px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white">
+          <button className="bg-[#2B71f0] mt-[40px] w-[171px] h-[46px]  text-[16px] rounded-[5px] font-semibold text-white" onClick={() => router.push("/login")}>
             Get Started
           </button>
         </div>

@@ -13,8 +13,11 @@ import {
 // import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
 
 const Page = () => {
+  const user = useSelector((state: RootState) => state.auth.user);
   const [updateChallenge, { isLoading, isError, isSuccess }] =
     useUpdateChallengeMutation();
 
@@ -57,7 +60,6 @@ const Page = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("updating");
     const updatedChallenge = {
       title: challengeTitle,
       deadline,
@@ -71,9 +73,9 @@ const Page = () => {
       category: challenge?.category, // Assuming category remains unchanged
       status: challenge?.status, // Assuming status remains unchanged
     };
-    
+
     const res = await axios.put(
-      `http://localhost:4000/challenges/${params.id}`,
+      `http://localhost:4000/challenges/${params.id}/${user?.id}`,
       updatedChallenge,
       {
         headers: {
@@ -82,9 +84,7 @@ const Page = () => {
         },
       }
     );
-    console.log("updated");
     if (res) {
-      console.log(res.data);
       router.push("/admin/challenges/" + params.id);
     }
   };
