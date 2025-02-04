@@ -1,13 +1,9 @@
 "use client";
-
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
-import SideBar from "@/app/components/SideBar";
-import Header from "@/app/components/Header";
-
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import Card from "@/app/components/Card";
 import Card2 from "@/app/components/Card2";
@@ -39,7 +35,7 @@ const Page = () => {
         <div className="grid grid-cols-2 gap-4">
           <Card
             width={540}
-            timeDescription="This week"
+            timeRange="This week"
             description="Total Challenges"
             number={23178}
             percentage={20}

@@ -7,8 +7,7 @@ import io from "socket.io-client";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 
-const SOCKET_SERVER_URL = "ws://localhost:4000"; // Change to your backend URL
-
+const SOCKET_SERVER_URL = "ws://localhost:4000";
 const Header = () => {
   const [notifications, setNotifications] = useState<{ message: string; isRead: boolean }[]>([]);
   const [notificationShow, setNotificationShow] = useState(false);
@@ -18,8 +17,7 @@ const Header = () => {
   const user = useSelector((state: RootState) => state.auth.user);
 
   useEffect(() => {
-    console.log(user)
-    // Connect to WebSocket server
+    console.log(user);
     socket.on("connect", () => {
       console.log("Connected to WebSocket server"); // Verify this log appears in the browser console
     });
@@ -28,12 +26,12 @@ const Header = () => {
       console.error("WebSocket connection error:", err); // Check for connection errors
     });
 
-    // Listen for incoming notifications
     socket.on("notification", (message) => {
       console.log("received message", message)
       setNotifications((prev) => [...prev, { message, isRead: false }]);
       setUnreadCount((prev) => prev + 1);
     });
+
 
     socket.on('broadcast-message', (message) => {
       console.log("broadcasted message", message); // Verify this log appears in the browser console
@@ -41,11 +39,8 @@ const Header = () => {
       setUnreadCount((prev) => prev + 1);
     });
 
-    // Handle notifications marked as read
     socket.on("notification-read", () => {
-      setNotifications((prev) =>
-        prev.map((n) => ({ ...n, isRead: true }))
-      );
+      setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
       setUnreadCount(0);
     });
 
@@ -54,7 +49,6 @@ const Header = () => {
     };
   }, []);
 
-  // Mark notifications as read when opened
   const handleNotificationClick = () => {
     console.log("clicked");
     setNotificationShow(!notificationShow);
@@ -63,7 +57,6 @@ const Header = () => {
       setUnreadCount(0);
     }
   };
-
   return (
     <div className="flex relative z-20 items-center justify-between p-4 bg-white border-[#E4E7EC]">
       {/* Search Bar */}
@@ -75,7 +68,6 @@ const Header = () => {
           className="text-gray-600 focus:outline-none bg-gray-100 w-full"
         />
       </div>
-
       {/* Right Section */}
       <div className="flex items-center space-x-4 relative">
         {/* Notification Icon */}
@@ -108,18 +100,25 @@ const Header = () => {
               {notifications.length > 0 ? (
                 notifications.map((notif, index) => (
                   <div key={index} className="mt-4 p-2 border-b">
-                    <p className={`text-sm ${notif.isRead ? "text-gray-500" : "text-black font-semibold"}`}>
+                    <p
+                      className={`text-sm ${
+                        notif.isRead
+                          ? "text-gray-500"
+                          : "text-black font-semibold"
+                      }`}
+                    >
                       {notif.message}
                     </p>
                   </div>
                 ))
               ) : (
-                <p className="text-center text-gray-500 mt-4">No notifications</p>
+                <p className="text-center text-gray-500 mt-4">
+                  No notifications
+                </p>
               )}
             </div>
           )}
         </div>
-
         {/* User Profile Image */}
         <img
           src="/profile2.webp"

@@ -43,12 +43,20 @@ const Page = () => {
           rtl: false,
           pauseOnHover: true,
           draggable: true,
-          theme: "dark",
+          theme: "light",
           transition: Flip,
         });
       } else {
         router.push("/admin/dashboard");
-        toast.success("Logged in successfully");
+        toast.success("Logged in successfully", {
+          autoClose: 3000,
+          position: "top-right",
+          rtl: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Flip,
+        });
       }
     }
   };
