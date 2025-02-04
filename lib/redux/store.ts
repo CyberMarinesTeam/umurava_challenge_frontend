@@ -7,6 +7,7 @@ import { participantsApi } from "./slices/participantsSlice";
 export const makeStore = () => {
   return configureStore({
     reducer: {
+      search: searchReducer,
       auth: authReducer,
       [challengeSlice.reducerPath]: challengeSlice.reducer,
       [authApi.reducerPath]: authApi.reducer,
