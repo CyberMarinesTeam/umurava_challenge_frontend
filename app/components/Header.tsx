@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { IoSearchSharp } from "react-icons/io5";
+import { IoFilterOutline, IoSearchSharp } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import io from "socket.io-client";
 import { useSelector } from "react-redux";
@@ -9,7 +9,9 @@ import { RootState } from "@/lib/redux/store";
 
 const SOCKET_SERVER_URL = "ws://localhost:4000";
 const Header = () => {
-  const [notifications, setNotifications] = useState<{ message: string; isRead: boolean }[]>([]);
+  const [notifications, setNotifications] = useState<
+    { message: string; isRead: boolean }[]
+  >([]);
   const [notificationShow, setNotificationShow] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const socket = io(SOCKET_SERVER_URL, { transports: ["websocket"] });
@@ -21,19 +23,18 @@ const Header = () => {
     socket.on("connect", () => {
       console.log("Connected to WebSocket server"); // Verify this log appears in the browser console
     });
-  
+
     socket.on("connect_error", (err) => {
       console.error("WebSocket connection error:", err); // Check for connection errors
     });
 
     socket.on("notification", (message) => {
-      console.log("received message", message)
+      console.log("received message", message);
       setNotifications((prev) => [...prev, { message, isRead: false }]);
       setUnreadCount((prev) => prev + 1);
     });
 
-
-    socket.on('broadcast-message', (message) => {
+    socket.on("broadcast-message", (message) => {
       console.log("broadcasted message", message); // Verify this log appears in the browser console
       setNotifications((prev) => [...prev, { message, isRead: false }]);
       setUnreadCount((prev) => prev + 1);
@@ -60,14 +61,19 @@ const Header = () => {
   return (
     <div className="flex relative z-20 items-center justify-between p-4 bg-white border-[#E4E7EC]">
       {/* Search Bar */}
-      <div className="flex items-center gap-4 bg-gray-100 rounded-md w-[60%] ml-8 px-4 py-2">
+      <div className="flex items-center flex-row gap-4 bg-gray-100 rounded-md w-[60%] ml-8 px-4 py-2">
         <IoSearchSharp className="text-gray-500" />
         <input
           type="text"
           placeholder="Search.."
           className="text-gray-600 focus:outline-none bg-gray-100 w-full"
         />
+        <div className="flex flex-row space-x-[10px] items-center justify-center">
+          <IoFilterOutline className="text-gray-400 text-" />
+          <p className="text-[14px] text-gray-400">Filter</p>
+        </div>
       </div>
+
       {/* Right Section */}
       <div className="flex items-center space-x-4 relative">
         {/* Notification Icon */}

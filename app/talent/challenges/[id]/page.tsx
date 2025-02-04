@@ -31,7 +31,6 @@ const Page = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   const [showStarted, setShowStarted] = useState(false);
   const [challenge, setChallenge] = useState<ChallengeType | null>(null);
-
   // Fetch challenge status
   const { data: statusData } = useGetStatusQuery(
     user ? { userId: user.id, challengeId: params.id } : undefined
@@ -86,8 +85,9 @@ const Page = () => {
     <div className="excluded  h-[1000px] overflow-y-auto">
       <div className="excluded flex  flex-row w-full  border-y-[1.5px] items-center  border-[#E4E7EC]  bg-white justify-start px-[20px] h-[62px]">
         <div className="excluded flex  flex-row w-full   items-center   space-x-[20px]  justify-start ">
+         
           <Link
-            href={"/admin/challenges"}
+            href={"/talent/challenges"}
             className="border-[#E4E7EC] border-[1px] p-[3px] rounded-[5px] bg-white"
           >
             <VscArrowSmallLeft className="text-[21px]" />
