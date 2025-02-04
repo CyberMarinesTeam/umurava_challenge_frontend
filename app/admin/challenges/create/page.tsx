@@ -8,7 +8,7 @@ import { VscArrowSmallLeft } from "react-icons/vsc";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import axios from "axios";
+// import axios from "axios";
 
 const Page: React.FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -16,6 +16,7 @@ const Page: React.FC = () => {
   const [createChallenge] = useCreateChallengeMutation();
   const [challengeTitle, setChallengeTitle] = useState("");
   const [deadline, setDeadline] = useState("");
+  const [startingDate, setStartingDate] = useState("");
   const [duration, setDuration] = useState("");
   const [moneyPrize, setMoneyPrize] = useState("");
   const [contactEmail, setContactEmail] = useState("");
@@ -44,6 +45,7 @@ const Page: React.FC = () => {
       seniority_level,
       skills_needed,
       projectBrief,
+      startingDate,
     };
    if(user) {
     // console.log(newToCreateChallenge);
@@ -128,7 +130,25 @@ const Page: React.FC = () => {
                 onChange={(e) => setDeadline(e.target.value)}
               />
             </div>
-            <div className="excluded md:w-1/2">
+            <div className="excluded md:w-1/2 mb-4 md:mb-0">
+              <label
+                htmlFor="deadline"
+                className="block text-[#475367] text-[14px] mb-2"
+              >
+                Starting Date
+              </label>
+              <input
+                type="date"
+                placeholder="dd/mm/yyyy"
+                id="startingDate"
+                className="appearance-none placeholder:text-[14px] text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-500 leading-tight focus:outline-none focus:shadow-outline"
+                value={startingDate}
+                onChange={(e) => setStartingDate(e.target.value)}
+              />
+            </div>
+           
+          </div>
+          <div className="excluded mb-4">
               <label
                 htmlFor="duration"
                 className="block text-[#475367] text-[14px] mb-2"
@@ -139,12 +159,11 @@ const Page: React.FC = () => {
                 type="text"
                 id="duration"
                 placeholder="Duration"
-                className="appearance-none placeholder:text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none placeholder:text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
               />
             </div>
-          </div>
           <div className="excluded mb-4">
             <label
               htmlFor="moneyPrize"

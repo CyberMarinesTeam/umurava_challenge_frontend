@@ -17,10 +17,12 @@ const Challenges = () => {
   const [ongoingCount, setOngoingCount] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
   const itemsPerPage = 6;
 
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
+  const globalSearchQuery = useSelector((state: RootState) => state.search.query);
 
   const { data: allChallenges } = useGetChallengesQuery();
   const { data: openChallenges } = useGetChallengesByUserWithStatusQuery({
@@ -36,29 +38,26 @@ const Challenges = () => {
     status: "completed",
   });
 
-  // Redirect if user is not logged in
   useEffect(() => {
     if (!user) {
       router.push("/login");
     }
   }, [user, router]);
 
-  // Update counts when data changes
   useEffect(() => {
     if (allChallenges?.length) setAllCount(allChallenges.length);
     if (openChallenges?.length) setOpenCount(openChallenges.length);
     if (ongoingChallenges?.length) setOngoingCount(ongoingChallenges.length);
-    if (completedChallenges?.length)
-      setCompletedCount(completedChallenges.length);
+    if (completedChallenges?.length) setCompletedCount(completedChallenges.length);
   }, [allChallenges, openChallenges, ongoingChallenges, completedChallenges]);
 
-  const totalPages = allChallenges
-    ? Math.ceil(allChallenges.length / itemsPerPage)
-    : 1;
+  const filteredChallenges = allChallenges?.filter((challenge) =>
+    challenge.title.toLowerCase().includes(globalSearchQuery.toLowerCase())
+  ) || [];
+
+  const totalPages = Math.ceil(filteredChallenges.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedData = allChallenges
-    ? allChallenges.slice(startIndex, startIndex + itemsPerPage)
-    : [];
+  const paginatedData = filteredChallenges.slice(startIndex, startIndex + itemsPerPage);
 
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -73,10 +72,7 @@ const Challenges = () => {
       <div className="excluded flex flex-row justify-between">
         <div>
           <p className="text-2xl font-bold">Challenges</p>
-          <p>
-            Join a challenge or a hackathon to gain more valuable work
-            experience
-          </p>
+          <p>Join a challenge or a hackathon to gain more valuable work experience</p>
         </div>
         <button className="py-[10px] flex h-[55px] flex-row items-center gap-2 px-[18px] bg-[#2B71F0] text-white rounded-lg">
           <MdOutlineRemoveRedEye className="w-[24px] h-[24px]" />
@@ -85,32 +81,27 @@ const Challenges = () => {
       </div>
       <div className="py-[16px] excluded flex w-full items-center">
         <div className="flex excluded justify-start gap-[10px] border-b pb-5 w-full">
-          <SmallStatusCard
-            count={allCount}
-            icon={<FiFileText />}
-            text="All Challenges"
-          />
-          <SmallStatusCard
-            count={completedCount}
-            icon={<FiFileText />}
-            text="Completed Challenge"
-          />
-          <SmallStatusCard
-            count={openCount}
-            icon={<FiFileText />}
-            text="Open Challenge"
-          />
-          <SmallStatusCard
-            count={ongoingCount}
-            icon={<FiFileText />}
-            text="Ongoing Challenge"
-          />
+          <SmallStatusCard count={allCount} icon={<FiFileText />} text="All Challenges" />
+          <SmallStatusCard count={completedCount} icon={<FiFileText />} text="Completed Challenge" />
+          <SmallStatusCard count={openCount} icon={<FiFileText />} text="Open Challenge" />
+          <SmallStatusCard count={ongoingCount} icon={<FiFileText />} text="Ongoing Challenge" />
         </div>
       </div>
+      <input
+        type="text"
+        placeholder="Search challenges..."
+        className="p-2 border rounded w-full mb-4"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
       <div className="flex excluded flex-wrap gap-[20px]">
-        {paginatedData.map((challenge) => (
-          <ChallengeCard2 key={challenge._id} challenge={challenge} />
-        ))}
+        {paginatedData.length > 0 ? (
+          paginatedData.map((challenge) => (
+            <ChallengeCard2 key={challenge._id} challenge={challenge} />
+          ))
+        ) : (
+          <h1>No challenges found</h1>
+        )}
       </div>
       <div className="flex excluded justify-between py-10 px-10">
         <button

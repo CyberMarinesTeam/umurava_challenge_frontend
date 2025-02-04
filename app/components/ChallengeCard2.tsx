@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 interface Challenge {
   _id?: string;
   title: string;
-  deadline: string;
+  deadline: Date;
   duration: number;
   moneyPrice: number;
   contactEmail: string;
@@ -21,6 +21,7 @@ interface Challenge {
   createdAt?: string;
   seniority_level:string;
   skills_needed:string[];
+  startingAt:Date
 }
 const ChallengeCard2: React.FC<{ challenge: Challenge }> = ({ challenge }) => {
   const user = useSelector((state: RootState) => state.auth.user);

@@ -17,9 +17,9 @@ const Card2 = ({
   const [selectedOption, setSelectedOption] = useState("This Day");
 
 
- const [number, setNumber] = useState(0);
- const [percentage, setPercentage] = useState(0);
- 
+  const [number, setNumber] = useState(0);
+  const [percentage, setPercentage] = useState(0);
+
   const daysAgoMapping: Record<string, number> = {
     "This Day": 1,
     "This Week": 7,
@@ -29,26 +29,31 @@ const Card2 = ({
 
   const selectedDays = daysAgoMapping[selectedOption];
 
-   const {data: totalParticipants= [], isLoading: allLoading} = useGetParticipantsByDaysAgoQuery(selectedDays)
-
+  const { data: totalParticipants = [], isLoading: allLoading } =
+    useGetParticipantsByDaysAgoQuery(selectedDays);
 
   useEffect(() => {
     if (!allLoading) {
       let filteredCount = 0;
 
       // Decide which query data to use based on description
-     
-       if (description === "Total Participants") {
+
+      if (description === "Total Participants") {
         filteredCount = totalParticipants.length;
       }
 
       const totalCount = totalParticipants.length;
       setNumber(filteredCount);
-      setPercentage(totalCount > 0 ? Math.round((filteredCount / totalCount) * 100) : 0);
+      setPercentage(
+        totalCount > 0 ? Math.round((filteredCount / totalCount) * 100) : 0
+      );
     }
   }, [selectedOption, totalParticipants]);
 
-  const handleSelectionChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+
+  const handleSelectionChange = async (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const selectedValue = event.target.value;
     setSelectedOption(selectedValue);
     try {
@@ -65,12 +70,16 @@ const Card2 = ({
     >
       <div className="absolute top-2 right-2 flex items-center gap-1  h-[17px] font-normal text-[12px] leading-[18px] text-[#98A2B3]">
 
-      <select title="." value={selectedOption} onChange={handleSelectionChange}>
-        <option value="This Day">This Day</option>
-        <option value="This Week">This Week</option>
-        <option value="Last 30 Days">Last 30 Days</option>
-        <option value="Last 3 Months">Last 3 Months</option>
-      </select>
+        <select
+          title="."
+          value={selectedOption}
+          onChange={handleSelectionChange}
+        >
+          <option value="This Day">This Day</option>
+          <option value="This Week">This Week</option>
+          <option value="Last 30 Days">Last 30 Days</option>
+          <option value="Last 3 Months">Last 3 Months</option>
+        </select>
       </div>
       <div className="w-full h-full">
         <div className="flex flex-row space-x-[30px] items-center justify-center mt-[70px]    ">

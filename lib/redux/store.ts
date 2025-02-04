@@ -3,10 +3,12 @@ import { challengeSlice } from "./slices/challengeSlice";
 import { authApi } from "./slices/authSlice";
 import authReducer from "./slices/authSlice";
 import { participantsApi } from "./slices/participantsSlice";
+import searchReducer from "./slices/searchSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
+      search: searchReducer,
       auth: authReducer,
       [challengeSlice.reducerPath]: challengeSlice.reducer,
       [authApi.reducerPath]: authApi.reducer,
