@@ -39,7 +39,7 @@ const Challenges = () => {
   });
 
   useEffect(() => {
-    if (!user) {
+    if (user?.roles.toString()!=="talent") {
       router.push("/login");
     }
   }, [user, router]);
@@ -87,13 +87,7 @@ const Challenges = () => {
           <SmallStatusCard count={ongoingCount} icon={<FiFileText />} text="Ongoing Challenge" />
         </div>
       </div>
-      <input
-        type="text"
-        placeholder="Search challenges..."
-        className="p-2 border rounded w-full mb-4"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
+     
       <div className="flex excluded flex-wrap gap-[20px]">
         {paginatedData.length > 0 ? (
           paginatedData.map((challenge) => (

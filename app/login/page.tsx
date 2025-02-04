@@ -19,7 +19,7 @@ const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
-  const [roles, setRole] = useState<RoleEnum | "">("");
+  const [roles, setRole] = useState<RoleEnum|"">("");
 
   const handleLoginSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -48,6 +48,7 @@ const Page = () => {
         });
       } else {
         router.push("/admin/dashboard");
+
          alert("Logged in successfully");
       }
     }

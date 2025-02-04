@@ -163,11 +163,13 @@ const SideBar = () => {
               </p>
             </div>
           </div>
-          <FiLogOut
-            className="h-[20px] w-[20px] cursor-pointer"
+          <span>  <FiLogOut
+            className="h-[20px] w-[20px] cursor-pointer "
             onClick={handleLogout}
-          />
+          /></span>
+        
         </div>
+      
       </div>
 
       {showLogoutModal && (

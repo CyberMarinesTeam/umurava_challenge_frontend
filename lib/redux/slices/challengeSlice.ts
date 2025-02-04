@@ -72,6 +72,8 @@ export const challengeSlice = createApi({
         url: `/${id}`,
         method: "DELETE",
       }),
+    }),    getChallengeByStatus: builder.query<ChallengeType[], string>({
+      query: (status) => `/admin/${status}`,
     }),
   }),
 });
@@ -85,4 +87,5 @@ export const {
   useCreateChallengeMutation,
   useUpdateChallengeMutation,
   useDeleteChallengeMutation,
+  useGetChallengeByStatusQuery
 } = challengeSlice;

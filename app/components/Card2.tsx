@@ -16,6 +16,7 @@ const Card2 = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState("This Day");
 
+
   const [number, setNumber] = useState(0);
   const [percentage, setPercentage] = useState(0);
 
@@ -49,6 +50,7 @@ const Card2 = ({
     }
   }, [selectedOption, totalParticipants]);
 
+  console.log("total participants are ", totalParticipants)
   const handleSelectionChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -67,9 +69,11 @@ const Card2 = ({
       className={`relative bg-white rounded-lg border-[1.5px] border-[#E4E7EC] -z-10 px-6  py-[0px] h-[150px] w-[${width}]`}
     >
       <div className="absolute top-2 right-2 flex items-center gap-1  h-[17px] font-normal text-[12px] leading-[18px] text-[#98A2B3]">
+
         <select
           title="."
           value={selectedOption}
+          className="focus:outline-none"
           onChange={handleSelectionChange}
         >
           <option value="This Day">This Day</option>

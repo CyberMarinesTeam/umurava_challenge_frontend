@@ -7,7 +7,8 @@ import React, { Fragment, useEffect, useState } from "react";
 // import ChallengeCard2 from "@/app/components/ChallengeCard2";
 // import { MdOutlineNavigateNext } from "react-icons/md";
 // import { GrFormPrevious } from "react-icons/gr";
-import { ChallengeType, useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
+
+import { ChallengeType, useGetChallengeByStatusQuery, useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import Link from "next/link";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
@@ -16,6 +17,25 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
 const Challenges = () => {
+    const [openCount, setOpenCount] = useState(0);
+    const [allCount, setAllCount] = useState(0);
+    const [ongoingCount, setOngoingCount] = useState(0);
+    const [completedCount, setCompletedCount] = useState(0);
+  const {data:dataForOpen}=useGetChallengeByStatusQuery
+  
+  ("open")
+  console.log(dataForOpen)
+  const {data:dataForOngoing}=useGetChallengeByStatusQuery("ongoing")
+  console.log(dataForOngoing)
+  const {data:dataForComplete}=useGetChallengeByStatusQuery("completed")
+  console.log(dataForComplete)
+    useEffect(() => {
+      if (data?.length) setAllCount(data.length);
+      if (dataForOpen?.length) setOpenCount(dataForOpen.length);
+      if (dataForOngoing?.length) setOngoingCount(dataForOngoing.length);
+      if (dataForComplete?.length)
+        setCompletedCount(dataForComplete.length);
+    }, [ dataForComplete, dataForOngoing, dataForOpen]);
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
 
@@ -28,7 +48,7 @@ const Challenges = () => {
   }
 
   useEffect(() => {
-    if (!user) {
+    if (user?.roles.toString()!=="admin") {
       router.push("/login");
     }
   }, [user, router]);
@@ -82,7 +102,7 @@ const Challenges = () => {
               </p>
               <div className="bg-gray-300 group-hover:bg-[#2B71F0] px-[13px] rounded-full">
                 <span className="text-[#344054] group-hover:text-white text-[12px] p-[0px]">
-                  0
+                  {allCount}
                 </span>
               </div>
             </button>
@@ -94,7 +114,7 @@ const Challenges = () => {
               </p>
               <div className="bg-gray-300 group-hover:bg-[#2B71F0] px-[13px] rounded-full">
                 <span className="text-[#344054] group-hover:text-white text-[12px] p-[0px]">
-                  0
+                  {completedCount}
                 </span>
               </div>
             </button>
@@ -106,7 +126,7 @@ const Challenges = () => {
               </p>
               <div className="bg-gray-300 group-hover:bg-[#2B71F0] px-[13px] rounded-full">
                 <span className="text-[#344054] group-hover:text-white text-[12px] p-[0px]">
-                  0
+                  {openCount}
                 </span>
               </div>
             </button>
@@ -118,7 +138,7 @@ const Challenges = () => {
               </p>
               <div className="bg-gray-300 group-hover:bg-[#2B71F0] px-[13px] rounded-full">
                 <span className="text-[#344054] group-hover:text-white text-[12px] p-[0px]">
-                  0
+                  {ongoingCount}
                 </span>
               </div>
             </button>
