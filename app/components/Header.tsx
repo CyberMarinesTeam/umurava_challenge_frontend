@@ -6,6 +6,9 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import io from "socket.io-client";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
+import { useDispatch } from "react-redux";
+import { setSearchQuery } from "@/lib/redux/slices/searchSlice";
+
 
 const SOCKET_SERVER_URL = "ws://localhost:4000";
 const Header = () => {
@@ -57,6 +60,16 @@ const Header = () => {
       setUnreadCount(0);
     }
   };
+
+
+  const dispatch = useDispatch();
+
+const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  dispatch(setSearchQuery(e.target.value));
+};
+
+
+
   return (
     <div className="flex relative z-20 items-center justify-between p-4 bg-white border-[#E4E7EC]">
       {/* Search Bar */}
@@ -66,6 +79,7 @@ const Header = () => {
           type="text"
           placeholder="Search.."
           className="text-gray-600 focus:outline-none bg-gray-100 w-full"
+          onChange={handleSearchChange} // dispatch search query
         />
       </div>
       {/* Right Section */}
