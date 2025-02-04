@@ -49,7 +49,15 @@ const Page = () => {
       } else {
         router.push("/admin/dashboard");
         toast.success("Logged in successfully", {
+          position: "top-right",
           autoClose: 300,
+          hideProgressBar: false,
+          closeOnClick: true,
+          rtl: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+          transition: Flip,
         });
       }
     }

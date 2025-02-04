@@ -50,7 +50,7 @@ const Card2 = ({
     }
   }, [selectedOption, totalParticipants]);
 
-
+  console.log("total participants are ", totalParticipants)
   const handleSelectionChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -73,6 +73,7 @@ const Card2 = ({
         <select
           title="."
           value={selectedOption}
+          className="focus:outline-none"
           onChange={handleSelectionChange}
         >
           <option value="This Day">This Day</option>
