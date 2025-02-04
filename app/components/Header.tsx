@@ -4,11 +4,9 @@ import { useEffect, useState } from "react";
 import { IoFilterOutline, IoSearchSharp } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import io from "socket.io-client";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { useDispatch } from "react-redux";
 import { setSearchQuery } from "@/lib/redux/slices/searchSlice";
-
 
 const SOCKET_SERVER_URL = "ws://localhost:4000";
 const Header = () => {
@@ -17,28 +15,24 @@ const Header = () => {
   >([]);
   const [notificationShow, setNotificationShow] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState("title");
   const socket = io(SOCKET_SERVER_URL, { transports: ["websocket"] });
 
   const user = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(user);
     socket.on("connect", () => {
-      console.log("Connected to WebSocket server"); // Verify this log appears in the browser console
-    });
-
-    socket.on("connect_error", (err) => {
-      console.error("WebSocket connection error:", err); // Check for connection errors
+      console.log("Connected to WebSocket server");
     });
 
     socket.on("notification", (message) => {
-      console.log("received message", message);
       setNotifications((prev) => [...prev, { message, isRead: false }]);
       setUnreadCount((prev) => prev + 1);
     });
 
     socket.on("broadcast-message", (message) => {
-      console.log("broadcasted message", message); // Verify this log appears in the browser console
       setNotifications((prev) => [...prev, { message, isRead: false }]);
       setUnreadCount((prev) => prev + 1);
     });
@@ -53,48 +47,58 @@ const Header = () => {
     };
   }, []);
 
-  const handleNotificationClick = () => {
-    console.log("clicked");
-    setNotificationShow(!notificationShow);
-    if (!notificationShow && unreadCount > 0) {
-      socket.emit("read"); // Notify backend to mark as read
-      setUnreadCount(0);
-    }
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchQuery(e.target.value));
   };
-
-
-  const dispatch = useDispatch();
-
-const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  dispatch(setSearchQuery(e.target.value));
-};
-
-
 
   return (
     <div className="flex relative z-20 items-center justify-between p-4 bg-white border-[#E4E7EC]">
       {/* Search Bar */}
-      <div className="flex items-center flex-row gap-4 bg-gray-100 rounded-md w-[60%] ml-8 px-4 py-2">
+      <div className="flex items-center gap-4 bg-gray-100 rounded-md w-[60%] ml-8 px-4 py-2 relative">
         <IoSearchSharp className="text-gray-500" />
         <input
           type="text"
           placeholder="Search.."
           className="text-gray-600 focus:outline-none bg-gray-100 w-full"
-          onChange={handleSearchChange} // dispatch search query
+          onChange={handleSearchChange}
         />
-        <div className="flex flex-row space-x-[10px] items-center justify-center">
-          <IoFilterOutline className="text-gray-400 text-" />
-          <p className="text-[14px] text-gray-400">Filter</p>
+        
+        {/* Filter Button */}
+        <div className="relative">
+          <div
+            className="flex items-center space-x-2 cursor-pointer"
+            onClick={() => setFilterOpen(!filterOpen)}
+          >
+            <IoFilterOutline className="text-gray-400" />
+            <p className="text-[14px] text-gray-400">{selectedFilter}</p>
+          </div>
+          
+          {/* Filter Dropdown */}
+          {filterOpen && (
+            <div className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded-md border p-2">
+              {["title", "skills", "level", "status"].map((filter) => (
+                <p
+                  key={filter}
+                  className="p-2 cursor-pointer hover:bg-gray-100 text-sm"
+                  onClick={() => {
+                    setSelectedFilter(filter);
+                    setFilterOpen(false);
+                  }}
+                >
+                  {filter}
+                </p>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
       {/* Right Section */}
       <div className="flex items-center space-x-4 relative">
-        {/* Notification Icon */}
         <div className="relative">
           <span
             className="w-[40px] h-[40px] rounded-full grid place-items-center bg-gray-200 cursor-pointer relative"
-            onClick={handleNotificationClick}
+            onClick={() => setNotificationShow(!notificationShow)}
           >
             <IoMdNotificationsOutline className="text-gray-600 text-xl" />
             {unreadCount > 0 && (
@@ -104,9 +108,8 @@ const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
             )}
           </span>
 
-          {/* Notification Dropdown */}
           {notificationShow && (
-            <div className="absolute dashDiv z-10 top-12 h-[400px] overflow-y-auto right-0 w-[400px] bg-white shadow border-[1.5px] border-[#E4E7EC] rounded-lg p-4">
+            <div className="absolute top-12 right-0 w-[400px] bg-white shadow border rounded-lg p-4">
               <div className="flex justify-between items-center border-b pb-2">
                 <h3 className="text-gray-800 font-semibold">Notifications</h3>
                 <button
@@ -116,30 +119,20 @@ const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
                   Close
                 </button>
               </div>
-
               {notifications.length > 0 ? (
                 notifications.map((notif, index) => (
                   <div key={index} className="mt-4 p-2 border-b">
-                    <p
-                      className={`text-sm ${
-                        notif.isRead
-                          ? "text-gray-500"
-                          : "text-black font-semibold"
-                      }`}
-                    >
+                    <p className={`text-sm ${notif.isRead ? "text-gray-500" : "text-black font-semibold"}`}>
                       {notif.message}
                     </p>
                   </div>
                 ))
               ) : (
-                <p className="text-center text-gray-500 mt-4">
-                  No notifications
-                </p>
+                <p className="text-center text-gray-500 mt-4">No notifications</p>
               )}
             </div>
           )}
         </div>
-        {/* User Profile Image */}
         <img
           src="/profile2.webp"
           alt="User"
