@@ -19,6 +19,8 @@ interface Challenge {
   category: string;
   status: string;
   createdAt?: string;
+  seniority_level:string;
+  skills_needed:string[];
 }
 const ChallengeCard2: React.FC<{ challenge: Challenge }> = ({ challenge }) => {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -43,15 +45,16 @@ const ChallengeCard2: React.FC<{ challenge: Challenge }> = ({ challenge }) => {
         Skills Needed:
       </h2>
       <div className="excluded flex flex-wrap mt-2 gap-[8px] items-start justify-start mb-3 px-3">
-        <button className="text-[#2B71F0] text-[11px] px-[6px] py-[4px] rounded-[10px] border-[#2B71F0] border-[1px]">
-          UI/UX Design
+       {
+        challenge.skills_needed.map((skill, index) => (
+          <button
+           key={index}
+           className="text-[#2B71F0] text-[11px] px-[6px] py-[4px] rounded-[10px] border-[#2B71F0] border-[1px]">
+           {skill}
         </button>
-        <button className="text-[#2B71F0] text-[11px] px-[6px] py-[4px] rounded-[10px] border-[#2B71F0] border-[1px]">
-          User Research
-        </button>
-        <button className="text-[#2B71F0] text-[11px] px-[6px] py-[4px] rounded-[10px] border-[#2B71F0] border-[1px]">
-          User Research
-        </button>
+       
+        ))
+       }
       </div>
 
       <div className="excluded space-x-[4px] mt-[8px] items-start justify-start px-3">
@@ -59,7 +62,7 @@ const ChallengeCard2: React.FC<{ challenge: Challenge }> = ({ challenge }) => {
           Seniority Level:
         </h2>
         <h1 className="text-[#475367] text-[12px]">
-          Junior, Intermediate, Senior
+          {challenge.seniority_level}
         </h1>
       </div>
       <div className="excluded flex space-x-[8px] mt-[8px] w-full items-start px-3 flex-row justify-start">

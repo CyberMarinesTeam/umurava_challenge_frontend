@@ -16,7 +16,6 @@ import { VscArrowSmallLeft } from "react-icons/vsc";
 import { useParams } from "next/navigation";
 import {
   ChallengeType,
-  useCreateChallengeMutation,
 } from "@/lib/redux/slices/challengeSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
@@ -48,7 +47,7 @@ const Page = () => {
     if (statusData) {
       setShowStarted(statusData.status);
     }
-  }, [statusData]);
+  }, []);
 
   // Fetch challenge data
   useEffect(() => {
@@ -250,6 +249,7 @@ const Page = () => {
               ) : (
                 <button
                   onClick={async () => {
+                    setShowStarted(true);
                     await createStartChallenge({
                       userId: user?.id,
                       challengeId: params.id,

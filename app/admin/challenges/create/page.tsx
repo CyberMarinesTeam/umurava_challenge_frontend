@@ -46,14 +46,16 @@ const Page: React.FC = () => {
       projectBrief,
     };
    if(user) {
-    console.log(newToCreateChallenge);
-    await axios.post("http://localhost:4000/challenges/"+user?.id, 
-    newToCreateChallenge,
-     {headers:{
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem('token')}`
-       }
-    })
+    // console.log(newToCreateChallenge);
+    // await axios.post("http://localhost:4000/challenges/"+user?.id, 
+    // newToCreateChallenge,
+    //  {headers:{
+    //   "Content-Type": "application/json",
+    //   "Authorization": `Bearer ${localStorage.getItem('token')}`
+    //    }
+    // })
+
+    await createChallenge({ id: user?.id, newChallenge: newToCreateChallenge });
     router.push("/admin/challenges");
    }else {
     alert("You must be logged in to create a challenge")
@@ -118,7 +120,7 @@ const Page: React.FC = () => {
                 Deadline
               </label>
               <input
-                type="text"
+                type="date"
                 placeholder="dd/mm/yyyy"
                 id="deadline"
                 className="appearance-none placeholder:text-[14px] text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-500 leading-tight focus:outline-none focus:shadow-outline"

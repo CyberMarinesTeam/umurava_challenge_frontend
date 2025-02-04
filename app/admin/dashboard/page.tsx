@@ -33,43 +33,13 @@ const Page = () => {
 
       <div className="excludedDashBoard relative h-[316px]">
         <div className="grid grid-cols-2 gap-4">
-          <Card
-            width={540}
-            timeRange="This week"
-            description="Total Challenges"
-            number={23178}
-            percentage={20}
-          />
-          <Card2
-            width={540}
-            timeRange="This week"
-            description="Total Participants"
-            number={231}
-            percentage={15}
-          />
+          <Card width={540} description="Total Challenges" />
+          <Card2  width={540}  description="Total Participants"   number={231} percentage={15} />
         </div>
         <div className="excludedDashBoard grid grid-cols-3 mt-4 gap-4">
-          <Card
-            width={540}
-            timeRange="Last 30 days"
-            description="Completed Challenges"
-            number={25631}
-            percentage={17}
-          />
-          <Card
-            width={540}
-            timeRange="Last 20 days"
-            description="Open Challenges"
-            number={56531}
-            percentage={16}
-          />
-          <Card
-            width={540}
-            timeRange="Last 10 days"
-            description="Ongoing Challenges"
-            number={26631}
-            percentage={15}
-          />
+          <Card width={540} description="Completed Challenges" />
+          <Card width={540} description="Open Challenges" />
+          <Card width={540} description="Ongoing Challenges" />
         </div>
       </div>
 

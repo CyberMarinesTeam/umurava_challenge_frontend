@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import StatusCard from "../components/StatusCard";
 import { FaAngleRight } from "react-icons/fa6";
@@ -12,8 +12,31 @@ import { useRouter } from "next/navigation";
 import { RootState } from "@/lib/redux/store";
 import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 import Link from "next/link";
+import { useGetChallengesByUserWithStatusQuery } from "@/lib/redux/slices/participantsSlice";
 const Dashboard = () => {
+    const [openCount, setOpenCount] = useState(0);
+    const [allCount, setAllCount] = useState(0);
+    const [ongoingCount, setOngoingCount] = useState(0);
+    const [completedCount, setCompletedCount] = useState(0);
   const user = useSelector((state: RootState) => state.auth.user);
+   const { data: openChallenges } = useGetChallengesByUserWithStatusQuery({
+      userId: user?.id,
+      status: "open",
+    });
+    const { data: ongoingChallenges } = useGetChallengesByUserWithStatusQuery({
+      userId: user?.id,
+      status: "ongoing",
+    });
+    const { data: completedChallenges } = useGetChallengesByUserWithStatusQuery({
+      userId: user?.id,
+      status: "completed",
+    });
+      useEffect(() => {
+        if (openChallenges?.length) setOpenCount(openChallenges.length);
+        if (ongoingChallenges?.length) setOngoingCount(ongoingChallenges.length);
+        if (completedChallenges?.length)
+          setCompletedCount(completedChallenges.length);
+      }, [ openChallenges, ongoingChallenges, completedChallenges]);
   const router = useRouter();
 
   useEffect(() => {
@@ -43,9 +66,9 @@ const Dashboard = () => {
       </div>
       <div className="py-[16px] excluded flex w-full items-center">
         <div className="flex excluded gap-[20px] w-full flex-row">
-          <StatusCard label="Completed Challenges" number={5} />
-          <StatusCard label="Completed Challenges" number={5} />
-          <StatusCard label="Completed Challenges" number={5} />
+          <StatusCard label="Completed Challenges" number={completedCount} />
+          <StatusCard label="Open Challenges" number={openCount} />
+          <StatusCard label="Ongoing Challenges" number={ongoingCount} />
         </div>
       </div>
       <div className="w-full excluded flex justify-between">
