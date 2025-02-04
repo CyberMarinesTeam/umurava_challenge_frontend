@@ -1,18 +1,7 @@
 import React, { useState } from "react";
 
 const DropDown = () => {
-  const [selectedOption, setSelectedOption] = useState("This Day");
 
-  const handleSelectionChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = event.target.value;
-    setSelectedOption(selectedValue);
-    try {
-      const response = await fetch(`/api/filter?range=${selectedValue}`);
-      const data = await response.json();
-    } catch (error) {
-      console.error("Error fetching filtered data:", error);
-    }
-  };
 
   return (
     <div className="flex z-50 flex-row gap-2 items-center relative">
