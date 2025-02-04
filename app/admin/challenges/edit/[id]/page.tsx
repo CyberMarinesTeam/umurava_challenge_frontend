@@ -10,7 +10,6 @@ import {
   useGetChallengeByIdQuery,
   useUpdateChallengeMutation,
 } from "@/lib/redux/slices/challengeSlice";
-// import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -33,16 +32,18 @@ const Page = () => {
   }, [data]);
 
   const [challengeTitle, setChallengeTitle] = useState("");
-  const [deadline, setDeadline] = useState("");
+  const [deadline, setDeadline] = useState<Date>(new Date());
   const [duration, setDuration] = useState("");
   const [moneyPrize, setMoneyPrize] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [projectBrief, setProjectBrief] = useState("");
-  const [projectRequirements, setProjectRequirements] = useState<string[]>([
-    "",
-  ]);
+  const [category, setCategory] = useState("");
+  const [startingAt, setStartingAt] = useState<Date>(new Date());
+  const [projectRequirements, setProjectRequirements] = useState<string[]>([""]);
   const [productDesign, setProductDesign] = useState<string[]>([""]);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
+  const [skillsNeeded, setSkillsNeeded] = useState<string[]>([""]);
+  const [seniorityLevel, setSeniorityLevel] = useState("");
 
   useEffect(() => {
     if (challenge) {
@@ -55,6 +56,10 @@ const Page = () => {
       setProductDesign(challenge.product_design);
       setDeliverables(challenge.deliverables);
       setProjectBrief(challenge.projectBrief);
+      setCategory(challenge.category);
+      setStartingAt(challenge.startingAt);
+      setSkillsNeeded(challenge.skills_needed);
+      setSeniorityLevel(challenge.seniority_level);
     }
   }, [challenge]);
 
@@ -70,8 +75,11 @@ const Page = () => {
       requirements: projectRequirements,
       product_design: productDesign,
       deliverables,
-      category: challenge?.category, // Assuming category remains unchanged
+      category,
       status: challenge?.status, // Assuming status remains unchanged
+      startingAt,
+      skills_needed: skillsNeeded,
+      seniority_level: seniorityLevel,
     };
 
     const res = await axios.put(
@@ -99,6 +107,7 @@ const Page = () => {
   ) => {
     setter((prev) => prev.filter((_, i) => i !== index));
   };
+
 
   return (
     <div className="excluded flex flex-col space-y-[30px] pb-[70px] items-center">
@@ -147,30 +156,47 @@ const Page = () => {
                 Deadline
               </label>
               <input
-                type="string"
+                type="date"
                 id="deadline"
                 className="appearance-none placeholder:text-[14px] text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
-                value={deadline}
-                onChange={(e) => setDeadline(e.target.value)}
+                value={deadline.toString().split("T")[0]} // Format date for input
+                onChange={(e) => setDeadline(new Date(e.target.value))}
               />
             </div>
-            <div className="excluded md:w-1/2">
+
+            <div className="excluded md:w-1/2 mb-4 md:mb-0">
+            <label
+              htmlFor="startingAt"
+              className="block text-[#475367] text-[14px] mb-2"
+            >
+              Starting At
+            </label>
+            <input
+              type="date"
+              id="startingAt"
+              className="appearance-none placeholder:text-[14px] text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+              value={startingAt.toString().split("T")[0]} // Format date for input
+              onChange={(e) => setStartingAt(new Date(e.target.value))}
+            />
+          </div>
+           
+          </div>
+          <div className="excluded mb-4">
               <label
                 htmlFor="duration"
                 className="block text-[#475367] text-[14px] mb-2"
               >
-                Duration
+                Duration (days)
               </label>
               <input
                 type="text"
                 id="duration"
                 placeholder="Duration"
-                className="appearance-none placeholder:text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[279px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="appearance-none placeholder:text-[14px] border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
               />
             </div>
-          </div>
           <div className="excluded mb-4">
             <label
               htmlFor="moneyPrize"
@@ -220,6 +246,45 @@ const Page = () => {
               placeholder="Enter text here ..."
             />
           </div>
+
+          {/* Skills Needed */}
+          <div className="excluded mb-4">
+            <label className="block text-[#475367] text-[14px] mb-2">
+              Skills Needed
+            </label>
+            {skillsNeeded.map((value, index) => (
+              <div key={index} className="flex space-x-2 mb-2">
+                <input
+                title = "..."
+          
+                  type="text"
+                  className="border-[0.5px] border-[#E4E7EC] rounded w-[500px] p-[16px] text-gray-700"
+                  value={value}
+                  onChange={(e) => {
+                    const newValues = [...skillsNeeded];
+                    newValues[index] = e.target.value;
+                    setSkillsNeeded(newValues);
+                  }}
+                />
+                <span
+                  
+                  onClick={() => removeField(index, setSkillsNeeded)}
+                >
+                  <MdDelete className="text-[30px] cursor-pointer text-red-400" />
+                </span>
+              </div>
+            ))}
+            <span
+            title=".."
+               
+              onClick={() => addField(setSkillsNeeded)}
+            >
+              <IoMdAddCircleOutline className="text-[30px] cursor-pointer text-blue-500" />
+            </span>
+          </div>
+
+          
+
           {[projectRequirements, productDesign, deliverables].map(
             (field, fieldIndex) => (
               <div key={fieldIndex} className="excluded mb-4">
@@ -288,9 +353,9 @@ const Page = () => {
             <button
               type="submit"
               className="bg-[#2B71f0] w-[324px] h-[56px] text-[16px] rounded-[5px] font-semibold text-white"
-              // Disable button while loading
+              disabled={isLoading} // Disable button while loading
             >
-              Edit Challenge
+              {isLoading ? "Editing..." : " Edit Challenge"}
             </button>
           </div>
         </form>

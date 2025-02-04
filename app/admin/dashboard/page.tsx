@@ -52,6 +52,7 @@ const Page = () => {
           <Link href="/guest/challenges" className="text-[#2B71F0] text-[13px] font-normal flex items-center gap-2 h-[14px]">
             <span>See all </span> <FaChevronRight />
           </Link>
+
         </div>
 
         <div className="excludedDashBoard gap-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

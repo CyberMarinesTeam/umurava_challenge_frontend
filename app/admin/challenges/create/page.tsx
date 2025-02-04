@@ -15,14 +15,12 @@ const Page: React.FC = () => {
   const router = useRouter();
   const [createChallenge] = useCreateChallengeMutation();
   const [challengeTitle, setChallengeTitle] = useState("");
-  const [deadline, setDeadline] = useState("");
-  const [startingDate, setStartingDate] = useState("");
+  const [deadline, setDeadline] = useState<Date>(new Date());
+  const [startingDate, setStartingDate] = useState<Date>(new Date());
   const [duration, setDuration] = useState("");
   const [moneyPrize, setMoneyPrize] = useState("");
   const [contactEmail, setContactEmail] = useState("");
-  const [projectRequirements, setProjectRequirements] = useState<string[]>([
-    "",
-  ]);
+  const [projectRequirements, setProjectRequirements] = useState<string[]>([""]);
   const [product_design, setProductDesign] = useState<string[]>([""]);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
   const [skills_needed, setSkills_needed] = useState<string[]>([""]);
@@ -31,6 +29,47 @@ const Page: React.FC = () => {
   const [projectBrief, setProjectBrief] = useState("");
 
   const handleSubmit = async (event: React.FormEvent) => {
+    // Check for empty fields
+    if (
+      !challengeTitle ||
+      !deadline ||
+      !startingDate ||
+      !duration ||
+      !moneyPrize ||
+      !contactEmail ||
+      !category ||
+      !seniority_level ||
+      !projectBrief
+    ) {
+      alert("All fields are required.");
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(contactEmail)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // Validate numbers
+    if (isNaN(parseInt(duration)) || parseInt(duration) <= 0) {
+      alert("Duration must be a positive number.");
+      return;
+    }
+
+    if (isNaN(parseInt(moneyPrize)) || parseInt(moneyPrize) < 0) {
+      alert("Money Prize must be a valid number.");
+      return;
+    }
+
+    // Validate date fields
+    const start = new Date(startingDate);
+    const end = new Date(deadline);
+    if (start >= end) {
+      alert("The starting date must be before the deadline.");
+      return;
+    }
     event.preventDefault();
     const newToCreateChallenge = {
       title: challengeTitle,
@@ -45,23 +84,23 @@ const Page: React.FC = () => {
       seniority_level,
       skills_needed,
       projectBrief,
-      startingDate,
+      startingAt:startingDate,
     };
-   if(user) {
-    // console.log(newToCreateChallenge);
-    // await axios.post("http://localhost:4000/challenges/"+user?.id, 
-    // newToCreateChallenge,
-    //  {headers:{
-    //   "Content-Type": "application/json",
-    //   "Authorization": `Bearer ${localStorage.getItem('token')}`
-    //    }
-    // })
-
-    await createChallenge({ id: user?.id, newChallenge: newToCreateChallenge });
-    router.push("/admin/challenges");
-   }else {
-    alert("You must be logged in to create a challenge")
-   }
+    if (user) {
+     try {
+      const res = await createChallenge({id: user?.id, newChallenge: newToCreateChallenge}).unwrap();
+      console.log(res);
+      console.log(newToCreateChallenge)
+      if(res) {
+        router.push("/admin/challenges");
+      }
+      
+     } catch (error) {
+      console.log("failed to create the challenge ", error, newToCreateChallenge);
+     }
+    } else {
+      alert("You must be logged in to create a challenge");
+    }
   };
 
   const addField = (setter: React.Dispatch<React.SetStateAction<string[]>>) => {
@@ -146,24 +185,23 @@ const Page: React.FC = () => {
                 onChange={(e) => setStartingDate(e.target.value)}
               />
             </div>
-           
           </div>
           <div className="excluded mb-4">
-              <label
-                htmlFor="duration"
-                className="block text-[#475367] text-[14px] mb-2"
-              >
-                Duration
-              </label>
-              <input
-                type="text"
-                id="duration"
-                placeholder="Duration"
-                className="appearance-none placeholder:text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={duration}
-                onChange={(e) => setDuration(e.target.value)}
-              />
-            </div>
+            <label
+              htmlFor="duration"
+              className="block text-[#475367] text-[14px] mb-2"
+            >
+              Duration
+            </label>
+            <input
+              type="text"
+              id="duration"
+              placeholder="Duration"
+              className="appearance-none placeholder:text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+            />
+          </div>
           <div className="excluded mb-4">
             <label
               htmlFor="moneyPrize"

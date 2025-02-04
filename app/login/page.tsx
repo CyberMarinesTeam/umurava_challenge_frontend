@@ -19,7 +19,7 @@ const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
-  const [roles, setRole] = useState<RoleEnum | "">("");
+  const [roles, setRole] = useState<RoleEnum|"">("");
 
   const handleLoginSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -35,36 +35,14 @@ const Page = () => {
 
       if (loginResponse.user.roles == "talent") {
         router.push("/talent/dashboard");
-        toast.success("Logged in successfully", {
-          position: "top-right",
-          autoClose: 300,
-          hideProgressBar: false,
-          closeOnClick: true,
-          rtl: false,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-          transition: Flip,
-        });
       } else {
         router.push("/admin/dashboard");
-        toast.success("Logged in successfully", {
-          position: "top-right",
-          autoClose: 300,
-          hideProgressBar: false,
-          closeOnClick: true,
-          rtl: false,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-          transition: Flip,
-        });
+         alert("Logged in successfully");
       }
     }
   };
   const handleSignupSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(roles, username, email, password);
     const signupResponse = await signup({
       username,
       roles,

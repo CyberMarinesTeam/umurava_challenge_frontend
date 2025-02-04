@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export type ChallengeType = {
-  _id:string;
+  _id?:string;
   title: string;
   deadline: Date;
   duration: number;
@@ -12,7 +12,7 @@ export type ChallengeType = {
   product_design: string[];
   deliverables: string[];
   category: string;
-  status:string;
+  status?:string;
   seniority_level:string;
   skills_needed:string[];
   startingAt:Date;
