@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Header from "@/app/talent/components/Header";
 import TalentSideBar from "@/app/talent/components/TalentSideBar";
-import Modal from "./components/Modal";
 
 interface RNode {
   children: React.ReactNode;

@@ -2,10 +2,9 @@
 
 import Link from "next/link";
 import { CiDollar } from "react-icons/ci";
-import React, { use, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-// import { FaArrowUpLong } from "react-icons/fa6";
 import {
   IoBagOutline,
   IoCalendarOutline,
@@ -14,43 +13,76 @@ import {
 } from "react-icons/io5";
 import { RxFileText } from "react-icons/rx";
 import { VscArrowSmallLeft } from "react-icons/vsc";
-// import { useGetChallengeByIdQuery } from "@/lib/redux/slices/challengeSlice";
 import { useParams } from "next/navigation";
-import { ChallengeType } from "@/lib/redux/slices/challengeSlice";
+import {
+  ChallengeType,
+  useCreateChallengeMutation,
+} from "@/lib/redux/slices/challengeSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
+import {
+  useGetStatusQuery,
+  useStartChallengeMutation,
+} from "@/lib/redux/slices/participantsSlice";
 
 const Page = () => {
-  const params = useParams<{ id: string }>();
-  const [challenge, setChallenge] = useState<ChallengeType>();
+  const [createStartChallenge] = useStartChallengeMutation();
   const router = useRouter();
-  const getChallenge = async (id: string) => {
-    const response = await axios.get(`http://localhost:4000/challenges/${id}`);
-    if (response) {
-      console.log(response.data);
-      setChallenge(response.data.Challenge);
-    }
-  };
+  const params = useParams<{ id: string }>(); // Move this to the top
+  const user = useSelector((state: RootState) => state.auth.user);
+  const [showStarted, setShowStarted] = useState(false);
+  const [challenge, setChallenge] = useState<ChallengeType | null>(null);
 
-  const deleteChallenge = async (id: string) => {
-    const res = await axios.delete(`http://localhost:4000/challenges/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    if (res) {
-      console.log("deleted");
+  // Fetch challenge status
+  const { data: statusData } = useGetStatusQuery(
+    user ? { userId: user.id, challengeId: params.id } : undefined
+  );
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, [user, router]);
+
+  useEffect(() => {
+    if (statusData) {
+      setShowStarted(statusData.status);
+    }
+  }, []);
+
+  // Fetch challenge data
+  useEffect(() => {
+    const getChallenge = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:4000/challenges/${params.id}`
+        );
+        setChallenge(response.data.Challenge);
+      } catch (error) {
+        console.error("Error fetching challenge:", error);
+      }
+    };
+
+    if (params.id) {
+      getChallenge();
+    }
+  }, [params.id]);
+
+  // Delete challenge
+  const deleteChallenge = async () => {
+    try {
+      await axios.delete(`http://localhost:4000/challenges/${params.id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       router.push("/admin/challenges");
-    } else {
-      console.log("failed to del");
+    } catch (error) {
+      console.error("Failed to delete challenge:", error);
     }
   };
-  useEffect(() => {
-    getChallenge(params.id);
-  }, [params.id]);
 
-  useEffect(() => {
-    console.log(challenge);
-  }, [params.id]);
   return (
     <div className="excluded  h-[1000px] overflow-y-auto">
       <div className="excluded flex  flex-row w-full  border-y-[1.5px] items-center  border-[#E4E7EC]  bg-white justify-start px-[20px] h-[62px]">
@@ -207,10 +239,28 @@ const Page = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row items-center mt-[50px] space-x-[10px] justify-center">
-              <button className="text-[16px] w-full h-[55px] text-white rounded-[8px]  bg-[#2B71F0] ">
+            <div className="flex flex-col items-center mt-[50px] space-y-[20px] justify-center">
+              <button className="text-[16px] hover:opacity-70 w-full h-[55px] text-white rounded-[8px] bg-[#2B71F0]">
                 Submit Your Work
               </button>
+              {showStarted ? (
+                <button className="text-[16px] w-full h-[55px] hover:opacity-70 text-white rounded-[8px] bg-[#2B71F0] ">
+                  started
+                </button>
+              ) : (
+                <button
+                  onClick={async () => {
+                    setShowStarted(true);
+                    await createStartChallenge({
+                      userId: user?.id,
+                      challengeId: params.id,
+                    });
+                  }}
+                  className="text-[16px] w-full h-[55px] hover:opacity-70 text-white rounded-[8px] bg-[#2B71F0] "
+                >
+                  Start Challenge
+                </button>
+              )}
             </div>
           </div>
           <div className="excluded border-[#E4E7EC]  border-[1.5px] pb-[32px] shadow-sm rounded-[12px]  bg-white">

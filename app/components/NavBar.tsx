@@ -4,9 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
+<<<<<<< HEAD
 // import { useSelector, useDispatch } from "react-redux";
 // import { RootState } from "@/store/store";
 // import { clearCredentials } from "@/lib/redux/slices/authSlice";
+=======
+>>>>>>> 5586f951975554d8cb85414fdf6150f49931b28c
 
 const dm_sans = DM_Sans({
   subsets: ["latin"],
@@ -22,6 +25,7 @@ const NavBar = () => {
   const currentPath = usePathname();
   const [showMenu, setShowMenu] = useState(false);
 
+<<<<<<< HEAD
   const isActive = (path: string) => {
     return currentPath === path;
   };
@@ -35,6 +39,9 @@ const NavBar = () => {
     { label: "About Us", path: "/guest/about" },
     { label: "Contact Us", path: "/guest/contact" },
   ];
+=======
+  const isActive = (path: string) => currentPath === path;
+>>>>>>> 5586f951975554d8cb85414fdf6150f49931b28c
 
   return (
     <nav
@@ -50,6 +57,7 @@ const NavBar = () => {
 
       {/* Desktop Navigation */}
       <ul className="hidden sm:text-sm md:flex flex-row text-gray-700 space-x-[40px]">
+<<<<<<< HEAD
         {links.map((item: ItemType, index: number) => (
           <li key={index}>
             <Link
@@ -62,6 +70,58 @@ const NavBar = () => {
             </Link>
           </li>
         ))}
+=======
+        <li>
+          <Link
+            href="/"
+            className={`hover:text-[#2B71f0] ${
+              isActive("/") ? "text-[#2B71f0]" : ""
+            }`}
+          >
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/guest/challenges"
+            className={`hover:text-[#2B71f0] ${
+              isActive("/guest/challenges") ? "text-[#2B71f0]" : ""
+            }`}
+          >
+            Challenge & Hackathons
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/guest/community"
+            className={`hover:text-[#2B71f0] ${
+              isActive("/guest/community") ? "text-[#2B71f0]" : ""
+            }`}
+          >
+            For Learning Institutions
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/guest/about"
+            className={`hover:text-[#2B71f0] ${
+              isActive("/guest/about") ? "text-[#2B71f0]" : ""
+            }`}
+          >
+            About Us
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/guest/contact"
+            className={`hover:text-[#2B71f0] ${
+              isActive("/guest/contact") ? "text-[#2B71f0]" : ""
+            }`}
+          >
+            Contact Us
+          </Link>
+        </li>
+>>>>>>> 5586f951975554d8cb85414fdf6150f49931b28c
       </ul>
 
       {/* Mobile Menu Button */}
@@ -76,7 +136,6 @@ const NavBar = () => {
       </div>
 
       {/* Join or Logout Button */}
-
       <Link href={"/login"}>
         <button className="bg-[#041738] hover:opacity-80 transition-all ease-in-out duration-300 hidden md:block p-[14px] text-white text-[14px] rounded-[10px]">
           Join the Program
@@ -87,6 +146,7 @@ const NavBar = () => {
       {showMenu && (
         <div className="md:hidden z-50 bg-white flex flex-col space-y-4 items-center pt-[20px] justify-between shadow-md absolute top-[100px] left-0 right-0">
           <ul className="flex flex-col space-y-4 text-gray-700">
+<<<<<<< HEAD
             {links.map((item: ItemType, index: number) => (
               <li key={index}>
                 <Link
@@ -98,6 +158,53 @@ const NavBar = () => {
                 </Link>
               </li>
             ))}
+=======
+            <li>
+              <Link
+                href="/"
+                className="hover:text-blue-600 transition duration-300"
+                onClick={() => setShowMenu(false)}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/guest/challenges"
+                className="hover:text-blue-600 transition duration-300"
+                onClick={() => setShowMenu(false)}
+              >
+                Challenge & Hackathons
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/guest/community"
+                className="hover:text-blue-600 transition duration-300"
+                onClick={() => setShowMenu(false)}
+              >
+                For Learning Institutions
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/guest/about"
+                className="hover:text-blue-600 transition duration-300"
+                onClick={() => setShowMenu(false)}
+              >
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/guest/contact"
+                className="hover:text-blue-600 transition duration-300"
+                onClick={() => setShowMenu(false)}
+              >
+                Contact Us
+              </Link>
+            </li>
+>>>>>>> 5586f951975554d8cb85414fdf6150f49931b28c
           </ul>
 
           <button className="bg-[#041738] p-[14px] rounded-b-[5px] w-full text-white text-[14px]">
