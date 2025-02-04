@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import { RiTelegram2Line } from "react-icons/ri";
+
 import { GoHome } from "react-icons/go";
 import {
   IoDocumentTextOutline,
@@ -70,21 +72,47 @@ const TalentSideBar = () => {
                 Challenges
               </span>
             </Link>
-
-            <Link
-              href="/talent/community"
-              className={`mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm ${
-                isActive("/talent/community") ? "bg-white text-blue-600" : ""
-              }`}
+            <button
+              onClick={() => {
+                const modal = document.getElementById("my_modal_5");
+                if (modal) {
+                  (modal as HTMLDialogElement).showModal();
+                }
+              }}
+              className="mb-[2px] p-4 flex items-center gap-2 w-[256px] hover:bg-white transition-all ease-in-out duration-300 hover:text-blue-600 h-[44px] rounded-sm"
             >
               <IoPersonAddOutline className="text-[20px]" />
               <span className="text-[14px] font-normal leading-5">
                 Community
               </span>
-            </Link>
+            </button>
+            <dialog
+              id="my_modal_5"
+              className="modal modal-bottom sm:modal-middle"
+            >
+              <div className="modal-box w-[400px] flex gap-4 flex-col">
+                <div className="flex w-full justify-center">
+                  <div className="h-[135px] w-[135px] bg-[#D0E0FC] flex justify-center items-center rounded-full overflow-hidden text-[#2B71F0]">
+                    <RiTelegram2Line className="h-20 w-20" />
+                  </div>
+                </div>
+                <h3 className="font-bold text-xl text-black text-center">
+                  Join our Whatsapp community
+                </h3>
+                <p className="text-center text-black">
+                  Get notified on the latest projects and hackathons
+                </p>
+                <div className="modal-action">
+                  <form method="dialog" className="flex w-full justify-center">
+                    <button className="btn w-[135px] py-2 bg-[#2B71F0] rounded-lg text-white">
+                      Join
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
           </ul>
         </div>
-
         <div className="mb-[10px] mt-[10px]">
           <ul>
             <Link

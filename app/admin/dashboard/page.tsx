@@ -42,7 +42,7 @@ const Page = () => {
           />
           <Card2
             width={540}
-            timeDescription="This week"
+            timeRange="This week"
             description="Total Participants"
             number={231}
             percentage={15}
@@ -51,21 +51,21 @@ const Page = () => {
         <div className="excludedDashBoard grid grid-cols-3 mt-4 gap-4">
           <Card
             width={540}
-            timeDescription="Last 30 days"
+            timeRange="Last 30 days"
             description="Completed Challenges"
             number={25631}
             percentage={17}
           />
           <Card
             width={540}
-            timeDescription="Last 20 days"
+            timeRange="Last 20 days"
             description="Open Challenges"
             number={56531}
             percentage={16}
           />
           <Card
             width={540}
-            timeDescription="Last 10 days"
+            timeRange="Last 10 days"
             description="Ongoing Challenges"
             number={26631}
             percentage={15}

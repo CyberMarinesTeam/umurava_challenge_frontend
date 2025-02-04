@@ -1,27 +1,45 @@
-import React from "react";
+import React, {useState} from "react";
 import { FaArrowUpLong } from "react-icons/fa6";
 import { IoPeopleOutline } from "react-icons/io5";
 import DropDown from "./DropDown";
 
 const Card2 = ({
   width,
-  timeDescription,
+  timeRange,
   description,
   number,
   percentage,
 }: {
   width: number;
-  timeDescription: string;
+  timeRange: string;
   description: string;
   number: number;
   percentage: number;
 }) => {
+  const [selectedOption, setSelectedOption] = useState("This Day");
+
+  const handleSelectionChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    setSelectedOption(selectedValue);
+    try {
+      const response = await fetch(`/api/filter?range=${selectedValue}`);
+      const data = await response.json();
+    } catch (error) {
+      console.error("Error fetching filtered data:", error);
+    }
+  };
+
   return (
     <div
       className={`relative bg-white rounded-lg border-[1.5px] border-[#E4E7EC] -z-10 px-6  py-[0px] h-[150px] w-[${width}]`}
     >
       <div className="absolute top-2 right-2 flex items-center gap-1  h-[17px] font-normal text-[12px] leading-[18px] text-[#98A2B3]">
-        <DropDown />
+      <select value={selectedOption} onChange={handleSelectionChange}>
+        <option value="This Day">This Day</option>
+        <option value="This Week">This Week</option>
+        <option value="Last 30 Days">Last 30 Days</option>
+        <option value="Last 3 Months">Last 3 Months</option>
+      </select>
       </div>
       <div className="w-full h-full">
         <div className="flex flex-row space-x-[30px] items-center justify-center mt-[70px]    ">
