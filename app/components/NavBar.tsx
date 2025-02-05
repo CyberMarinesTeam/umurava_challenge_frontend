@@ -25,7 +25,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`h-[96px] ${dm_sans.className} border-b-[1px] items-center justify-center flex flex-row max-md:justify-between max-md:px-[20px] space-x-[100px]`}
+      className={`h-[96px] ${dm_sans.className}  items-center justify-center flex flex-row max-md:justify-between max-md:px-[20px] space-x-[100px]`}
     >
       {/* Logo */}
       <img
