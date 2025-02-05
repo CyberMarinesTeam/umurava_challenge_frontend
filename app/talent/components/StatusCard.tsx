@@ -11,10 +11,10 @@ const StatusCard = ({ label, number }: StatusCardProps) => {
       <div className="flex relative justify-between w-full items-center h-[45px]">
         <div className="flex flex-col rounded-border pl-4">
           <div>
-            <p>{label}</p>
+            <p className="text-[14px] text-gray-700">{label}</p>
           </div>
           <div>
-            <p className="font-bold text-xl">{number}</p>
+            <p className="font-bold text-xl text-gray-600">{number}</p>
           </div>
         </div>
         <div className="flex justify-center text-blue-600 items-center rounded-full h-[48px] w-[48px] bg-[#D0E0FC]">

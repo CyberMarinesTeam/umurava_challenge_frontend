@@ -148,27 +148,29 @@ const TalentSideBar = () => {
         </div>
 
         <div className="pl-[5px] flex flex-col space-y-[20px]">
-              <div className="flex flex-row space-x-[7px]">
-                <img
-                  src="/profile2.webp"
-                  alt="profileImage"
-                  className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
-                />
-                <div className="flex  flex-col gap-1 w-[80%]">
-                  <p className="text-[14px] font-normal leading-5">
-                    {user?.username}, PM
-                  </p>
-                  <p className="text-[14px]  font-normal leading-5 w-[80%]">
-                    {user?.email}
-                  </p>
-                </div>
-              </div>
-              <span className="">  <FiLogOut
-                className="h-[20px] w-[20px] cursor-pointer "
-                onClick={handleLogout}
-              /></span>
-            
+          <div className="flex flex-row space-x-[7px]">
+            <img
+              src="/profile2.webp"
+              alt="profileImage"
+              className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
+            />
+            <div className="flex  flex-col gap-1 w-[80%]">
+              <p className="text-[12px] font-normal leading-5">
+                {user?.username}, PM
+              </p>
+              <p className="text-[12px]  font-normal leading-5 w-[80%]">
+                {user?.email}
+              </p>
             </div>
+          </div>
+          <span className="">
+            {" "}
+            <FiLogOut
+              className="h-[20px] w-[20px] cursor-pointer "
+              onClick={handleLogout}
+            />
+          </span>
+        </div>
       </div>
 
       {showLogoutModal && (
