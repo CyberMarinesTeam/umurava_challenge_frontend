@@ -8,7 +8,11 @@ import React, { Fragment, useEffect, useState } from "react";
 // import { MdOutlineNavigateNext } from "react-icons/md";
 // import { GrFormPrevious } from "react-icons/gr";
 
-import { ChallengeType, useGetChallengeByStatusQuery, useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
+import {
+  ChallengeType,
+  useGetChallengeByStatusQuery,
+  useGetChallengesQuery,
+} from "@/lib/redux/slices/challengeSlice";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import Link from "next/link";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
@@ -17,59 +21,77 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 
 const Challenges = () => {
-    const [openCount, setOpenCount] = useState(0);
-    const [allCount, setAllCount] = useState(0);
-    const [ongoingCount, setOngoingCount] = useState(0);
-    const [completedCount, setCompletedCount] = useState(0);
-  const {data:dataForOpen}=useGetChallengeByStatusQuery
-  
-  ("open")
-  console.log(dataForOpen)
-  const {data:dataForOngoing}=useGetChallengeByStatusQuery("ongoing")
-  console.log(dataForOngoing)
-  const {data:dataForComplete}=useGetChallengeByStatusQuery("completed")
-  console.log(dataForComplete)
-    useEffect(() => {
-      if (data?.length) setAllCount(data.length);
-      if (dataForOpen?.length) setOpenCount(dataForOpen.length);
-      if (dataForOngoing?.length) setOngoingCount(dataForOngoing.length);
-      if (dataForComplete?.length)
-        setCompletedCount(dataForComplete.length);
-    }, [ dataForComplete, dataForOngoing, dataForOpen]);
+  const [openCount, setOpenCount] = useState(0);
+  const [allCount, setAllCount] = useState(0);
+  const [ongoingCount, setOngoingCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+  const { data: dataForOpen } = useGetChallengeByStatusQuery("open");
+  const { data: dataForOngoing } = useGetChallengeByStatusQuery("ongoing");
+  const { data: dataForComplete } = useGetChallengeByStatusQuery("completed");
+  useEffect(() => {
+    if (data?.length) setAllCount(data.length);
+    if (dataForOpen?.length) setOpenCount(dataForOpen.length);
+    if (dataForOngoing?.length) setOngoingCount(dataForOngoing.length);
+    if (dataForComplete?.length) setCompletedCount(dataForComplete.length);
+  }, [dataForComplete, dataForOngoing, dataForOpen]);
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
 
   const { data } = useGetChallengesQuery();
-  const {query, filterText}= useSelector((state: RootState) => state.search);
+  const { query, filterText } = useSelector((state: RootState) => state.search);
 
+  const [filteredChallenges, setFilteredChallenges] = useState<ChallengeType[]>(
+    []
+  );
 
-  const [filteredChallenges, setFilteredChallenges] = useState<ChallengeType[]>([]);
-
-  if (!data) {
-    console.log("data=> date not found");
-  }
 
   useEffect(() => {
-    if (user?.roles.toString()!=="admin") {
+    if (user?.roles.toString() !== "admin") {
       router.push("/login");
     }
   }, [user, router]);
 
   useEffect(() => {
+
     if (data) {
+
       const filtered = data.filter((challenge) =>
-        challenge.filterText?.toLowerCase().includes(query.toLowerCase())
+       filterText == "category" ? challenge.category.toLowerCase().includes(query.toLowerCase()) : 
+        filterText == "skills" ? challenge.skills_needed?.some((skill) => skill.toLowerCase().includes(query.toLowerCase())) :
+        filterText == "seniority_level" ? challenge.seniority_level.toLowerCase().includes(query.toLowerCase()) :
+        filterText == "contactEmail" ? challenge.contactEmail.toLowerCase().includes(query.toLowerCase()) : 
+        filterText == "moneyPrize" ? challenge.moneyPrice.toString().includes(query) : 
+        filterText == "requirements" ? challenge?.requirements?.some((requirement) => requirement.toLowerCase().includes(query.toLowerCase())) :
+        filterText == "status" ? challenge.status?.toLowerCase().includes(query.toLowerCase()) :
+        challenge.title.toLowerCase().includes(query.toLowerCase())
       );
+      
       setFilteredChallenges(filtered);
+      console.log(filtered, query, filterText);
     }
+
   }, [data, query, filterText]);
   const [CurrentPage, setCurrent] = useState(1);
+
 
   const totalNumberElements = 6;
   const lastIndex = CurrentPage * totalNumberElements;
   const firstIndex = lastIndex - totalNumberElements;
-  const paginatedchallenges = filteredChallenges?.slice(firstIndex, lastIndex);
-  const totalNumberPages = Math.ceil(filteredChallenges?.length / totalNumberElements);
+  let paginatedchallenges = data?.slice(firstIndex, lastIndex);
+  let totalNumberPages = Math.ceil(
+    DataTransferItemList.length / totalNumberElements
+  );
+  if (filteredChallenges.length > 0) {
+    paginatedchallenges = filteredChallenges?.slice(firstIndex, lastIndex);
+    totalNumberPages = Math.ceil(
+      filteredChallenges?.length / totalNumberElements
+    );
+  } else {
+    paginatedchallenges = data?.slice(firstIndex, lastIndex);
+    totalNumberPages = Math.ceil(
+      DataTransferItemList.length / totalNumberElements
+    );
+  }
   const handleNext = () => {
     if (CurrentPage < totalNumberPages) {
       setCurrent(CurrentPage + 1);

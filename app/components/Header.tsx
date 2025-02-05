@@ -76,7 +76,7 @@ const Header = () => {
           {/* Filter Dropdown */}
           {filterOpen && (
             <div className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded-md border p-2">
-              {["title", "skills", "seniority_level", "status"].map((filter) => (
+              {["title", "skills", "seniority_level", "status", "category", "contactEmail", "moneyPrize", "Requirements" ].map((filter) => (
                 <p
                   key={filter}
                   className="p-2 cursor-pointer hover:bg-gray-100 text-sm"

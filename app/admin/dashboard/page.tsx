@@ -49,7 +49,7 @@ const Page = () => {
           <h1 className="text-[18px] leading-[26px] font-semibold text-[#101928]">
             Recent Challenges
           </h1>
-          <Link href="/guest/challenges" className="text-[#2B71F0] text-[13px] font-normal flex items-center gap-2 h-[14px]">
+          <Link href="/admin/challenges" className="text-[#2B71F0] text-[13px] font-normal flex items-center gap-2 h-[14px]">
             <span>See all </span> <FaChevronRight />
           </Link>
 
