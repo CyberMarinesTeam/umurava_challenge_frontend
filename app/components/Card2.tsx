@@ -71,9 +71,9 @@ const Card2 = ({
       <div className="absolute top-2 right-2 flex items-center gap-1  h-[17px] font-normal text-[12px] leading-[18px] text-[#98A2B3]">
 
         <select
-          title="."
+          title="select"
           value={selectedOption}
-          className="focus:outline-none"
+          className="focus:outline-none cursor-pointer"
           onChange={handleSelectionChange}
         >
           <option value="This Day">This Day</option>

@@ -49,10 +49,12 @@ const Page = () => {
           <h1 className="text-[18px] leading-[26px] font-semibold text-[#101928]">
             Recent Challenges
           </h1>
-          <Link href="/admin/challenges" className="text-[#2B71F0] text-[13px] font-normal flex items-center gap-2 h-[14px]">
-            <span>See all </span> <FaChevronRight />
+          {/* <button className="cursor-pointer" > */}
+          <Link href="/admin/challenges" className="z-50">
+          <button className="text-[#2B71F0] text-[13px] font-normal flex items-center gap-2 h-[14px]"><span>See all </span> <FaChevronRight /></button>
+            
           </Link>
-
+          {/* </button> */}
         </div>
 
         <div className="excludedDashBoard gap-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

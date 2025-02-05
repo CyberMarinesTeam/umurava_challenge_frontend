@@ -35,7 +35,7 @@ const ChallengeCard2: React.FC<{ challenge: Challenge }> = ({ challenge }) => {
           alt="umurava_bg"
           className="w-[300px] object-cover rounded-[8px] h-[160px]"
         />
-        <span className="bg-[#0F973D] text-white absolute w-[52px] grid place-items-center h-[22px] rounded-full top-[8px] text-[12px] right-[14px]">
+        <span className={` ${challenge?.status == "completed" ? "bg-red-500 px-[7px] w-[80px]" : challenge.status =="open" ? "bg-[#0f973d] w-[52px]" : "bg-yellow-500 w-[60px]" } text-white absolute w-[52px] grid place-items-center h-[22px] rounded-full top-[8px] text-[12px] right-[17px]`}>
           {challenge.status}
         </span>
       </div>

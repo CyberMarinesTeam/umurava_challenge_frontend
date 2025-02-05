@@ -5,7 +5,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FiFileText } from "react-icons/fi";
 import SmallStatusCard from "../components/SmallStatusCard";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
-import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
+import { ChallengeType, useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
@@ -17,12 +17,16 @@ const Challenges = () => {
   const [ongoingCount, setOngoingCount] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
   const itemsPerPage = 6;
 
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
-  const globalSearchQuery = useSelector((state: RootState) => state.search.query);
+
+  const [filteredChallenges, setFilteredChallenges] = useState<ChallengeType[]>(
+    []
+  );
+    const { query, filterText } = useSelector((state: RootState) => state.search);
+
 
   const { data: allChallenges } = useGetChallengesQuery();
   const { data: openChallenges } = useGetChallengesByUserWithStatusQuery({
@@ -42,7 +46,7 @@ const Challenges = () => {
     if (user?.roles.toString()!=="talent") {
       router.push("/login");
     }
-  }, [user, router]);
+  }, [router]);
 
   useEffect(() => {
     if (allChallenges?.length) setAllCount(allChallenges.length);
@@ -51,9 +55,25 @@ const Challenges = () => {
     if (completedChallenges?.length) setCompletedCount(completedChallenges.length);
   }, [allChallenges, openChallenges, ongoingChallenges, completedChallenges]);
 
-  const filteredChallenges = allChallenges?.filter((challenge) =>
-    challenge.title.toLowerCase().includes(globalSearchQuery.toLowerCase())
-  ) || [];
+  useEffect(()=>{
+    if (allChallenges) {
+
+      const filtered = allChallenges.filter((challenge) =>
+       filterText == "category" ? challenge.category.toLowerCase().includes(query.toLowerCase()) : 
+        filterText == "skills" ? challenge.skills_needed?.some((skill) => skill.toLowerCase().includes(query.toLowerCase())) :
+        filterText == "seniority_level" ? challenge.seniority_level.toLowerCase().includes(query.toLowerCase()) :
+        filterText == "contactEmail" ? challenge.contactEmail.toLowerCase().includes(query.toLowerCase()) : 
+        filterText == "moneyPrize" ? challenge.moneyPrice.toString().includes(query) : 
+        filterText == "requirements" ? challenge?.requirements?.some((requirement) => requirement.toLowerCase().includes(query.toLowerCase())) :
+        filterText == "status" ? challenge.status?.toLowerCase().includes(query.toLowerCase()) :
+        challenge.title.toLowerCase().includes(query.toLowerCase())
+      );
+      
+      setFilteredChallenges(filtered);
+      console.log(filtered, query, filterText);
+    }
+
+  }, [allChallenges, query, filterText]);
 
   const totalPages = Math.ceil(filteredChallenges.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;

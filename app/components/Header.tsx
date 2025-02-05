@@ -4,12 +4,15 @@ import { useEffect, useState } from "react";
 import { IoFilterOutline, IoSearchSharp } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import io from "socket.io-client";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/lib/redux/store";
-import { setSearchQuery } from "@/lib/redux/slices/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
+import ProtectedRoute from "./script/Protection";
 
-const SOCKET_SERVER_URL = "ws://localhost:4000";
+import { setSearchQuery } from "@/lib/redux/slices/searchSlice";
+import { RootState } from "@/lib/redux/store";
+
+const SOCKET_SERVER_URL = "http://localhost:4000";
 const Header = () => {
+  const user = useSelector((state: RootState) => state.auth.user);
   const [notifications, setNotifications] = useState<
     { message: string; isRead: boolean }[]
   >([]);
@@ -17,12 +20,12 @@ const Header = () => {
   const [unreadCount, setUnreadCount] = useState(0);
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("title");
-  const socket = io(SOCKET_SERVER_URL, { transports: ["websocket"] });
-
-  const user = useSelector((state: RootState) => state.auth.user);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const socket = io(SOCKET_SERVER_URL, { transports: ["websocket"] });
+
     socket.on("connect", () => {
       console.log("Connected to WebSocket server");
     });
@@ -53,6 +56,7 @@ const Header = () => {
 
   return (
     <div className="flex relative z-20 items-center justify-between p-4 bg-white border-[#E4E7EC]">
+
       {/* Search Bar */}
       <div className="flex items-center gap-4 bg-gray-100 rounded-md w-[60%] ml-8 px-4 py-2 relative">
         <IoSearchSharp className="text-gray-500" />
@@ -91,6 +95,7 @@ const Header = () => {
             </div>
           )}
         </div>
+
       </div>
 
       {/* Right Section */}
@@ -136,9 +141,14 @@ const Header = () => {
         <img
           src="/profile2.webp"
           alt="User"
-          className="w-[40px] h-[40px] object-cover rounded-full"
+          className="w-[40px] h-[40px] object-cover cursor-pointer rounded-full"
         />
       </div>
+
+      {user && user?.roles && (
+        <ProtectedRoute role={user?.roles as string}/>
+      )
+      }
     </div>
   );
 };

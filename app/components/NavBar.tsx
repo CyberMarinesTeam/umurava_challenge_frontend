@@ -12,10 +12,10 @@ const dm_sans = DM_Sans({
 });
 
 
-interface ItemType {
-  label: string;
-  path: string;
-}
+// interface ItemType {
+//   label: string;
+//   path: string;
+// }
 const NavBar = () => {
   const currentPath = usePathname();
   const [showMenu, setShowMenu] = useState(false);

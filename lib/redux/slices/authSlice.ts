@@ -43,7 +43,7 @@ interface AuthState {
     id: string;
     username: string;
     email: string;
-    roles: RoleEnum[];
+    roles: RoleEnum;
   } | null;
 }
 
