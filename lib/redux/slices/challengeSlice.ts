@@ -16,6 +16,7 @@ export type ChallengeType = {
   seniority_level:string;
   skills_needed:string[];
   startingAt:Date;
+  filterText?:string
 };
 
 export const challengeSlice = createApi({

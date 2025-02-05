@@ -40,7 +40,9 @@ const Challenges = () => {
   const user = useSelector((state: RootState) => state.auth.user);
 
   const { data } = useGetChallengesQuery();
-  const globalSearchQuery = useSelector((state: RootState) => state.search.query);
+  const {query, filterText}= useSelector((state: RootState) => state.search);
+
+
   const [filteredChallenges, setFilteredChallenges] = useState<ChallengeType[]>([]);
 
   if (!data) {
@@ -56,11 +58,11 @@ const Challenges = () => {
   useEffect(() => {
     if (data) {
       const filtered = data.filter((challenge) =>
-        challenge.title.toLowerCase().includes(globalSearchQuery.toLowerCase())
+        challenge.filterText?.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredChallenges(filtered);
     }
-  }, [data, globalSearchQuery]);
+  }, [data, query, filterText]);
   const [CurrentPage, setCurrent] = useState(1);
 
   const totalNumberElements = 6;

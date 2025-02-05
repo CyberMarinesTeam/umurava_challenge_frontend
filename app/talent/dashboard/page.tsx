@@ -7,7 +7,6 @@ import { FaAngleRight } from "react-icons/fa6";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
 
 import { useSelector } from "react-redux";
-// import { clearCredentials } from "@/lib/redux/slices/authSlice";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/lib/redux/store";
 import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
@@ -15,7 +14,6 @@ import Link from "next/link";
 import { useGetChallengesByUserWithStatusQuery } from "@/lib/redux/slices/participantsSlice";
 const Dashboard = () => {
     const [openCount, setOpenCount] = useState(0);
-    const [allCount, setAllCount] = useState(0);
     const [ongoingCount, setOngoingCount] = useState(0);
     const [completedCount, setCompletedCount] = useState(0);
   const user = useSelector((state: RootState) => state.auth.user);

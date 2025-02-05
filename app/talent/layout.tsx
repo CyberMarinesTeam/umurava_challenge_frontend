@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Header from "@/app/talent/components/Header";
+import Header from "@/app/components/Header";
 import TalentSideBar from "@/app/talent/components/TalentSideBar";
 
 interface RNode {

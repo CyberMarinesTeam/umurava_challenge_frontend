@@ -5,7 +5,6 @@ import {
   useLoginMutation,
   useSignupMutation,
 } from "@/lib/redux/slices/authSlice";
-import { Flip, toast } from "react-toastify";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -35,6 +34,7 @@ const Page = () => {
 
       if (loginResponse.user.roles == "talent") {
         router.push("/talent/dashboard");
+        alert("Logged in successfully");
       } else {
         router.push("/admin/dashboard");
          alert("Logged in successfully");
