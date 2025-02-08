@@ -111,9 +111,14 @@ const Header = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="flex relative z-20 items-center justify-between p-4 bg-white border-[#E4E7EC]">
+=======
+    <div className="flex relative z-20 max-[1000px]:w-full items-center justify-between max-[1000px]:justify-around p-4 bg-white border-[#E4E7EC]">
+
+>>>>>>> ad16c418c8ca21793a653232d73b4c39f9ae9468
       {/* Search Bar */}
-      <div className="flex items-center gap-4 bg-gray-100 rounded-md w-[60%] ml-8 px-4 py-2 relative">
+      <div className="flex items-center gap-4 max-[1000px]:ml-0 bg-gray-100 rounded-md w-[60%] px-4 py-2 relative">
         <IoSearchSharp className="text-gray-500" />
         <input
           type="text"

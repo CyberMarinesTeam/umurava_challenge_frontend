@@ -24,7 +24,7 @@ const Page = () => {
   console.log(data)
 
   return (
-    <div className="excludedDashBoard px-12 py-4 z-1">
+    <div className="excludedDashBoard px-12 py-4 max-[1000px]:px-6 z-1 w-full h-full">
       <div className="excludedDashBoard h-[56px] flex flex-col gap-[4px] mb-12 mt-[10px]">
         <h1 className="font-semibold text-[24px] leading-[28px]">
           Welcome back, {user?.username}
@@ -33,13 +33,12 @@ const Page = () => {
           Build Work Experience through Skills Challenges
         </p>
       </div>
-
-      <div className="excludedDashBoard relative h-[316px]">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="excludedDashBoard relative max-[1000px]:w-full max-[1000px]: h-[316px]">
+        <div className="grid grid-cols-2 max-[1000px]:gap-2 gap-4">
           <Card width={540} description="Total Challenges" />
           <Card2  width={540}  description="Total Participants"   number={231} percentage={15} />
         </div>
-        <div className="excludedDashBoard grid grid-cols-3 mt-4 gap-4">
+        <div className="excludedDashBoard grid max-[1000px]:gap-2 grid-cols-3 mt-4 gap-4">
           <Card width={540} description="Completed Challenges" />
           <Card width={540} description="Open Challenges" />
           <Card width={540} description="Ongoing Challenges" />
@@ -59,7 +58,7 @@ const Page = () => {
           {/* </button> */}
         </div>
 
-        <div className="excludedDashBoard gap-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div className="excludedDashBoard max-[1000px]:overflow-x-auto max-[1000px]:flex max-[1000px]:flex-nowrap max-[1000px]:h-full max-[1000px]:w-full gap-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {data && data.length > 0 ? (
             data?.slice(0, 3).map((challenge) => (
               <ChallengeCard2 key={challenge._id} challenge={challenge} />
