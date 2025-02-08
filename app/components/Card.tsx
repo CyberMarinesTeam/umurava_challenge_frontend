@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useGetChallengesQuery, useGetOpenChallengeDaysAgoQuery, useGetOngoingChallengeDaysAgoQuery, useGetCompletedChallengeDaysAgoQuery } from "@/lib/redux/slices/challengeSlice";
+import { useGetChallengesByDaysAgoQuery, useGetOpenChallengeDaysAgoQuery, useGetOngoingChallengeDaysAgoQuery, useGetCompletedChallengeDaysAgoQuery } from "@/lib/redux/slices/challengeSlice";
 import { FaArrowUpLong } from "react-icons/fa6";
 import { RxFileText } from "react-icons/rx";
 
@@ -9,7 +9,6 @@ const Card = ({ width, description }: { width: number; description: string }) =>
   const [percentage, setPercentage] = useState(0);
 
   // Fetch all challenges
-  const { data: allChallenges = [], isLoading: allLoading } = useGetChallengesQuery();
 
   // Fetch based on selected option
   const daysAgoMapping: Record<string, number> = {
@@ -25,6 +24,7 @@ const Card = ({ width, description }: { width: number; description: string }) =>
   const { data: openChallenges = [] } = useGetOpenChallengeDaysAgoQuery(selectedDays);
   const { data: ongoingChallenges = [] } = useGetOngoingChallengeDaysAgoQuery(selectedDays);
   const { data: completedChallenges = [] } = useGetCompletedChallengeDaysAgoQuery(selectedDays);
+  const { data: allChallenges = [], isLoading: allLoading } = useGetChallengesByDaysAgoQuery(selectedDays);
 
   useEffect(() => {
     if (!allLoading) {
@@ -40,8 +40,8 @@ const Card = ({ width, description }: { width: number; description: string }) =>
         filteredCount = completedChallenges.length;
       } else {
         filteredCount = allChallenges.length;
-        
       }
+
 
       const totalCount = allChallenges.length;
       setNumber(filteredCount);

@@ -1,62 +1,117 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { IoFilterOutline, IoSearchSharp } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import io from "socket.io-client";
+import io, {Socket} from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "./script/Protection";
+import Image from "next/image";
 
 import { setSearchQuery } from "@/lib/redux/slices/searchSlice";
 import { RootState } from "@/lib/redux/store";
 
+import {
+  setNotifications,
+  addNotification,
+  markAllAsRead,
+  useGetNotificationsQuery,
+  NotificationType,
+} from "@/lib/redux/slices/notificationSlice";
+import asread from "@/public/asread.svg";
+
 const SOCKET_SERVER_URL = "http://localhost:4000";
 const Header = () => {
   const user = useSelector((state: RootState) => state.auth.user);
-  const [notifications, setNotifications] = useState<
-    { message: string; isRead: boolean }[]
-  >([]);
+  const dispatch = useDispatch();
+  const { data: pastNotifications } = useGetNotificationsQuery();
+  const notifications = useSelector(
+    (state: RootState) => state.notificationsState.notifications
+  );
   const [notificationShow, setNotificationShow] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(0);
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("title");
-  
-  const dispatch = useDispatch();
+
+  const [socketUpdateTrigger, setSocketUpdateTrigger] = useState(0);
+
+  const socketRef = useRef<Socket>(null);
 
   useEffect(() => {
-    const socket = io(SOCKET_SERVER_URL, { transports: ["websocket"] });
+    socketRef.current = io(SOCKET_SERVER_URL, { transports: ["websocket"] });
 
-    socket.on("connect", () => {
+    socketRef.current.on("connect", () => {
       console.log("Connected to WebSocket server");
     });
 
-    socket.on("notification", (message) => {
-      setNotifications((prev) => [...prev, { message, isRead: false }]);
-      setUnreadCount((prev) => prev + 1);
+    socketRef?.current?.on("notification", (message:string) => {
+      const isDuplicate = notifications.some(
+        (notif: NotificationType) => notif.message === message
+      );
+
+      if (!isDuplicate) {
+        const newNotification = {
+          id: Date.now().toString(),
+          message,
+          isRead: false,
+          createdAt: new Date().toISOString(),
+        };
+        dispatch(addNotification(newNotification));
+        setSocketUpdateTrigger((prev) => prev + 1);
+      }
     });
 
-    socket.on("broadcast-message", (message) => {
-      setNotifications((prev) => [...prev, { message, isRead: false }]);
-      setUnreadCount((prev) => prev + 1);
+    socketRef.current.on("notification-read", () => {
+      dispatch(markAllAsRead()); 
+      setSocketUpdateTrigger((prev) => prev + 1);
     });
 
-    socket.on("notification-read", () => {
-      setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
-      setUnreadCount(0);
+    socketRef.current.on("broadcast-message", (message:string) => {
+      const newNotification = {
+        id: Date.now().toString(),
+        message,
+        isRead: false,
+        createdAt: new Date().toISOString(),
+      };
+      dispatch(addNotification(newNotification));
+      setSocketUpdateTrigger((prev) => prev + 1);
     });
 
     return () => {
-      socket.disconnect();
+      socketRef?.current?.disconnect();
     };
-  }, []);
+  }, [dispatch, notifications, socketUpdateTrigger]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearchQuery({query:e.target.value, filterText:selectedFilter}));
+    dispatch(
+      setSearchQuery({ query: e.target.value, filterText: selectedFilter })
+    );
+  };
+
+  useEffect(() => {
+    if (pastNotifications) {
+      dispatch(setNotifications(pastNotifications));
+    }
+  }, [pastNotifications, socketUpdateTrigger, dispatch]);
+
+  const unreadCount = notifications.filter(
+    (n: NotificationType) => !n.isRead
+  ).length;
+
+  const getDay = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.toLocaleDateString("en-US", { weekday: "long" });
+    return day;
+  };
+
+
+  const handleMarkAllAsRead = () => {
+    dispatch(markAllAsRead());
+    socketRef?.current?.emit("mark-notifications-read");
+    setNotificationShow(false) // Emit event to backend
   };
 
   return (
     <div className="flex relative z-20 items-center justify-between p-4 bg-white border-[#E4E7EC]">
-
       {/* Search Bar */}
       <div className="flex items-center gap-4 bg-gray-100 rounded-md w-[60%] ml-8 px-4 py-2 relative">
         <IoSearchSharp className="text-gray-500" />
@@ -66,7 +121,7 @@ const Header = () => {
           className="text-gray-600 focus:outline-none bg-gray-100 w-full"
           onChange={handleSearchChange}
         />
-        
+
         {/* Filter Button */}
         <div className="relative">
           <div
@@ -76,11 +131,20 @@ const Header = () => {
             <IoFilterOutline className="text-gray-400" />
             <p className="text-[14px] text-gray-400">{selectedFilter}</p>
           </div>
-          
+
           {/* Filter Dropdown */}
           {filterOpen && (
             <div className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded-md border p-2">
-              {["title", "skills", "seniority_level", "status", "category", "contactEmail", "moneyPrize", "Requirements" ].map((filter) => (
+              {[
+                "title",
+                "skills",
+                "seniority_level",
+                "status",
+                "category",
+                "contactEmail",
+                "moneyPrize",
+                "Requirements",
+              ].map((filter) => (
                 <p
                   key={filter}
                   className="p-2 cursor-pointer hover:bg-gray-100 text-sm"
@@ -95,7 +159,6 @@ const Header = () => {
             </div>
           )}
         </div>
-
       </div>
 
       {/* Right Section */}
@@ -118,6 +181,20 @@ const Header = () => {
               <div className="flex justify-between items-center border-b pb-2">
                 <h3 className="text-gray-800 font-semibold">Notifications</h3>
                 <button
+                  type="button"
+                  title="Mark all as read"
+                  className="bg-gray-200 rounded-full p-3 "
+                  onClick={handleMarkAllAsRead}
+                >
+                  <Image
+                    src={asread}
+                    width={20}
+                    height={20}
+                    alt="asread"
+                    title="Mark all as read"
+                  />
+                </button>
+                <button
                   className="text-gray-500 text-sm"
                   onClick={() => setNotificationShow(false)}
                 >
@@ -125,15 +202,26 @@ const Header = () => {
                 </button>
               </div>
               {notifications.length > 0 ? (
-                notifications.map((notif, index) => (
+                notifications.map((notif: NotificationType, index: number) => (
                   <div key={index} className="mt-4 p-2 border-b">
-                    <p className={`text-sm ${notif.isRead ? "text-gray-500" : "text-black font-semibold"}`}>
+                    <p
+                      className={`text-sm ${
+                        notif.isRead
+                          ? "text-gray-500"
+                          : "text-gray-600 font-semibold"
+                      }`}
+                    >
                       {notif.message}
+                    </p>
+                    <p className="text-xs text-gray-400">
+                      {notif.createdAt} <span> {getDay(notif.createdAt)}</span>
                     </p>
                   </div>
                 ))
               ) : (
-                <p className="text-center text-gray-500 mt-4">No notifications</p>
+                <p className="text-center text-gray-500 mt-4">
+                  No notifications
+                </p>
               )}
             </div>
           )}
@@ -145,10 +233,7 @@ const Header = () => {
         />
       </div>
 
-      {user && user?.roles && (
-        <ProtectedRoute role={user?.roles as string}/>
-      )
-      }
+      {user && user?.roles && <ProtectedRoute role={user?.roles as string} />}
     </div>
   );
 };

@@ -36,6 +36,9 @@ export const challengeSlice = createApi({
     getChallenges: builder.query<ChallengeType[], void>({
       query: () => "/",
     }),
+    getChallengesByDaysAgo: builder.query<ChallengeType[], number>({
+      query: (daysAgo) =>  `/total/${daysAgo}`,
+    }),
     getOpenChallengeDaysAgo: builder.query<ChallengeType[], number>({
       query: (daysAgo) => `/open/${daysAgo}`,
     }),
@@ -88,5 +91,6 @@ export const {
   useCreateChallengeMutation,
   useUpdateChallengeMutation,
   useDeleteChallengeMutation,
-  useGetChallengeByStatusQuery
+  useGetChallengeByStatusQuery,
+  useGetChallengesByDaysAgoQuery,
 } = challengeSlice;

@@ -4,21 +4,28 @@ import { authApi } from "./slices/authSlice";
 import authReducer from "./slices/authSlice";
 import { participantsApi } from "./slices/participantsSlice";
 import searchReducer from "./slices/searchSlice";
+import {
+  notificationsApi,
+  notificationsSlice,
+} from "./slices/notificationSlice";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       search: searchReducer,
       auth: authReducer,
+      notificationsState: notificationsSlice.reducer,
       [challengeSlice.reducerPath]: challengeSlice.reducer,
       [authApi.reducerPath]: authApi.reducer,
       [participantsApi.reducerPath]: participantsApi.reducer,
+      [notificationsApi.reducerPath]: notificationsApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware()
         .concat(challengeSlice.middleware)
         .concat(authApi.middleware)
-        .concat(participantsApi.middleware),
+        .concat(participantsApi.middleware)
+        .concat(notificationsApi.middleware),
   });
 };
 

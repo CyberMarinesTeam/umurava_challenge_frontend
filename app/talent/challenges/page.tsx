@@ -57,7 +57,6 @@ const Challenges = () => {
 
   useEffect(()=>{
     if (allChallenges) {
-
       const filtered = allChallenges.filter((challenge) =>
        filterText == "category" ? challenge.category.toLowerCase().includes(query.toLowerCase()) : 
         filterText == "skills" ? challenge.skills_needed?.some((skill) => skill.toLowerCase().includes(query.toLowerCase())) :

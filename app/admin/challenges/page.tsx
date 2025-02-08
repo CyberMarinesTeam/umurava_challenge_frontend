@@ -13,12 +13,12 @@ import {
   useGetChallengeByStatusQuery,
   useGetChallengesQuery,
 } from "@/lib/redux/slices/challengeSlice";
-import { IoDocumentTextOutline } from "react-icons/io5";
 import Link from "next/link";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import { RootState } from "@/lib/redux/store";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import Button from "@/app/components/challengs/Button";
 
 const Challenges = () => {
   const [openCount, setOpenCount] = useState(0);
@@ -28,6 +28,7 @@ const Challenges = () => {
   const { data: dataForOpen } = useGetChallengeByStatusQuery("open");
   const { data: dataForOngoing } = useGetChallengeByStatusQuery("ongoing");
   const { data: dataForComplete } = useGetChallengeByStatusQuery("completed");
+  const [isCurrent, setIsCurrent] = useState(false)
   useEffect(() => {
     if (data?.length) setAllCount(data.length);
     if (dataForOpen?.length) setOpenCount(dataForOpen.length);
@@ -40,6 +41,7 @@ const Challenges = () => {
   const { data } = useGetChallengesQuery();
   const { query, filterText } = useSelector((state: RootState) => state.search);
 
+  const [currentFilter, setCurrentFilter] = useState("All");
   const [filteredChallenges, setFilteredChallenges] = useState<ChallengeType[]>(
     []
   );
@@ -106,6 +108,27 @@ const Challenges = () => {
     }
   };
 
+
+  useEffect(() => {
+    switch (currentFilter) {
+      case "Open":
+        setFilteredChallenges(dataForOpen || []);
+        break;
+      case "Ongoing":
+        setFilteredChallenges(dataForOngoing || []);
+        break;
+      case "Completed":
+        setFilteredChallenges(dataForComplete || []);
+        break;
+      default:
+        setFilteredChallenges(data || []);
+    }
+  }, [currentFilter, data, dataForOpen, dataForOngoing, dataForComplete]);
+
+  const handleButtonClick = (valueText:string) => {
+    setCurrentFilter(valueText)
+    setIsCurrent(true)
+  }
   return (
     <main className="px-8">
       <div className="mb-[50px]">
@@ -117,56 +140,12 @@ const Challenges = () => {
       </div>
       <div className="flex border-b-[0.5px] border-gray-200 justify-between mb-4">
         <div className="flex justify-between items-center w-full h-[76px]">
-          <div className="flex gap-4">
-            <button className="bg-gray-100 hover:bg-blue-200 border-[1.5px] hover:border-slate-50 border-[#E4E7EC] py-3 flex gap-[3px] transition-all ease-in-out duration-150 items-center justify-center px-[15px] rounded-[6px] group">
-              <IoDocumentTextOutline className="text-[15px] group-hover:text-[#2B71F0] text-[#344054]" />
-
-              <p className="text-[13px] group-hover:text-[#101928] text-[#344054]">
-                All Challenges
-              </p>
-              <div className="bg-gray-300 group-hover:bg-[#2B71F0] px-[13px] rounded-full">
-                <span className="text-[#344054] group-hover:text-white text-[12px] p-[0px]">
-                  {allCount}
-                </span>
-              </div>
-            </button>
-            <button className="bg-gray-100 hover:bg-blue-200 border-[1.5px] hover:border-slate-50 border-[#E4E7EC] py-3 flex  gap-[3px] transition-all ease-in-out duration-150 items-center justify-center px-[15px] rounded-[6px] group">
-              <IoDocumentTextOutline className="text-[15px] group-hover:text-[#2B71F0] text-[#344054]" />
-
-              <p className="text-[13px] group-hover:text-[#101928] text-[#344054]">
-                Completed Challenges
-              </p>
-              <div className="bg-gray-300 group-hover:bg-[#2B71F0] px-[13px] rounded-full">
-                <span className="text-[#344054] group-hover:text-white text-[12px] p-[0px]">
-                  {completedCount}
-                </span>
-              </div>
-            </button>
-            <button className="bg-gray-100 hover:bg-blue-200 border-[1.5px] hover:border-slate-50 border-[#E4E7EC] py-3 flex  gap-[3px] transition-all ease-in-out duration-150 items-center justify-center px-[15px] rounded-[6px] group">
-              <IoDocumentTextOutline className="text-[15px] group-hover:text-[#2B71F0] text-[#344054]" />
-
-              <p className="text-[13px] group-hover:text-[#101928] text-[#344054]">
-                Open Challenges
-              </p>
-              <div className="bg-gray-300 group-hover:bg-[#2B71F0] px-[13px] rounded-full">
-                <span className="text-[#344054] group-hover:text-white text-[12px] p-[0px]">
-                  {openCount}
-                </span>
-              </div>
-            </button>
-            <button className="bg-gray-100 hover:bg-blue-200 border-[1.5px] hover:border-slate-50 border-[#E4E7EC] py-3 flex  gap-[3px] transition-all ease-in-out duration-150 items-center justify-center px-[15px] rounded-[6px] group">
-              <IoDocumentTextOutline className="text-[15px] group-hover:text-[#2B71F0] text-[#344054]" />
-
-              <p className="text-[13px] group-hover:text-[#101928] text-[#344054]">
-                Ongoing Challenges
-              </p>
-              <div className="bg-gray-300 group-hover:bg-[#2B71F0] px-[13px] rounded-full">
-                <span className="text-[#344054] group-hover:text-white text-[12px] p-[0px]">
-                  {ongoingCount}
-                </span>
-              </div>
-            </button>
-          </div>
+        <div className="flex gap-4">
+          <Button textValue="All" allCount={allCount} onClick={()=>handleButtonClick("All")} isCurrent={isCurrent}/>
+          <Button textValue="Open" allCount={openCount} onClick={()=>handleButtonClick("Open")}  isCurrent={isCurrent}/>
+          <Button textValue="Ongoing" allCount={ongoingCount} onClick={()=>handleButtonClick("Ongoing")} isCurrent={isCurrent}/>
+          <Button textValue="Completed" allCount={completedCount} onClick={()=>handleButtonClick("Completed")} isCurrent={isCurrent}/>
+        </div>
           <Link
             href={"challenges/create"}
             className="bg-[#2B71F0] text-white  px-[18px] py-[16px] rounded"
