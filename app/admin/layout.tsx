@@ -9,11 +9,10 @@ const layout = ({ children }: Rnode) => {
   
 
   return (
-    <main>
-      <div className="flex excluded bg-slate-50 ">
+    <main className="w-full h-full">
+      <div className="flex h-full excluded bg-slate-50 ">
         <SideBar />
-
-        <div className="excluded flex-1">
+        <div className="excluded flex-1 h-full w-full">
           <Header />
           {children}
         </div>
