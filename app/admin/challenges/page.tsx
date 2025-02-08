@@ -28,13 +28,14 @@ const Challenges = () => {
   const { data: dataForOpen } = useGetChallengeByStatusQuery("open");
   const { data: dataForOngoing } = useGetChallengeByStatusQuery("ongoing");
   const { data: dataForComplete } = useGetChallengeByStatusQuery("completed");
-  const [isCurrent, setIsCurrent] = useState(false)
+  const [isCurrent, setIsCurrent] = useState("")
   useEffect(() => {
     if (data?.length) setAllCount(data.length);
     if (dataForOpen?.length) setOpenCount(dataForOpen.length);
     if (dataForOngoing?.length) setOngoingCount(dataForOngoing.length);
     if (dataForComplete?.length) setCompletedCount(dataForComplete.length);
   }, [dataForComplete, dataForOngoing, dataForOpen]);
+  
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
 
@@ -127,7 +128,7 @@ const Challenges = () => {
 
   const handleButtonClick = (valueText:string) => {
     setCurrentFilter(valueText)
-    setIsCurrent(true)
+    setIsCurrent(valueText)
   }
   return (
     <main className="px-8">

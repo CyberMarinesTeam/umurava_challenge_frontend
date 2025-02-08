@@ -44,6 +44,27 @@ const Challenges = () => {
     status: "completed",
   });
 
+  const [currentData, setCurrentData] = useState<ChallengeType[]>([]);
+
+  const [currentFilter, setCurrentFilter] = useState("All");
+
+
+  useEffect(() => {
+    switch (currentFilter) {
+      case "Open":
+        setCurrentData(openChallenges || []);
+        break;
+      case "Ongoing":
+        setCurrentData(ongoingChallenges || []);
+        break;
+      case "Completed":
+        setCurrentData(completedChallenges || []);
+        break;
+      default:
+        setCurrentData(allChallenges || []);
+    }
+  }, [currentFilter, allChallenges, openChallenges, ongoingChallenges, completedChallenges]);
+
   useEffect(() => {
     if (user?.roles.toString() !== "talent") {
       router.push("/login");
@@ -59,8 +80,23 @@ const Challenges = () => {
   }, [allChallenges, openChallenges, ongoingChallenges, completedChallenges]);
 
   useEffect(() => {
-    if (allChallenges) {
-      const filtered = allChallenges.filter((challenge) =>
+    switch (currentFilter) {
+      case "Open":
+        setCurrentData(openChallenges || []);
+        break;
+      case "Ongoing":
+        setCurrentData(ongoingChallenges || []);
+        break;
+      case "Completed":
+        setCurrentData(completedChallenges || []);
+        break;
+      default:
+        setCurrentData(allChallenges || []);
+    }
+  }, [allChallenges, openChallenges, ongoingChallenges, completedChallenges]);
+  useEffect(() => {
+    if (currentData?.length) {
+      const filtered = currentData.filter((challenge) =>
         filterText == "category"
           ? challenge.category.toLowerCase().includes(query.toLowerCase())
           : filterText == "skills"
@@ -91,11 +127,17 @@ const Challenges = () => {
 
   const totalPages = Math.ceil(filteredChallenges.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedData = filteredChallenges.slice(
+  let paginatedData = currentData?.slice(
     startIndex,
     startIndex + itemsPerPage
   );
 
+  if(filteredChallenges?.length > 0) {
+    paginatedData = filteredChallenges?.slice(
+      startIndex,
+      startIndex + itemsPerPage
+    )
+  }
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
@@ -104,6 +146,10 @@ const Challenges = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
+  const handleButtonClick = (valueText: string) => {
+    setCurrentFilter(valueText);
+    console.log(currentData)
+  };
   return (
     <div className="excluded h-[1200px]  p-[36px] overflow-y-auto gap-[16px] bg-[#F9FAFB]">
       <div className="excluded flex flex-row justify-between">
@@ -125,21 +171,25 @@ const Challenges = () => {
             count={allCount}
             icon={<FiFileText />}
             text="All Challenges"
+            onClick={() => handleButtonClick("All")}
           />
           <SmallStatusCard
             count={completedCount}
             icon={<FiFileText />}
             text="Completed Challenge"
+            onClick={() => handleButtonClick("Completed")}
           />
           <SmallStatusCard
             count={openCount}
             icon={<FiFileText />}
             text="Open Challenge"
+            onClick={() => handleButtonClick("Open")}
           />
           <SmallStatusCard
             count={ongoingCount}
             icon={<FiFileText />}
             text="Ongoing Challenge"
+            onClick={() => handleButtonClick("Ongoing")}
           />
         </div>
       </div>

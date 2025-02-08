@@ -50,18 +50,11 @@ const Card2 = ({
     }
   }, [selectedOption, totalParticipants]);
 
-  console.log("total participants are ", totalParticipants)
   const handleSelectionChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedValue = event.target.value;
     setSelectedOption(selectedValue);
-    try {
-      const response = await fetch(`/api/filter?range=${selectedValue}`);
-      const data = await response.json();
-    } catch (error) {
-      console.error("Error fetching filtered data:", error);
-    }
   };
 
   return (

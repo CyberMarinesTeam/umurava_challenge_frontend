@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { useGetChallengesByDaysAgoQuery } from "@/lib/redux/slices/challengeSlice";
+import { useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
 import Card from "@/app/components/Card";
 import Card2 from "@/app/components/Card2";
@@ -13,13 +13,15 @@ import Link from "next/link";
 const Page = () => {
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
-  const { data } = useGetChallengesByDaysAgoQuery();
+  const { data } = useGetChallengesQuery();
 
   useEffect(() => {
     if (user?.roles.toString()!=="admin") {
       router.push("/login");
     }
   }, [user, router]);
+
+  console.log(data)
 
   return (
     <div className="excludedDashBoard px-12 py-4 z-1">
