@@ -5,7 +5,10 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FiFileText } from "react-icons/fi";
 import SmallStatusCard from "../components/SmallStatusCard";
 import ChallengeCard2 from "@/app/components/ChallengeCard2";
-import { ChallengeType, useGetChallengesQuery } from "@/lib/redux/slices/challengeSlice";
+import {
+  ChallengeType,
+  useGetChallengesQuery,
+} from "@/lib/redux/slices/challengeSlice";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
@@ -25,8 +28,7 @@ const Challenges = () => {
   const [filteredChallenges, setFilteredChallenges] = useState<ChallengeType[]>(
     []
   );
-    const { query, filterText } = useSelector((state: RootState) => state.search);
-
+  const { query, filterText } = useSelector((state: RootState) => state.search);
 
   const { data: allChallenges } = useGetChallengesQuery();
   const { data: openChallenges } = useGetChallengesByUserWithStatusQuery({
@@ -43,7 +45,7 @@ const Challenges = () => {
   });
 
   useEffect(() => {
-    if (user?.roles.toString()!=="talent") {
+    if (user?.roles.toString() !== "talent") {
       router.push("/login");
     }
   }, [router]);
@@ -52,31 +54,47 @@ const Challenges = () => {
     if (allChallenges?.length) setAllCount(allChallenges.length);
     if (openChallenges?.length) setOpenCount(openChallenges.length);
     if (ongoingChallenges?.length) setOngoingCount(ongoingChallenges.length);
-    if (completedChallenges?.length) setCompletedCount(completedChallenges.length);
+    if (completedChallenges?.length)
+      setCompletedCount(completedChallenges.length);
   }, [allChallenges, openChallenges, ongoingChallenges, completedChallenges]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (allChallenges) {
       const filtered = allChallenges.filter((challenge) =>
-       filterText == "category" ? challenge.category.toLowerCase().includes(query.toLowerCase()) : 
-        filterText == "skills" ? challenge.skills_needed?.some((skill) => skill.toLowerCase().includes(query.toLowerCase())) :
-        filterText == "seniority_level" ? challenge.seniority_level.toLowerCase().includes(query.toLowerCase()) :
-        filterText == "contactEmail" ? challenge.contactEmail.toLowerCase().includes(query.toLowerCase()) : 
-        filterText == "moneyPrize" ? challenge.moneyPrice.toString().includes(query) : 
-        filterText == "requirements" ? challenge?.requirements?.some((requirement) => requirement.toLowerCase().includes(query.toLowerCase())) :
-        filterText == "status" ? challenge.status?.toLowerCase().includes(query.toLowerCase()) :
-        challenge.title.toLowerCase().includes(query.toLowerCase())
+        filterText == "category"
+          ? challenge.category.toLowerCase().includes(query.toLowerCase())
+          : filterText == "skills"
+          ? challenge.skills_needed?.some((skill) =>
+              skill.toLowerCase().includes(query.toLowerCase())
+            )
+          : filterText == "seniority_level"
+          ? challenge.seniority_level
+              .toLowerCase()
+              .includes(query.toLowerCase())
+          : filterText == "contactEmail"
+          ? challenge.contactEmail.toLowerCase().includes(query.toLowerCase())
+          : filterText == "moneyPrize"
+          ? challenge.moneyPrice.toString().includes(query)
+          : filterText == "requirements"
+          ? challenge?.requirements?.some((requirement) =>
+              requirement.toLowerCase().includes(query.toLowerCase())
+            )
+          : filterText == "status"
+          ? challenge.status?.toLowerCase().includes(query.toLowerCase())
+          : challenge.title.toLowerCase().includes(query.toLowerCase())
       );
-      
+
       setFilteredChallenges(filtered);
       console.log(filtered, query, filterText);
     }
-
   }, [allChallenges, query, filterText]);
 
   const totalPages = Math.ceil(filteredChallenges.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedData = filteredChallenges.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedData = filteredChallenges.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -87,11 +105,14 @@ const Challenges = () => {
   };
 
   return (
-    <div className="excluded p-[36px] h-full gap-[16px] bg-[#F9FAFB]">
+    <div className="excluded h-[1200px]  p-[36px] overflow-y-auto gap-[16px] bg-[#F9FAFB]">
       <div className="excluded flex flex-row justify-between">
         <div>
           <p className="text-2xl font-bold">Challenges</p>
-          <p>Join a challenge or a hackathon to gain more valuable work experience</p>
+          <p>
+            Join a challenge or a hackathon to gain more valuable work
+            experience
+          </p>
         </div>
         <button className="py-[10px] flex h-[55px] flex-row items-center gap-2 px-[18px] bg-[#2B71F0] text-white rounded-lg">
           <MdOutlineRemoveRedEye className="w-[24px] h-[24px]" />
@@ -100,13 +121,29 @@ const Challenges = () => {
       </div>
       <div className="py-[16px] excluded flex w-full items-center">
         <div className="flex excluded justify-start gap-[10px] border-b pb-5 w-full">
-          <SmallStatusCard count={allCount} icon={<FiFileText />} text="All Challenges" />
-          <SmallStatusCard count={completedCount} icon={<FiFileText />} text="Completed Challenge" />
-          <SmallStatusCard count={openCount} icon={<FiFileText />} text="Open Challenge" />
-          <SmallStatusCard count={ongoingCount} icon={<FiFileText />} text="Ongoing Challenge" />
+          <SmallStatusCard
+            count={allCount}
+            icon={<FiFileText />}
+            text="All Challenges"
+          />
+          <SmallStatusCard
+            count={completedCount}
+            icon={<FiFileText />}
+            text="Completed Challenge"
+          />
+          <SmallStatusCard
+            count={openCount}
+            icon={<FiFileText />}
+            text="Open Challenge"
+          />
+          <SmallStatusCard
+            count={ongoingCount}
+            icon={<FiFileText />}
+            text="Ongoing Challenge"
+          />
         </div>
       </div>
-     
+
       <div className="flex excluded flex-wrap gap-[20px]">
         {paginatedData.length > 0 ? (
           paginatedData.map((challenge) => (
