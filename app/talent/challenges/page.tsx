@@ -20,6 +20,8 @@ const Challenges = () => {
   const [ongoingCount, setOngoingCount] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isCurrent, setIsCurrent] = useState("");
+
   const itemsPerPage = 6;
 
   const router = useRouter();
@@ -48,7 +50,6 @@ const Challenges = () => {
 
   const [currentFilter, setCurrentFilter] = useState("All");
 
-
   useEffect(() => {
     switch (currentFilter) {
       case "Open":
@@ -63,7 +64,13 @@ const Challenges = () => {
       default:
         setCurrentData(allChallenges || []);
     }
-  }, [currentFilter, allChallenges, openChallenges, ongoingChallenges, completedChallenges]);
+  }, [
+    currentFilter,
+    allChallenges,
+    openChallenges,
+    ongoingChallenges,
+    completedChallenges,
+  ]);
 
   useEffect(() => {
     if (user?.roles.toString() !== "talent") {
@@ -127,16 +134,13 @@ const Challenges = () => {
 
   const totalPages = Math.ceil(filteredChallenges.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  let paginatedData = currentData?.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
+  let paginatedData = currentData?.slice(startIndex, startIndex + itemsPerPage);
 
-  if(filteredChallenges?.length > 0) {
+  if (filteredChallenges?.length > 0) {
     paginatedData = filteredChallenges?.slice(
       startIndex,
       startIndex + itemsPerPage
-    )
+    );
   }
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
@@ -148,47 +152,47 @@ const Challenges = () => {
 
   const handleButtonClick = (valueText: string) => {
     setCurrentFilter(valueText);
-    console.log(currentData)
+    setIsCurrent(valueText);
   };
   return (
-    <div className="excluded h-[1200px]  p-[36px] overflow-y-auto gap-[16px] bg-[#F9FAFB]">
+    <div className="excluded h-[1200px]  p-[36px] pt-0 overflow-y-auto gap-[16px] bg-[#F9FAFB]">
       <div className="excluded flex flex-row justify-between">
-        <div>
-          <p className="text-2xl font-bold">Challenges</p>
-          <p>
+        <div className="mb-[30px]">
+          <h1 className="text-[24px] font-bold mt-[40px]">Challenges</h1>
+          <p className="text-[14px] text-[#667185]">
             Join a challenge or a hackathon to gain more valuable work
             experience
           </p>
         </div>
-        <button className="py-[10px] flex h-[55px] flex-row items-center gap-2 px-[18px] bg-[#2B71F0] text-white rounded-lg">
-          <MdOutlineRemoveRedEye className="w-[24px] h-[24px]" />
-          View Profile
-        </button>
       </div>
       <div className="py-[16px] excluded flex w-full items-center">
         <div className="flex excluded justify-start gap-[10px] border-b pb-5 w-full">
           <SmallStatusCard
+            isCurrent={isCurrent}
             count={allCount}
             icon={<FiFileText />}
-            text="All Challenges"
+            text="All"
             onClick={() => handleButtonClick("All")}
           />
           <SmallStatusCard
+            isCurrent={isCurrent}
             count={completedCount}
             icon={<FiFileText />}
-            text="Completed Challenge"
+            text="Completed"
             onClick={() => handleButtonClick("Completed")}
           />
           <SmallStatusCard
+            isCurrent={isCurrent}
             count={openCount}
             icon={<FiFileText />}
-            text="Open Challenge"
+            text="Open"
             onClick={() => handleButtonClick("Open")}
           />
           <SmallStatusCard
+            isCurrent={isCurrent}
             count={ongoingCount}
             icon={<FiFileText />}
-            text="Ongoing Challenge"
+            text="Ongoing"
             onClick={() => handleButtonClick("Ongoing")}
           />
         </div>
@@ -200,29 +204,37 @@ const Challenges = () => {
             <ChallengeCard2 key={challenge._id} challenge={challenge} />
           ))
         ) : (
-          <h1>No challenges found</h1>
+          <div className="w-full flex flex-col space-y-[20px] justify-center bg-white p-[30px] rounded-[20px] items-center">
+            <img
+              src="/notEnough.webp"
+              alt="not enough"
+              className="w-[300px] h-auto rounded-[20px]"
+            />
+          </div>
         )}
       </div>
       <div className="flex excluded justify-between py-10 px-10">
         <button
           onClick={handlePrevious}
           disabled={currentPage === 1}
-          className={`px-3 py-2 text-sm w-[96px] h-[36px] rounded-md ${
-            currentPage === 1
-              ? "bg-gray-300 text-gray-500"
-              : "bg-white text-[#98A2B3] active:bg-[#2B71F0] active:text-white"
-          }`}
+          // className={`px-3 py-2 text-sm w-[96px] h-[36px] rounded-md ${
+          //   currentPage === 1
+          //     ? "bg-gray-300 text-gray-500"
+          //     : "bg-white text-[#98A2B3] active:bg-[#2B71F0] active:text-white"
+          // }`}
+          className="text-[#98A2B3] bg-white w-[95px] text-[14px] h-[36px] px-[12px] grid place-items-center  border-gray-300 shadow-sm hover:bg-[#2B71F0] hover:text-white transition-all ease-in-out duration-300 rounded-[5px]"
         >
           Previous
         </button>
         <button
           onClick={handleNext}
           disabled={currentPage === totalPages}
-          className={`px-3 py-2 text-sm w-[96px] h-[36px] rounded-md ${
-            currentPage === totalPages
-              ? "bg-gray-300 text-gray-500"
-              : "bg-white text-[#98A2B3] active:bg-[#2B71F0] active:text-white"
-          }`}
+          // className={`px-3 py-2 text-sm w-[96px] h-[36px] rounded-md ${
+          //   currentPage === totalPages
+          //     ? "bg-gray-300 text-gray-500"
+          //     : "bg-white text-[#98A2B3] active:bg-[#2B71F0] active:text-white"
+          // }`}
+          className="text-[#98A2B3] w-[95px] bg-white text-[14px] h-[36px] px-[12px] grid place-items-center  border-gray-300 shadow-sm hover:bg-[#2B71F0] hover:text-white transition-all ease-in-out duration-300 rounded-[5px]"
         >
           Next
         </button>

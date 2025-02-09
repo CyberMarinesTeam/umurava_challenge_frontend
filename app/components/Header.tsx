@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { IoFilterOutline, IoSearchSharp } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import io, {Socket} from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 import { useDispatch, useSelector } from "react-redux";
 import ProtectedRoute from "./script/Protection";
 import Image from "next/image";
@@ -43,7 +43,7 @@ const Header = () => {
       console.log("Connected to WebSocket server");
     });
 
-    socketRef?.current?.on("notification", (message:string) => {
+    socketRef?.current?.on("notification", (message: string) => {
       const isDuplicate = notifications.some(
         (notif: NotificationType) => notif.message === message
       );
@@ -61,11 +61,11 @@ const Header = () => {
     });
 
     socketRef.current.on("notification-read", () => {
-      dispatch(markAllAsRead()); 
+      dispatch(markAllAsRead());
       setSocketUpdateTrigger((prev) => prev + 1);
     });
 
-    socketRef.current.on("broadcast-message", (message:string) => {
+    socketRef.current.on("broadcast-message", (message: string) => {
       const newNotification = {
         id: Date.now().toString(),
         message,
@@ -103,20 +103,14 @@ const Header = () => {
     return day;
   };
 
-
   const handleMarkAllAsRead = () => {
     dispatch(markAllAsRead());
     socketRef?.current?.emit("mark-notifications-read");
-    setNotificationShow(false) // Emit event to backend
+    setNotificationShow(false); // Emit event to backend
   };
 
   return (
-<<<<<<< HEAD
-    <div className="flex relative z-20 items-center justify-between p-4 bg-white border-[#E4E7EC]">
-=======
     <div className="flex relative z-20 max-[1000px]:w-full items-center justify-between max-[1000px]:justify-around p-4 bg-white border-[#E4E7EC]">
-
->>>>>>> ad16c418c8ca21793a653232d73b4c39f9ae9468
       {/* Search Bar */}
       <div className="flex items-center gap-4 max-[1000px]:ml-0 bg-gray-100 rounded-md w-[60%] px-4 py-2 relative">
         <IoSearchSharp className="text-gray-500" />

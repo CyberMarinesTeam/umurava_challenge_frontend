@@ -28,14 +28,14 @@ const Challenges = () => {
   const { data: dataForOpen } = useGetChallengeByStatusQuery("open");
   const { data: dataForOngoing } = useGetChallengeByStatusQuery("ongoing");
   const { data: dataForComplete } = useGetChallengeByStatusQuery("completed");
-  const [isCurrent, setIsCurrent] = useState("")
+  const [isCurrent, setIsCurrent] = useState("");
   useEffect(() => {
     if (data?.length) setAllCount(data.length);
     if (dataForOpen?.length) setOpenCount(dataForOpen.length);
     if (dataForOngoing?.length) setOngoingCount(dataForOngoing.length);
     if (dataForComplete?.length) setCompletedCount(dataForComplete.length);
   }, [dataForComplete, dataForOngoing, dataForOpen]);
-  
+
   const router = useRouter();
   const user = useSelector((state: RootState) => state.auth.user);
 
@@ -47,7 +47,6 @@ const Challenges = () => {
     []
   );
 
-
   useEffect(() => {
     if (user?.roles.toString() !== "admin") {
       router.push("/login");
@@ -55,27 +54,36 @@ const Challenges = () => {
   }, [user, router]);
 
   useEffect(() => {
-
     if (data) {
-
       const filtered = data.filter((challenge) =>
-       filterText == "category" ? challenge.category.toLowerCase().includes(query.toLowerCase()) : 
-        filterText == "skills" ? challenge.skills_needed?.some((skill) => skill.toLowerCase().includes(query.toLowerCase())) :
-        filterText == "seniority_level" ? challenge.seniority_level.toLowerCase().includes(query.toLowerCase()) :
-        filterText == "contactEmail" ? challenge.contactEmail.toLowerCase().includes(query.toLowerCase()) : 
-        filterText == "moneyPrize" ? challenge.moneyPrice.toString().includes(query) : 
-        filterText == "requirements" ? challenge?.requirements?.some((requirement) => requirement.toLowerCase().includes(query.toLowerCase())) :
-        filterText == "status" ? challenge.status?.toLowerCase().includes(query.toLowerCase()) :
-        challenge.title.toLowerCase().includes(query.toLowerCase())
+        filterText == "category"
+          ? challenge.category.toLowerCase().includes(query.toLowerCase())
+          : filterText == "skills"
+          ? challenge.skills_needed?.some((skill) =>
+              skill.toLowerCase().includes(query.toLowerCase())
+            )
+          : filterText == "seniority_level"
+          ? challenge.seniority_level
+              .toLowerCase()
+              .includes(query.toLowerCase())
+          : filterText == "contactEmail"
+          ? challenge.contactEmail.toLowerCase().includes(query.toLowerCase())
+          : filterText == "moneyPrize"
+          ? challenge.moneyPrice.toString().includes(query)
+          : filterText == "requirements"
+          ? challenge?.requirements?.some((requirement) =>
+              requirement.toLowerCase().includes(query.toLowerCase())
+            )
+          : filterText == "status"
+          ? challenge.status?.toLowerCase().includes(query.toLowerCase())
+          : challenge.title.toLowerCase().includes(query.toLowerCase())
       );
-      
+
       setFilteredChallenges(filtered);
       console.log(filtered, query, filterText);
     }
-
   }, [data, query, filterText]);
   const [CurrentPage, setCurrent] = useState(1);
-
 
   const totalNumberElements = 6;
   const lastIndex = CurrentPage * totalNumberElements;
@@ -109,7 +117,6 @@ const Challenges = () => {
     }
   };
 
-
   useEffect(() => {
     switch (currentFilter) {
       case "Open":
@@ -126,13 +133,13 @@ const Challenges = () => {
     }
   }, [currentFilter, data, dataForOpen, dataForOngoing, dataForComplete]);
 
-  const handleButtonClick = (valueText:string) => {
-    setCurrentFilter(valueText)
-    setIsCurrent(valueText)
-  }
+  const handleButtonClick = (valueText: string) => {
+    setCurrentFilter(valueText);
+    setIsCurrent(valueText);
+  };
   return (
     <main className="px-8">
-      <div className="mb-[50px]">
+      <div className="mb-[30px]">
         {" "}
         <h1 className="text-[24px] font-bold mt-[40px]">Challenges</h1>
         <p className="text-[14px] text-[#667185]">
@@ -140,16 +147,36 @@ const Challenges = () => {
         </p>
       </div>
       <div className="flex border-b-[0.5px] border-gray-200 justify-between mb-4">
-        <div className="flex justify-between items-center w-full h-[76px]">
-        <div className="flex gap-4">
-          <Button textValue="All" allCount={allCount} onClick={()=>handleButtonClick("All")} isCurrent={isCurrent}/>
-          <Button textValue="Open" allCount={openCount} onClick={()=>handleButtonClick("Open")}  isCurrent={isCurrent}/>
-          <Button textValue="Ongoing" allCount={ongoingCount} onClick={()=>handleButtonClick("Ongoing")} isCurrent={isCurrent}/>
-          <Button textValue="Completed" allCount={completedCount} onClick={()=>handleButtonClick("Completed")} isCurrent={isCurrent}/>
-        </div>
+        <div className="flex space-x-[20px] items-center w-full h-[76px]">
+          <div className="flex gap-4">
+            <Button
+              textValue="All"
+              allCount={allCount}
+              onClick={() => handleButtonClick("All")}
+              isCurrent={isCurrent}
+            />
+            <Button
+              textValue="Completed"
+              allCount={completedCount}
+              onClick={() => handleButtonClick("Completed")}
+              isCurrent={isCurrent}
+            />
+            <Button
+              textValue="Open"
+              allCount={openCount}
+              onClick={() => handleButtonClick("Open")}
+              isCurrent={isCurrent}
+            />
+            <Button
+              textValue="Ongoing"
+              allCount={ongoingCount}
+              onClick={() => handleButtonClick("Ongoing")}
+              isCurrent={isCurrent}
+            />
+          </div>
           <Link
             href={"challenges/create"}
-            className="bg-[#2B71F0] text-white  px-[18px] py-[16px] rounded"
+            className="bg-[#2B71F0] text-white hover:opacity-80 transition-all duration-300  px-[18px] py-[16px] rounded"
           >
             <p className="text-[12px]">+ Create New Challenge</p>
           </Link>
@@ -161,8 +188,12 @@ const Challenges = () => {
             <ChallengeCard2 key={challenge._id} challenge={challenge} />
           ))
         ) : (
-          <div>
-            <h1>No Challenges found yet</h1>
+          <div className="w-full flex flex-col space-y-[20px] justify-center bg-white p-[30px] rounded-[20px] items-center">
+            <img
+              src="/notEnough.webp"
+              alt="not enough"
+              className="w-[300px] h-auto rounded-[20px]"
+            />
           </div>
         )}
       </div>
