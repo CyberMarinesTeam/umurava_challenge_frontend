@@ -99,6 +99,7 @@ const Challenges = () => {
         break;
       default:
         setCurrentData(allChallenges || []);
+        setCurrentPage(1);
     }
   }, [allChallenges, openChallenges, ongoingChallenges, completedChallenges]);
   useEffect(() => {
@@ -132,7 +133,13 @@ const Challenges = () => {
     }
   }, [allChallenges, query, filterText]);
 
-  const totalPages = Math.ceil(filteredChallenges.length / itemsPerPage);
+  // const totalPages = Math.ceil(filteredChallenges.length / itemsPerPage);
+  const totalPages = Math.ceil(
+    (filteredChallenges.length > 0
+      ? filteredChallenges.length
+      : currentData.length) / itemsPerPage
+  );
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   let paginatedData = currentData?.slice(startIndex, startIndex + itemsPerPage);
 
