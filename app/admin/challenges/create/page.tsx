@@ -1,26 +1,32 @@
 "use client";
 import { useCreateChallengeMutation } from "@/lib/redux/slices/challengeSlice";
 import Link from "next/link";
-import React, { useState } from "react";
-import { IoMdAdd, IoMdAddCircleOutline } from "react-icons/io";
+import React, { useEffect, useState } from "react";
+import {  IoMdAddCircleOutline } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { VscArrowSmallLeft } from "react-icons/vsc";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
-import { RootState } from "@/lib/redux/store";
-// import axios from "axios";
+
+
+export interface UserType {
+  id: string;
+  [key: string]: string;
+}
 
 const Page: React.FC = () => {
-  const user = useSelector((state: RootState) => state.auth.user);
+  const [user, setUser] = useState<UserType | null>(null);
+
   const router = useRouter();
   const [createChallenge] = useCreateChallengeMutation();
   const [challengeTitle, setChallengeTitle] = useState("");
-  const [deadline, setDeadline] = useState<Date>(new Date());
-  const [startingDate, setStartingDate] = useState<Date>(new Date());
+  const [deadline, setDeadline] = useState<any>(new Date());
+  const [startingDate, setStartingDate] = useState<any>(new Date());
   const [duration, setDuration] = useState("");
   const [moneyPrize, setMoneyPrize] = useState("");
   const [contactEmail, setContactEmail] = useState("");
-  const [projectRequirements, setProjectRequirements] = useState<string[]>([""]);
+  const [projectRequirements, setProjectRequirements] = useState<string[]>([
+    "",
+  ]);
   const [product_design, setProductDesign] = useState<string[]>([""]);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
   const [skills_needed, setSkills_needed] = useState<string[]>([""]);
@@ -28,6 +34,12 @@ const Page: React.FC = () => {
   const [seniority_level, setSeniority_level] = useState("");
   const [projectBrief, setProjectBrief] = useState("");
 
+  useEffect(()=> {
+  const currentUser = localStorage.getItem("user");
+  if(currentUser) {
+    setUser(JSON.parse(currentUser))
+  }
+  },[])
   const handleSubmit = async (event: React.FormEvent) => {
     // Check for empty fields
     if (
@@ -84,20 +96,26 @@ const Page: React.FC = () => {
       seniority_level,
       skills_needed,
       projectBrief,
-      startingAt:startingDate,
+      startingAt: startingDate,
     };
     if (user) {
-     try {
-      const res = await createChallenge({id: user?.id, newChallenge: newToCreateChallenge}).unwrap();
-      console.log(res);
-      console.log(newToCreateChallenge)
-      if(res) {
-        router.push("/admin/challenges");
+      try {
+        const res = await createChallenge({
+          id: user?.id,
+          newChallenge: newToCreateChallenge,
+        }).unwrap();
+        console.log(res);
+        console.log(newToCreateChallenge);
+        if (res) {
+          router.push("/admin/challenges");
+        }
+      } catch (error) {
+        console.log(
+          "failed to create the challenge ",
+          error,
+          newToCreateChallenge
+        );
       }
-      
-     } catch (error) {
-      console.log("failed to create the challenge ", error, newToCreateChallenge);
-     }
     } else {
       alert("You must be logged in to create a challenge");
     }
@@ -292,7 +310,7 @@ const Page: React.FC = () => {
             product_design,
             deliverables,
             skills_needed,
-          ].map((field, fieldIndex) => (
+          ].map((field: any, fieldIndex: any) => (
             <div key={fieldIndex} className="excluded mb-4">
               <label className="block text-[#475367] text-[14px] mb-2">
                 {fieldIndex === 0
@@ -303,9 +321,10 @@ const Page: React.FC = () => {
                   ? "Deliverables"
                   : "Skills_needed"}
               </label>
-              {field.map((value, index) => (
+              {field.map((value: any, index: any) => (
                 <div key={index} className="flex space-x-2 mb-2">
                   <input
+                    title="input"
                     type="text"
                     className="border-[0.5px] border-[#E4E7EC] rounded w-[500px] p-[16px] text-gray-700"
                     value={value}
@@ -321,7 +340,8 @@ const Page: React.FC = () => {
                         : setSkills_needed(newValues);
                     }}
                   />
-                  <span
+                  <button
+                    title="button"
                     type="button"
                     onClick={() =>
                       removeField(
@@ -337,10 +357,11 @@ const Page: React.FC = () => {
                     }
                   >
                     <MdDelete className="text-[30px] cursor-pointer text-red-400" />
-                  </span>
+                  </button>
                 </div>
               ))}
-              <span
+              <button
+                title="button"
                 type="button"
                 onClick={() =>
                   addField(
@@ -355,7 +376,7 @@ const Page: React.FC = () => {
                 }
               >
                 <IoMdAddCircleOutline className="text-[30px] cursor-pointer text-blue-500" />
-              </span>
+              </button>
             </div>
           ))}
 

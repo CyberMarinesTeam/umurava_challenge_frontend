@@ -14,7 +14,7 @@ export interface LoginResponseDto {
     id: string;
     username: string;
     email: string;
-    roles: RoleEnum[];
+    roles: any;
   };
 }
 
@@ -22,7 +22,7 @@ export interface SignupBodyDto {
   username: string;
   password: string;
   email: string;
-  roles: RoleEnum[];
+  roles: any;
 }
 
 export interface SignupResponseDto {
@@ -43,21 +43,14 @@ interface AuthState {
     id: string;
     username: string;
     email: string;
-    roles: RoleEnum;
+    roles: any;
   } | null;
 }
 
 const loadAuthState = (): AuthState => {
-  // if (typeof window === "undefined") {
-  //   return { token: null, user: null };
-  // }
-
-  const storedToken = localStorage.getItem("token");
-  const storedUser = localStorage.getItem("user");
-
   return {
-    token: storedToken || null,
-    user: storedUser ? JSON.parse(storedUser) : null,
+    token: null,
+    user: null,
   };
 };
 
@@ -69,24 +62,17 @@ const authSlice = createSlice({
     setCredentials: (state, action: PayloadAction<LoginResponseDto>) => {
       state.token = action.payload.token;
       state.user = action.payload.user;
-      localStorage.setItem("token", action.payload.token);
-      localStorage.setItem("user", JSON.stringify(action.payload.user));
     },
     clearCredentials: (state) => {
       state.token = null;
       state.user = null;
-
-      if (typeof window !== "undefined") {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-      }
     },
   },
 });
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/auth" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://skills-challenge.onrender.com/auth" }),
   endpoints: (builder) => ({
     login: builder.mutation<any, LoginBodyDto>({
       query: (credentials) => ({
