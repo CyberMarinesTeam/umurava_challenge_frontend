@@ -7,9 +7,13 @@ import Link from "next/link";
 // import { IoPlaySharp } from "react-icons/io5";
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Home() {
+
   const router = useRouter()
+  const [currentVideo, setCurrentVideo] = useState(0);
+
   const courseNames = [
     "UI/UX Design",
     "Data Science",
@@ -357,18 +361,40 @@ export default function Home() {
           />
         </main>
       </section>
-      <section className="flex max-[440px]:w-full flex-col pt-[60px] ml-[130px] max-[440px]:m-0 pb-[50px] items-start justify-center">
-        <h2 className="text-[#03192E] max-[440px]:w-full max-[440px]:text-xl max-[440px]:px-5 text-[40px] mb-[20px] leading-[48px] w-[700px] text-left font-bold">
-          Users Are In Love with Skills Challenges Program
-        </h2>
-        <p className="text-[#687588] max-[440px]:w-full max-[440px]:text-sm max-[440px]:px-5 mb-[45px] text-[18px] w-[610px] text-left">
-          See what your clients say about working with us. Their success speaks
-          for our dedication and expertise.
-        </p>
-        <div className="carousel carousel-center bg-white shadow-sm  rounded-box max-w-full space-x-4 p-4">
+      <section className="firstSection flex max-[440px]:w-full flex-col pt-[60px] ml-[130px] max-[440px]:m-0 pb-[50px] items-start justify-center">
+      <h2 className="text-[#03192E] max-[440px]:w-full max-[440px]:text-xl max-[440px]:px-5 text-[40px] mb-[20px] leading-[48px] w-[700px] text-left font-bold">
+        Users Are In Love with Skills Challenges Program
+      </h2>
+      <p className="text-[#687588] max-[440px]:w-full max-[440px]:text-sm max-[440px]:px-5 mb-[45px] text-[18px] w-[610px] text-left">
+        See what your clients say about working with us. Their success speaks for our dedication and expertise.
+      </p>
+      <div className="w-full excluded  flex flex-col items-center">
+        <div className="carousel carousel-center excluded  bg-white shadow-sm rounded-box max-w-full space-x-4 p-4">
           {videoCards}
         </div>
-      </section>
+        <div className="flex excluded justify-center space-x-2 mt-4">
+          {videoCards.map((_, index) => (
+            <button
+              title="video cards"
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all ${
+                currentVideo === index ? 'bg-[#2B71F0] w-4' : 'bg-gray-300'
+              }`}
+              onClick={() => {
+                setCurrentVideo(index);
+                const carousel = document.querySelector('.carousel');
+                if (carousel) {
+                  carousel.scrollTo({
+                    left: index * (470 + 16), // width of card + gap
+                    behavior: 'smooth'
+                  });
+                }
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
       <section className="firstSection max-[440px]:w-full flex flex-col pb-[50px] bg-[#F9FAFB] items-center max-[440px]:pt-5 pt-[50px] justify-center">
         <h2 className="text-[#03192E] max-[440px]:w-full max-[440px]:px-2 max-[440px]:text-xl leading-[48px] text-[40px] w-[700px] text-center font-bold">
           How To Get Started
