@@ -133,7 +133,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="excluded flex flex-col space-y-[30px] pb-[40px] items-center">
+    <div className="h-[1320px] overflow-y-auto excluded flex flex-col space-y-[30px] pb-[40px] items-center">
       <div className="excluded flex  flex-row w-full  border-y-[1.5px] items-center  border-[#E4E7EC] space-x-[20px] bg-white justify-start px-[20px] h-[62px]">
         <Link
           href={"/admin/challenges"}
@@ -212,7 +212,7 @@ const Page: React.FC = () => {
               Duration
             </label>
             <input
-              type="text"
+              type="number"
               id="duration"
               placeholder="Duration"
               className="appearance-none placeholder:text-[14px]   border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -228,7 +228,7 @@ const Page: React.FC = () => {
               Money Prize
             </label>
             <input
-              type="text"
+              type="number"
               id="moneyPrize"
               placeholder="Prize"
               className="appearance-none placeholder:text-[14px]  border-[0.5px] border-[#E4E7EC] rounded w-[576px] p-[16px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

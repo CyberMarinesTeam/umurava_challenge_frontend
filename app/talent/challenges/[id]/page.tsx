@@ -33,7 +33,8 @@ const Page = () => {
   const { data: statusData } = useGetStatusQuery(
     user ? { userId: user.id, challengeId: params.id } : undefined
   );
-
+  const baseUrl = "https://skills-challenge.onrender.com";
+  // const baseUrl = "http://localhost:4000"
 
  
   useEffect(() => {
@@ -47,9 +48,10 @@ const Page = () => {
     const getChallenge = async () => {
       try {
         const response = await axios.get(
-          `https://skills-challenge.onrender.com/challenges/${params.id}`
+          `${baseUrl}/challenges/${params.id}`
         );
-        setChallenge(response.data.Challenge);
+        console.log(response.data);
+        setChallenge(response.data);
       } catch (error) {
         console.error("Error fetching challenge:", error);
       }

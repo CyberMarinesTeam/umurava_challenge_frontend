@@ -31,7 +31,7 @@ const SmallStatusCard = ({
         {icon}
       </div>
       <p className="text-[14px] group-hover:text-[#101928] text-[#344054]">
-        {text} Completed
+        {text} Challenges
       </p>
       <div
         className={`${
