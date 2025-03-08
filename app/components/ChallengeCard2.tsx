@@ -47,17 +47,17 @@ const ChallengeCard2: React.FC<{ challenge: any }> = ({ challenge }) => {
           {challenge.status}
         </span>
       </div>
-      <h2 className="text-[#101928] mt-[18px] mb-3 text-[18px] font-semibold px-3">
+      <h2 className="text-[#101928] mt-[18px]  mb-3 text-[18px] hover:relative w-[300px]  truncate font-semibold px-3 hover:text-clip" title={`${challenge.title}`}>
         {challenge.title}
       </h2>
       <h2 className="text-[#25272B] text-[12px] font-semibold px-3">
         Skills Needed:
       </h2>
-      <div className="excluded flex flex-wrap mt-2 gap-[8px] items-start justify-start mb-3 px-3">
+      <div className="carousel w-[280px] carousel-center excluded mt-2 gap-[8px] items-start justify-start overflow-x-auto mb-3 mx-[10px]">
         {challenge.skills_needed.map((skill: any, index: any) => (
           <button
             key={index}
-            className="text-[#2B71F0] text-[11px] px-[6px] py-[4px] rounded-[10px] border-[#2B71F0] border-[1px]"
+            className="carousel-item text-[#2B71F0] text-[11px] px-[6px] py-[4px] rounded-[10px] border-[#2B71F0] border-[1px]"
           >
             {skill}
           </button>

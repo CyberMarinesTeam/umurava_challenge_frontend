@@ -152,18 +152,23 @@ const SideBar = () => {
             </Link>
           </ul>
         </div>
-        <div className="pl-[10px] max-[1000px]:pl-0 flex max-[1000px]:w-full max-[1000px]:items-center max-[1000px]:justify-center flex-col space-y-[20px]">
-          <div className="flex flex-row space-x-[7px]">
-            <img
+        <div className="pl-[10px] max-[1000px]:pl-0 lg:space-x-[20px]  flex max-[1000px]:w-full max-[1000px]:items-center items-center    max-[1000px]:justify-center flex-row ">
+        <img
               src="/profile2.webp"
               alt="profileImage"
               className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
             />
+          <div className="">
+            {/* <img
+              src="/profile2.webp"
+              alt="profileImage"
+              className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
+            /> */}
             <div className="flex max-[1000px]:hidden flex-col gap-1 w-[80%]">
-              <p className="text-[12px] font-normal leading-5">
+              <p className="text-[12px] font-normal ">
                 {currentUser?.username}, PM
               </p>
-              <p className="text-[12px] font-normal leading-5 w-[80%]">
+              <p className="text-[12px] font-normal w-[140px]  truncate hover:text-clip" title={`${currentUser?.email}`}>
                 {currentUser?.email}
               </p>
             </div>
