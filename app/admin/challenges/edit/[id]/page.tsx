@@ -44,7 +44,8 @@ const [currentUser, setCurrentUser] = useState<UserType | null>(null);
   const [deliverables, setDeliverables] = useState<string[]>([""]);
   const [skillsNeeded, setSkillsNeeded] = useState<string[]>([""]);
   const [seniorityLevel, setSeniorityLevel] = useState("");
-
+  // const baseUrl = "http://localhost:4000";
+  const baseUrl="https://skills-challenge.onrender.com"
   useEffect(() => {
     const av_user = localStorage.getItem("user");
     if(av_user) {
@@ -89,7 +90,7 @@ const [currentUser, setCurrentUser] = useState<UserType | null>(null);
     };
 
     const res = await axios.put(
-      `https://skills-challenge.onrender.com/challenges/${params.id}/${currentUser?.id}`,
+      `${baseUrl}/challenges/${params.id}/${currentUser?.id}`,
       updatedChallenge,
       {
         headers: {
@@ -115,8 +116,8 @@ const [currentUser, setCurrentUser] = useState<UserType | null>(null);
   };
 
   return (
-    <div className="excluded flex flex-col space-y-[30px] pb-[70px] items-center">
-      <div className="excluded flex flex-row w-full border-y-[1.5px] items-center border-[#E4E7EC] space-x-[20px] bg-white justify-start px-[20px] h-[62px]">
+    <div className="excluded h-[1320px] overflow-y-auto flex flex-col space-y-[30px] pb-[70px] items-center">
+      <div className="excluded flex flex-row w-full border-y-[1.5px] py-[9px] items-center border-[#E4E7EC] space-x-[20px] bg-white justify-start px-[20px] h-[62px]">
         <Link
           href={`/admin/challenges/${params.id}`}
           className="border-[#E4E7EC] border-[1px] p-[3px] rounded-[5px] bg-white"
@@ -344,9 +345,9 @@ const [currentUser, setCurrentUser] = useState<UserType | null>(null);
           )}
 
           <div className="excluded flex flex-row space-x-[20px] items-center justify-between">
-            <button className="w-[220px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] grid place-items-center border-[#2b71f0] border-[1.5px]">
+            <Link href={`/admin/challenges/${challenge?._id}`} className="w-[220px] h-[56px] rounded-[5px] text-[16px] text-[#2b71f0] grid place-items-center border-[#2b71f0] border-[1.5px]">
               Cancel
-            </button>
+            </Link>
             <button
               type="submit"
               className="bg-[#2B71f0] w-[324px] h-[56px] text-[16px] rounded-[5px] font-semibold text-white"

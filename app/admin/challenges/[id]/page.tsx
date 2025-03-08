@@ -17,40 +17,56 @@ import { VscArrowSmallLeft } from "react-icons/vsc";
 // import { useGetChallengeByIdQuery } from "@/lib/redux/slices/challengeSlice";
 import { useParams } from "next/navigation";
 import { ChallengeType } from "@/lib/redux/slices/challengeSlice";
-
+const baseUrl = "https://skills-challenge.onrender.com";
+// const baseUrl = "http://localhost:4000";
 const Page = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+const [error, setError] = useState<string | null>(null);
   const params = useParams<{ id: string }>();
   const [challenge, setChallenge] = useState<ChallengeType>();
   const router = useRouter();
   const getChallenge = async (id: string) => {
-    const response = await axios.get(`https://skills-challenge.onrender.com/challenges/${id}`);
+    const response = await axios.get(`${baseUrl}/challenges/${id}`);
     if (response) {
       console.log(response.data);
-      setChallenge(response.data.Challenge);
+      setChallenge(response.data);
     }
   };
 
-  const deleteChallenge = async (id: any) => {
-    const res = await axios.delete(`https://skills-challenge.onrender.com/challenges/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    if (res) {
-      console.log("deleted");
+  const deleteChallenge = async (id: string) => {
+    try {
+      setIsDeleting(true);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Authentication token not found");
+      }
+  
+      await axios.delete(`${baseUrl}/challenges/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      setShowModal(false);
       router.push("/admin/challenges");
-    } else {
-      console.log("failed to del");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to delete challenge");
+    } finally {
+      setIsDeleting(false);
     }
   };
+  
   useEffect(() => {
     getChallenge(params.id);
   }, [params.id]);
-
+  
+  console.log(challenge?._id);
+  console.log(challenge)
   return (
     <div className="excluded">
-      <div className="excluded flex  flex-row w-full  border-y-[1.5px] items-center  border-[#E4E7EC]  bg-white justify-start px-[20px] h-[62px]">
+      <div className="excluded flex  flex-row w-full  border-y-[1.5px] items-center  border-[#E4E7EC]  bg-white justify-start px-[20px] h-[57px]">
         <div className="excluded flex  flex-row w-full   items-center   space-x-[20px]  justify-start ">
           <Link
             href={"/admin/challenges"}
@@ -205,12 +221,42 @@ const Page = () => {
               </div>
             </div>
             <div className="flex flex-row items-center mt-[50px] space-x-[10px] justify-center">
+            <button
+          onClick={() => setShowModal(true)}
+          className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-red-500 "        >
+          Delete
+        </button>
+      
+
+      {/* Confirmation Modal */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-semibold">Are you sure?</h2>
+            <p className="text-gray-600 mt-2">Do you really want to delete this challenge?</p>
+            <div className="flex justify-end space-x-4 mt-4">
               <button
-                className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#E5533C] "
-                onClick={() => deleteChallenge(challenge?._id)}
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
               >
-                Delete
+                Cancel
               </button>
+              <button
+  onClick={() => deleteChallenge(challenge?._id as string)}
+  disabled={isDeleting}
+  className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 disabled:bg-gray-400"
+>
+  {isDeleting ? "Deleting..." : "Delete"}
+</button>
+
+{error && (
+  <p className="text-red-500 text-sm mt-2">{error}</p>
+)}
+            </div>
+          </div>
+        </div>
+      )}
+              {/* <Link href={`/admin/challenges/edit/${challenge?._id}`}> */}
               <Link href={`/admin/challenges/edit/${challenge?._id}`}>
                 <button className="text-[16px] w-[160px] h-[55px] text-white rounded-[8px] bg-[#2B71F0] ">
                   Edit

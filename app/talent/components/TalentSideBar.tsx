@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearCredentials } from "@/lib/redux/slices/authSlice";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/lib/redux/store";
+import { userAgentFromString } from "next/server";
 
 const TalentSideBar = () => {
   const dispatch = useDispatch();
@@ -147,18 +148,23 @@ const TalentSideBar = () => {
           </ul>
         </div>
 
-        <div className="pl-[5px] flex flex-col space-y-[20px]">
-          <div className="flex flex-row space-x-[7px]">
-            <img
+      <div className="pl-[10px] max-[1000px]:pl-0 lg:space-x-[20px]  flex max-[1000px]:w-full max-[1000px]:items-center items-center    max-[1000px]:justify-center flex-row ">
+        <img
               src="/profile2.webp"
               alt="profileImage"
               className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
             />
-            <div className="flex  flex-col gap-1 w-[80%]">
-              <p className="text-[12px] font-normal leading-5">
+          <div className="">
+            {/* <img
+              src="/profile2.webp"
+              alt="profileImage"
+              className="h-[40px] object-cover border-[2px] border-white w-[40px] rounded-full"
+            /> */}
+            <div className="flex max-[1000px]:hidden flex-col gap-1 w-[80%]">
+              <p className="text-[12px] font-normal ">
                 {user?.username}, PM
               </p>
-              <p className="text-[12px]  font-normal leading-5 w-[80%]">
+              <p className="text-[12px] font-normal w-[140px]  truncate hover:text-clip" title={`${user?.email}`}>
                 {user?.email}
               </p>
             </div>
